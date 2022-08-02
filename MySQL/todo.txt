@@ -1,0 +1,5 @@
+-- Make Trigger so that when adding a season to a series no_of_seasons auto increments
+-- Add data to every new table
+Add documentation
+-- Add relational diagram
+-- Choose if i am going to rent every episode 1 by 1 or the whole serie and caclulate total cost by episode number
