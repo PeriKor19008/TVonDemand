@@ -3,5 +3,12 @@
 
 
 <ul *ngFor="let film of films">
-  <li>{{film}}</li>
+  <li>
+    
+    <h1>{{film.title}}</h1>
+    <p>{{film.description}}</p>
+    <div>release year: {{film.release_year}}</div>
+  </li>
 </ul>
+
+

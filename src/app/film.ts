@@ -10,3 +10,8 @@ export interface IFilms{
   special_features:string
 
 }
+export interface Films{
+  error:boolean,
+  data:[IFilms],
+  message:string
+}
