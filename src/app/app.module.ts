@@ -7,12 +7,14 @@ import { HttpClientModule } from "@angular/common/http";
 import { FilmsComponent } from './films/films.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FilmComponent } from './film/film.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FilmsComponent,
-    FilmComponent
+    FilmComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
