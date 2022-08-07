@@ -10165,7 +10165,7 @@ INSERT INTO `language` (language_id, name) VALUES
 --
 
 INSERT INTO `customer` (`customer_id`, `first_name`, `last_name`, `email`, `address_id`, `active`, `create_date`) VALUES
-(402, 'LUIS', 'YANEZ', 'LUIS.YANEZ@sakilacustomer.org', 407, 1, '2006-02-14 22:04:37'),
+(402, 'LUIS', 'YANEZ', 'LUIS.YANEZ@sakilacustomer.org', 407, 1, '
 (162, 'LAUREN', 'HUDSON', 'LAUREN.HUDSON@sakilacustomer.org', 166, 1, '2006-02-14 22:04:36'),
 (104, 'RITA', 'GRAHAM', 'RITA.GRAHAM@sakilacustomer.org', 108, 1, '2006-02-14 22:04:36'),
 (35, 'VIRGINIA', 'GREEN', 'VIRGINIA.GREEN@sakilacustomer.org', 39, 1, '2006-02-14 22:04:36'),
@@ -12094,3 +12094,12 @@ INSERT INTO `serie_payment` (`payment_id`, `customer_id`, `rental_id`, `amount`,
 (NULL, 448, 19, '3.99', '2005-08-19 16:47:55'),
 (NULL, 251, 20, '2.99', '2005-07-30 12:30:19'),
 (NULL, 251, 21, '4.99', '2005-08-18 19:11:41');
+
+INSERT INTO `administrator` (`first_name`, `last_name`, `email`, `active`, `create_date`) VALUES
+('GREGORY', 'KAPADOUKAS', 'up1072484@upnet.gr', 1, '2005-01-01 22:04:37'),
+('PERIKLIS', 'KORONTZIS', 'up1072563@upnet.gr', 1, '2005-01-01 22:04:37'),
+('ELIAS', 'SERTARIDIS', '1072480@upnet.gr', 1, '2005-01-01 22:04:37');
+
+INSERT INTO `employee` (`first_name`, `last_name`, `email`, `active`, `create_date`) VALUES
+('DIMITRIS', 'KARAKOSTAS', 'dimkarak@gmail.com', 1, '2005-02-07 20:00:00'),
+('GIANNIS', 'kANTAS', 'giannkant@gmail.com', 1, '2005-07-29 07:05:00');
