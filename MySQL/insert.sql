@@ -10165,7 +10165,7 @@ INSERT INTO `language` (language_id, name) VALUES
 --
 
 INSERT INTO `customer` (`customer_id`, `first_name`, `last_name`, `email`, `address_id`, `active`, `create_date`) VALUES
-(402, 'LUIS', 'YANEZ', 'LUIS.YANEZ@sakilacustomer.org', 407, 1, '
+(402, 'LUIS', 'YANEZ', 'LUIS.YANEZ@sakilacustomer.org', 407, 1, '2005-01-01 22:04:37'),
 (162, 'LAUREN', 'HUDSON', 'LAUREN.HUDSON@sakilacustomer.org', 166, 1, '2006-02-14 22:04:36'),
 (104, 'RITA', 'GRAHAM', 'RITA.GRAHAM@sakilacustomer.org', 108, 1, '2006-02-14 22:04:36'),
 (35, 'VIRGINIA', 'GREEN', 'VIRGINIA.GREEN@sakilacustomer.org', 39, 1, '2006-02-14 22:04:36'),
@@ -12102,4 +12102,4 @@ INSERT INTO `administrator` (`first_name`, `last_name`, `email`, `active`, `crea
 
 INSERT INTO `employee` (`first_name`, `last_name`, `email`, `active`, `create_date`) VALUES
 ('DIMITRIS', 'KARAKOSTAS', 'dimkarak@gmail.com', 1, '2005-02-07 20:00:00'),
-('GIANNIS', 'kANTAS', 'giannkant@gmail.com', 1, '2005-07-29 07:05:00');
+('GIANNIS', 'KANTAS', 'giannkant@gmail.com', 1, '2005-07-29 07:05:00');
