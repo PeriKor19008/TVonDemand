@@ -35,3 +35,12 @@ app.get('/films', function (req, res) {
         return res.send({ error: false, data: results, message: 'users list.' });
     });
 });
+
+app.get('/login/:email',function (req,res){
+  let email=req.params.email;
+  console.log(req.params.email);
+  Db.dbConn.query("select count(*) as count from customer where email=?",email,function (error,results,fields){
+    if (error) throw error;
+    return res.send({ data:results});
+  });
+});
