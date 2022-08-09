@@ -12095,11 +12095,21 @@ INSERT INTO `serie_payment` (`payment_id`, `customer_id`, `rental_id`, `amount`,
 (NULL, 251, 20, '2.99', '2005-07-30 12:30:19'),
 (NULL, 251, 21, '4.99', '2005-08-18 19:11:41');
 
-INSERT INTO `administrator` (`first_name`, `last_name`, `email`, `active`, `create_date`) VALUES
-('GREGORY', 'KAPADOUKAS', 'up1072484@upnet.gr', 1, '2005-01-01 22:04:37'),
-('PERIKLIS', 'KORONTZIS', 'up1072563@upnet.gr', 1, '2005-01-01 22:04:37'),
-('ELIAS', 'SERTARIDIS', '1072480@upnet.gr', 1, '2005-01-01 22:04:37');
+
+--
+-- Dumping data for table employee
+--
 
 INSERT INTO `employee` (`first_name`, `last_name`, `email`, `active`, `create_date`) VALUES
 ('DIMITRIS', 'KARAKOSTAS', 'dimkarak@gmail.com', 1, '2005-02-07 20:00:00'),
 ('GIANNIS', 'KANTAS', 'giannkant@gmail.com', 1, '2005-07-29 07:05:00');
+
+
+--
+-- Dumping data for table administrator
+--
+
+INSERT INTO `administrator` (`first_name`, `last_name`, `email`, `active`, `create_date`) VALUES
+('GREGORY', 'KAPADOUKAS', 'up1072484@upnet.gr', 1, '2005-01-01 22:04:37'),
+('PERIKLIS', 'KORONTZIS', 'up1072563@upnet.gr', 1, '2005-01-01 22:04:37'),
+('ELIAS', 'SERTARIDIS', 'up1072480@upnet.gr', 1, '2005-01-01 22:04:37');
