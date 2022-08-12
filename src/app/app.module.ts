@@ -8,13 +8,17 @@ import { FilmsComponent } from './films/films.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FilmComponent } from './film/film.component';
 import { LoginComponent } from './login/login.component';
+import { MainScreenComponent } from './main-screen/main-screen.component';
+import { TopBarComponent } from './main-screen/top-bar/top-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FilmsComponent,
     FilmComponent,
-    LoginComponent
+    LoginComponent,
+    MainScreenComponent,
+    TopBarComponent
   ],
   imports: [
     BrowserModule,

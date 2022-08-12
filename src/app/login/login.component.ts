@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {LoginService} from "../login.service";
+import {LoginGuard} from "../login.guard";
 
 @Component({
   selector: 'app-login',
@@ -8,16 +9,21 @@ import {LoginService} from "../login.service";
 })
 export class LoginComponent implements OnInit {
 
-  public login:any;
-  constructor(private _loginService:LoginService) { }
+  public login=false;
+  constructor(private _loginService:LoginService,public loginguard:LoginGuard) { }
 
 
   ngOnInit(): void {
-
+      console.log(this.loginguard.isLoggedIn);
   }
+
 
   public type:string="none";
 
+  loggedInEmit(logged: boolean)
+  {
+    this.loginguard.isLoggedIn=logged;
+  }
   getMail(email:string,usertype:[boolean,boolean,boolean]){
 
     if(usertype[0])
@@ -28,6 +34,7 @@ export class LoginComponent implements OnInit {
       this.type="administrator";
     console.log(email,this.type)
     this._loginService.getLogin(email).subscribe(data=>this.login=data.data[0].count)
+    this.loggedInEmit(this.login);
 
   }
 

@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'TVonDemand';
+  public logged:boolean=false;
 }
