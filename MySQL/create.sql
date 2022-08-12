@@ -100,7 +100,7 @@ CREATE TABLE customer (
   address_id SMALLINT UNSIGNED NOT NULL,
   active BOOLEAN NOT NULL DEFAULT TRUE,
   create_date DATETIME NOT NULL,
-  view_type ENUM('Movies', 'Series', 'Both') DEFAULT 'Both',
+  view_type ENUM('Movies', 'Series', 'Both') DEFAULT 'Both' NOT NULL,
   PRIMARY KEY  (customer_id),
   CONSTRAINT fk_customer_address FOREIGN KEY (address_id) REFERENCES address (address_id) ON DELETE RESTRICT ON UPDATE CASCADE
   )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -357,3 +357,20 @@ CREATE TABLE serie_payment (
   CONSTRAINT fk_serie_payment_rental FOREIGN KEY (rental_id) REFERENCES serie_rental (rental_id) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT fk_serie_payment_customer FOREIGN KEY (customer_id) REFERENCES customer (customer_id) ON DELETE RESTRICT ON UPDATE CASCADE
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+--
+-- Table structure for table `log`
+--
+
+DROP TABLE IF EXISTS log;
+CREATE TABLE log (
+  log_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  user_email VARCHAR(50) NOT NULL,
+  user_type ENUM('Customer', 'Employee', 'Administrator') NOT NULL,
+  action ENUM('Insert', 'Update', 'DELETE') NOT NULL,
+  target VARCHAR(50) NOT NULL,
+  action_date DATETIME NOT NULL,
+  applied BOOLEAN NOT NULL,
+  PRIMARY KEY (log_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

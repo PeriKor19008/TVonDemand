@@ -70,7 +70,8 @@ CREATE TRIGGER unique_email_checker_customer
     SELECT email FROM administrator WHERE email=NEW.email
     INTO temp_email;
     IF (temp_email IS NOT NULL) THEN
-      SET NEW.email = NULL;
+      SIGNAL SQLSTATE VALUE '45000'
+      SET MESSAGE_TEXT = 'Invalid Operation! User with the same email already exists!'; 
     END IF;
   END$ 
 DELIMITER ;
@@ -80,7 +81,7 @@ DELIMITER ;
 -- Trigger to check that email is unique for all user types on every insertion on employee
 --
 
-DROP TRIGGER IF EXISTS $unique_email_checker_employee;
+DROP TRIGGER IF EXISTS unique_email_checker_employee;
 DELIMITER $
 CREATE TRIGGER unique_email_checker_employee
   BEFORE INSERT ON employee
@@ -92,7 +93,8 @@ CREATE TRIGGER unique_email_checker_employee
     SELECT email FROM administrator WHERE email=NEW.email
     INTO temp_email;
     IF (temp_email IS NOT NULL) THEN
-      SET NEW.email = NULL;  
+      SIGNAL SQLSTATE VALUE '45000'
+      SET MESSAGE_TEXT = 'Invalid Operation! User with the same email already exists!'; 
     END IF;
   END$ 
 DELIMITER ;
@@ -114,8 +116,254 @@ CREATE TRIGGER unique_email_checker_administrator
     SELECT email FROM administrator WHERE email=NEW.email
     INTO temp_email;
     IF (temp_email IS NOT NULL) THEN
-      SET NEW.email = NULL;  
+      SIGNAL SQLSTATE VALUE '45000'
+      SET MESSAGE_TEXT = 'Invalid Operation! User with the same email already exists!'; 
     END IF;
   END$ 
 DELIMITER ;
 
+
+--
+-- Trigger to update log table on insert on serie_rental
+--
+
+DROP TRIGGER IF EXISTS log_insert_serie_rental;
+DELIMITER $
+CREATE TRIGGER log_insert_serie_rental
+  AFTER INSERT ON serie_rental
+  FOR EACH ROW
+  BEGIN
+    DECLARE temp_email VARCHAR(50);
+	DECLARE temp_rental_date DATETIME;
+    SELECT customer.email, serie_rental.rental_date INTO temp_email, temp_rental_date FROM serie_rental INNER JOIN customer ON serie_rental.customer_id = customer.customer_id WHERE serie_rental.rental_id= NEW.rental_id;
+    INSERT INTO `log` (`user_email`, `user_type`, `action`, `target`, `action_date`, `applied`) VALUES
+    (temp_email, 'Customer', 'Insert', 'Serie Rental', temp_rental_date, 1);
+  END$
+DELIMITER ;
+
+
+--
+-- Trigger to update log table on insert on film_rental
+--
+
+DROP TRIGGER IF EXISTS log_insert_film_rental;
+DELIMITER $
+CREATE TRIGGER log_insert_film_rental
+  AFTER INSERT ON film_rental
+  FOR EACH ROW
+  BEGIN
+    DECLARE temp_email VARCHAR(50);
+	DECLARE temp_rental_date DATETIME;
+    SELECT customer.email, film_rental.rental_date INTO temp_email, temp_rental_date FROM film_rental INNER JOIN customer ON film_rental.customer_id = customer.customer_id WHERE film_rental.rental_id= NEW.rental_id;
+    INSERT INTO `log` (`user_email`, `user_type`, `action`, `target`, `action_date`, `applied`) VALUES
+    (temp_email, 'Customer', 'Insert', 'Film Rental', temp_rental_date, 1);
+  END$
+DELIMITER ;
+
+
+--
+-- Trigger to update log table on update on serie_rental
+--
+
+DROP TRIGGER IF EXISTS log_update_serie_rental;
+DELIMITER $
+CREATE TRIGGER log_update_serie_rental
+  AFTER UPDATE ON serie_rental
+  FOR EACH ROW
+  BEGIN
+    DECLARE temp_email VARCHAR(50);
+	DECLARE temp_rental_date DATETIME;
+    SELECT customer.email, serie_rental.rental_date INTO temp_email, temp_rental_date FROM serie_rental INNER JOIN customer ON serie_rental.customer_id = customer.customer_id WHERE serie_rental.rental_id= NEW.rental_id;
+    INSERT INTO `log` (`user_email`, `user_type`, `action`, `target`, `action_date`, `applied`) VALUES
+    (temp_email, 'Customer', 'Update', 'Serie Rental', temp_rental_date, 1);
+  END$
+DELIMITER ;
+
+
+--
+-- Trigger to update log table on update on film_rental
+--
+
+DROP TRIGGER IF EXISTS log_update_film_rental;
+DELIMITER $
+CREATE TRIGGER log_update_film_rental
+  AFTER UPDATE ON film_rental
+  FOR EACH ROW
+  BEGIN
+    DECLARE temp_email VARCHAR(50);
+	DECLARE temp_rental_date DATETIME;
+    SELECT customer.email, film_rental.rental_date INTO temp_email, temp_rental_date FROM film_rental INNER JOIN customer ON film_rental.customer_id = customer.customer_id WHERE film_rental.rental_id= NEW.rental_id;
+    INSERT INTO `log` (`user_email`, `user_type`, `action`, `target`, `action_date`, `applied`) VALUES
+    (temp_email, 'Customer', 'Update', 'Film Rental', temp_rental_date, 1);
+  END$
+DELIMITER ;
+
+
+--
+-- Trigger to update log table on delete on serie_rental
+--
+
+DROP TRIGGER IF EXISTS log_delete_serie_rental;
+DELIMITER $
+CREATE TRIGGER log_delete_serie_rental
+  AFTER DELETE ON serie_rental
+  FOR EACH ROW
+  BEGIN
+    DECLARE temp_email VARCHAR(50);
+	DECLARE temp_rental_date DATETIME;
+    SELECT customer.email, serie_rental.rental_date INTO temp_email, temp_rental_date FROM serie_rental INNER JOIN customer ON serie_rental.customer_id = customer.customer_id WHERE serie_rental.rental_id= OLD.rental_id;
+    INSERT INTO `log` (`user_email`, `user_type`, `action`, `target`, `action_date`, `applied`) VALUES
+    (temp_email, 'Customer', 'Delete', 'Serie Rental', temp_rental_date, 1);
+  END$
+DELIMITER ;
+
+
+--
+-- Trigger to update log table on delete on film_rental
+--
+
+DROP TRIGGER IF EXISTS log_delete_film_rental;
+DELIMITER $
+CREATE TRIGGER log_delete_film_rental
+  AFTER DELETE ON film_rental
+  FOR EACH ROW
+  BEGIN
+    DECLARE temp_email VARCHAR(50);
+	DECLARE temp_rental_date DATETIME;
+    SELECT customer.email, film_rental.rental_date INTO temp_email, temp_rental_date FROM film_rental INNER JOIN customer ON film_rental.customer_id = customer.customer_id WHERE film_rental.rental_id= OLD.rental_id;
+    INSERT INTO `log` (`user_email`, `user_type`, `action`, `target`, `action_date`, `applied`) VALUES
+    (temp_email, 'Customer', 'Delete', 'Film Rental', temp_rental_date, 1);
+  END$
+DELIMITER ;
+
+
+--
+-- Trigger to update log table on insert on serie_payment
+--
+
+DROP TRIGGER IF EXISTS log_insert_serie_payment;
+DELIMITER $
+CREATE TRIGGER log_insert_serie_payment
+  AFTER INSERT ON serie_payment
+  FOR EACH ROW
+  BEGIN
+    DECLARE temp_email VARCHAR(50);
+	DECLARE temp_payment_date DATETIME;
+    SELECT customer.email, serie_payment.payment_date INTO temp_email, temp_payment_date FROM serie_payment INNER JOIN customer ON serie_payment.customer_id = customer.customer_id WHERE serie_payment.payment_id = NEW.payment_id;
+    INSERT INTO `log` (`user_email`, `user_type`, `action`, `target`, `action_date`, `applied`) VALUES
+    (temp_email, 'Customer', 'Insert', 'Serie Payment', temp_payment_date, 1);
+  END$
+DELIMITER ;
+
+
+--
+-- Trigger to update log table on insert on film_payment
+--
+
+DROP TRIGGER IF EXISTS log_insert_film_payment;
+DELIMITER $
+CREATE TRIGGER log_insert_film_payment
+  AFTER INSERT ON film_payment
+  FOR EACH ROW
+  BEGIN
+    DECLARE temp_email VARCHAR(50);
+	DECLARE temp_payment_date DATETIME;
+    SELECT customer.email, film_payment.payment_date INTO temp_email, temp_payment_date FROM film_payment INNER JOIN customer ON film_payment.customer_id = customer.customer_id WHERE film_payment.payment_id = NEW.payment_id;
+    INSERT INTO `log` (`user_email`, `user_type`, `action`, `target`, `action_date`, `applied`) VALUES
+    (temp_email, 'Customer', 'Insert', 'Film Payment', temp_payment_date, 1);
+  END$
+DELIMITER ;
+
+
+--
+-- Trigger to update log table on update on serie_payment
+--
+
+DROP TRIGGER IF EXISTS log_update_serie_payment;
+DELIMITER $
+CREATE TRIGGER log_update_serie_payment
+  AFTER UPDATE ON serie_payment
+  FOR EACH ROW
+  BEGIN
+    DECLARE temp_email VARCHAR(50);
+	DECLARE temp_payment_date DATETIME;
+    SELECT customer.email, serie_payment.payment_date INTO temp_email, temp_payment_date FROM serie_payment INNER JOIN customer ON serie_payment.customer_id = customer.customer_id WHERE serie_payment.payment_id = NEW.payment_id;
+    INSERT INTO `log` (`user_email`, `user_type`, `action`, `target`, `action_date`, `applied`) VALUES
+    (temp_email, 'Customer', 'Update', 'Serie Payment', temp_payment_date, 1);
+  END$
+DELIMITER ;
+
+
+--
+-- Trigger to update log table on update on film_payment
+--
+
+DROP TRIGGER IF EXISTS log_update_film_payment;
+DELIMITER $
+CREATE TRIGGER log_update_film_payment
+  AFTER UPDATE ON film_payment
+  FOR EACH ROW
+  BEGIN
+    DECLARE temp_email VARCHAR(50);
+	DECLARE temp_payment_date DATETIME;
+    SELECT customer.email, film_payment.payment_date INTO temp_email, temp_payment_date FROM film_payment INNER JOIN customer ON film_payment.customer_id = customer.customer_id WHERE film_payment.payment_id = NEW.payment_id;
+    INSERT INTO `log` (`user_email`, `user_type`, `action`, `target`, `action_date`, `applied`) VALUES
+    (temp_email, 'Customer', 'Update', 'Film Payment', temp_payment_date, 1);
+  END$
+DELIMITER ;
+
+
+--
+-- Trigger to update log table on delete on serie_payment
+--
+
+DROP TRIGGER IF EXISTS log_delete_serie_payment;
+DELIMITER $
+CREATE TRIGGER log_delete_serie_payment
+  AFTER DELETE ON serie_payment
+  FOR EACH ROW
+  BEGIN
+    DECLARE temp_email VARCHAR(50);
+	DECLARE temp_payment_date DATETIME;
+    SELECT customer.email, serie_payment.payment_date INTO temp_email, temp_payment_date FROM serie_payment INNER JOIN customer ON serie_payment.customer_id = customer.customer_id WHERE serie_payment.payment_id = OLD.payment_id;
+    INSERT INTO `log` (`user_email`, `user_type`, `action`, `target`, `action_date`, `applied`) VALUES
+    (temp_email, 'Customer', 'Delete', 'Serie Payment', temp_payment_date, 1);
+  END$
+DELIMITER ;
+
+
+--
+-- Trigger to update log table on delete on film_payment
+--
+
+DROP TRIGGER IF EXISTS log_delete_film_payment;
+DELIMITER $
+CREATE TRIGGER log_delete_film_payment
+  AFTER DELETE ON film_payment
+  FOR EACH ROW
+  BEGIN
+    DECLARE temp_email VARCHAR(50);
+	DECLARE temp_payment_date DATETIME;
+    SELECT customer.email, film_payment.payment_date INTO temp_email, temp_payment_date FROM film_payment INNER JOIN customer ON film_payment.customer_id = customer.customer_id WHERE film_payment.payment_id = OLD.payment_id;
+    INSERT INTO `log` (`user_email`, `user_type`, `action`, `target`, `action_date`, `applied`) VALUES
+    (temp_email, 'Customer', 'Delete', 'Film Payment', temp_payment_date, 1);
+  END$
+DELIMITER ;
+
+
+--
+-- Trigger to stop all users from changing customer email addresses
+--
+
+DROP TRIGGER IF EXISTS no_customer_email_changing;
+DELIMITER $
+CREATE TRIGGER no_customer_email_changing
+  BEFORE UPDATE ON customer
+  FOR EACH ROW
+  BEGIN
+    IF (OLD.email != NEW.email) THEN
+        SIGNAL SQLSTATE VALUE '45000'
+	SET MESSAGE_TEXT = 'Invalid Operation! Cannot change customer email address!';
+    END IF;
+  END$
+DELIMITER ;
