@@ -100,7 +100,7 @@ CREATE TABLE customer (
   address_id SMALLINT UNSIGNED NOT NULL,
   active BOOLEAN NOT NULL DEFAULT TRUE,
   create_date DATETIME NOT NULL,
-  view_type ENUM('Movies', 'Series', 'Both') DEFAULT 'Both' NOT NULL,
+  view_type ENUM('Films', 'Series', 'Both') DEFAULT 'Both' NOT NULL,
   PRIMARY KEY  (customer_id),
   CONSTRAINT fk_customer_address FOREIGN KEY (address_id) REFERENCES address (address_id) ON DELETE RESTRICT ON UPDATE CASCADE
   )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -194,8 +194,9 @@ CREATE TABLE film_payment (
   payment_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
   customer_id SMALLINT UNSIGNED NOT NULL,
   rental_id INT DEFAULT NULL,
-  amount DECIMAL(5,2) NOT NULL,
+  amount DECIMAL(5,2) NOT NULL DEFAULT 0.4,
   payment_date DATETIME NOT NULL,
+  paid BOOLEAN NOT NULL DEFAULT FALSE,
   PRIMARY KEY  (payment_id),
   CONSTRAINT fk_flim_payment_rental FOREIGN KEY (rental_id) REFERENCES film_rental (rental_id) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT fk_film_payment_customer FOREIGN KEY (customer_id) REFERENCES customer (customer_id) ON DELETE RESTRICT ON UPDATE CASCADE
@@ -212,6 +213,7 @@ CREATE TABLE employee (
   first_name VARCHAR(45) NOT NULL,
   last_name VARCHAR(45) NOT NULL,
   email VARCHAR(50) NOT NULL,
+  address_id SMALLINT UNSIGNED NOT NULL,
   active BOOLEAN NOT NULL DEFAULT TRUE,
   create_date DATETIME NOT NULL,
   PRIMARY KEY  (employee_id)
@@ -228,6 +230,7 @@ CREATE TABLE administrator (
   first_name VARCHAR(45) NOT NULL,
   last_name VARCHAR(45) NOT NULL,
   email VARCHAR(50) NOT NULL,
+  address_id SMALLINT UNSIGNED NOT NULL,
   active BOOLEAN NOT NULL DEFAULT TRUE,
   create_date DATETIME NOT NULL,
   PRIMARY KEY  (administrator_id)
@@ -351,8 +354,9 @@ CREATE TABLE serie_payment (
   payment_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
   customer_id SMALLINT UNSIGNED NOT NULL,
   rental_id INT DEFAULT NULL,
-  amount DECIMAL(5,2) NOT NULL,
+  amount DECIMAL(5,2) NOT NULL DEFAULT 0.2,
   payment_date DATETIME NOT NULL,
+  paid BOOLEAN NOT NULL DEFAULT FALSE,
   PRIMARY KEY  (payment_id),
   CONSTRAINT fk_serie_payment_rental FOREIGN KEY (rental_id) REFERENCES serie_rental (rental_id) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT fk_serie_payment_customer FOREIGN KEY (customer_id) REFERENCES customer (customer_id) ON DELETE RESTRICT ON UPDATE CASCADE

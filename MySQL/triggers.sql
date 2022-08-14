@@ -134,7 +134,7 @@ CREATE TRIGGER log_insert_serie_rental
   FOR EACH ROW
   BEGIN
     DECLARE temp_email VARCHAR(50);
-	DECLARE temp_rental_date DATETIME;
+    DECLARE temp_rental_date DATETIME;
     SELECT customer.email, serie_rental.rental_date INTO temp_email, temp_rental_date FROM serie_rental INNER JOIN customer ON serie_rental.customer_id = customer.customer_id WHERE serie_rental.rental_id= NEW.rental_id;
     INSERT INTO `log` (`user_email`, `user_type`, `action`, `target`, `action_date`, `applied`) VALUES
     (temp_email, 'Customer', 'Insert', 'Serie Rental', temp_rental_date, 1);
@@ -143,24 +143,69 @@ DELIMITER ;
 
 
 --
--- Trigger to update log table on insert on film_rental
+-- Trigger to update log table on insert on film_rental and create film_payment with possible discounts
 --
 
-DROP TRIGGER IF EXISTS log_insert_film_rental;
+DROP TRIGGER IF EXISTS log_insert_film_rental_and_create_payment_with_discounts;
 DELIMITER $
-CREATE TRIGGER log_insert_film_rental
+CREATE TRIGGER log_insert_film_rental_and_create_payment_with_discounts
   AFTER INSERT ON film_rental
   FOR EACH ROW
   BEGIN
     DECLARE temp_email VARCHAR(50);
-	DECLARE temp_rental_date DATETIME;
-    SELECT customer.email, film_rental.rental_date INTO temp_email, temp_rental_date FROM film_rental INNER JOIN customer ON film_rental.customer_id = customer.customer_id WHERE film_rental.rental_id= NEW.rental_id;
+    DECLARE temp_rental_date DATETIME;
+    DECLARE temp_view_type ENUM('Films', 'Series', 'Both');
+    DECLARE film_num SMALLINT;
+    DECLARE serie_num SMALLINT;
+    DECLARE temp_amount DECIMAL(5,2);
+    SELECT email, view_type INTO temp_email, temp_view_type FROM customer WHERE customer_id = NEW.customer_id;
     INSERT INTO `log` (`user_email`, `user_type`, `action`, `target`, `action_date`, `applied`) VALUES
-    (temp_email, 'Customer', 'Insert', 'Film Rental', temp_rental_date, 1);
+    (temp_email, 'Customer', 'Insert', 'Film Rental', NEW.rental_date, 1);
+    SET temp_amount = 0.4;
+    IF (temp_view_type = 'Both') THEN
+        SET temp_amount = 0.3;
+    END IF;
+    CALL number_of_rentals_for_customer_in_day(temp_email, CAST(NEW.rental_date AS Date), film_num, serie_num);
+    IF (film_num = 3) THEN
+	SET temp_amount = temp_amount * 0.5;
+    END IF;
+    INSERT INTO `film_payment` (`payment_id`, `customer_id`, `rental_id`, `amount`, `payment_date`)
+    VALUES (NULL, NEW.customer_id, NEW.rental_id, temp_amount, NEW.rental_date);
   END$
 DELIMITER ;
 
 
+--
+-- Trigger to update log table on insert on serie_rental and create serie_payment with possible discounts
+--
+
+DROP TRIGGER IF EXISTS log_insert_serie_rental_and_create_payment_with_discounts;
+DELIMITER $
+CREATE TRIGGER log_insert_serie_rental_and_create_payment_with_discounts
+  AFTER INSERT ON serie_rental
+  FOR EACH ROW
+  BEGIN
+    DECLARE temp_email VARCHAR(50);
+    DECLARE temp_rental_date DATETIME;
+    DECLARE temp_view_type ENUM('Films', 'Series', 'Both');
+    DECLARE film_num SMALLINT;
+    DECLARE serie_num SMALLINT;
+    DECLARE temp_amount DECIMAL(5,2);
+    SELECT email, view_type INTO temp_email, temp_view_type FROM customer WHERE customer_id = NEW.customer_id;
+    INSERT INTO `log` (`user_email`, `user_type`, `action`, `target`, `action_date`, `applied`) VALUES
+    (temp_email, 'Customer', 'Insert', 'Film Rental', NEW.rental_date, 1);
+    SET temp_amount = 0.2;
+    IF (temp_view_type = 'Both') THEN
+        SET temp_amount = 0.1;
+    END IF;
+    CALL number_of_rentals_for_customer_in_day(temp_email, CAST(NEW.rental_date AS Date), film_num, serie_num);
+    IF (serie_num = 3) THEN
+	SET temp_amount = temp_amount * 0.5;
+    END IF;
+    INSERT INTO `serie_payment` (`payment_id`, `customer_id`, `rental_id`, `amount`, `payment_date`)
+    VALUES (NULL, NEW.customer_id, NEW.rental_id, temp_amount, NEW.rental_date);
+  END$
+DELIMITER ;
 --
 -- Trigger to update log table on update on serie_rental
 --
@@ -172,7 +217,7 @@ CREATE TRIGGER log_update_serie_rental
   FOR EACH ROW
   BEGIN
     DECLARE temp_email VARCHAR(50);
-	DECLARE temp_rental_date DATETIME;
+    DECLARE temp_rental_date DATETIME;
     SELECT customer.email, serie_rental.rental_date INTO temp_email, temp_rental_date FROM serie_rental INNER JOIN customer ON serie_rental.customer_id = customer.customer_id WHERE serie_rental.rental_id= NEW.rental_id;
     INSERT INTO `log` (`user_email`, `user_type`, `action`, `target`, `action_date`, `applied`) VALUES
     (temp_email, 'Customer', 'Update', 'Serie Rental', temp_rental_date, 1);
@@ -191,7 +236,7 @@ CREATE TRIGGER log_update_film_rental
   FOR EACH ROW
   BEGIN
     DECLARE temp_email VARCHAR(50);
-	DECLARE temp_rental_date DATETIME;
+    DECLARE temp_rental_date DATETIME;
     SELECT customer.email, film_rental.rental_date INTO temp_email, temp_rental_date FROM film_rental INNER JOIN customer ON film_rental.customer_id = customer.customer_id WHERE film_rental.rental_id= NEW.rental_id;
     INSERT INTO `log` (`user_email`, `user_type`, `action`, `target`, `action_date`, `applied`) VALUES
     (temp_email, 'Customer', 'Update', 'Film Rental', temp_rental_date, 1);
@@ -210,7 +255,7 @@ CREATE TRIGGER log_delete_serie_rental
   FOR EACH ROW
   BEGIN
     DECLARE temp_email VARCHAR(50);
-	DECLARE temp_rental_date DATETIME;
+    DECLARE temp_rental_date DATETIME;
     SELECT customer.email, serie_rental.rental_date INTO temp_email, temp_rental_date FROM serie_rental INNER JOIN customer ON serie_rental.customer_id = customer.customer_id WHERE serie_rental.rental_id= OLD.rental_id;
     INSERT INTO `log` (`user_email`, `user_type`, `action`, `target`, `action_date`, `applied`) VALUES
     (temp_email, 'Customer', 'Delete', 'Serie Rental', temp_rental_date, 1);
@@ -229,7 +274,7 @@ CREATE TRIGGER log_delete_film_rental
   FOR EACH ROW
   BEGIN
     DECLARE temp_email VARCHAR(50);
-	DECLARE temp_rental_date DATETIME;
+    DECLARE temp_rental_date DATETIME;
     SELECT customer.email, film_rental.rental_date INTO temp_email, temp_rental_date FROM film_rental INNER JOIN customer ON film_rental.customer_id = customer.customer_id WHERE film_rental.rental_id= OLD.rental_id;
     INSERT INTO `log` (`user_email`, `user_type`, `action`, `target`, `action_date`, `applied`) VALUES
     (temp_email, 'Customer', 'Delete', 'Film Rental', temp_rental_date, 1);
@@ -248,7 +293,7 @@ CREATE TRIGGER log_insert_serie_payment
   FOR EACH ROW
   BEGIN
     DECLARE temp_email VARCHAR(50);
-	DECLARE temp_payment_date DATETIME;
+    DECLARE temp_payment_date DATETIME;
     SELECT customer.email, serie_payment.payment_date INTO temp_email, temp_payment_date FROM serie_payment INNER JOIN customer ON serie_payment.customer_id = customer.customer_id WHERE serie_payment.payment_id = NEW.payment_id;
     INSERT INTO `log` (`user_email`, `user_type`, `action`, `target`, `action_date`, `applied`) VALUES
     (temp_email, 'Customer', 'Insert', 'Serie Payment', temp_payment_date, 1);
@@ -267,7 +312,7 @@ CREATE TRIGGER log_insert_film_payment
   FOR EACH ROW
   BEGIN
     DECLARE temp_email VARCHAR(50);
-	DECLARE temp_payment_date DATETIME;
+    DECLARE temp_payment_date DATETIME;
     SELECT customer.email, film_payment.payment_date INTO temp_email, temp_payment_date FROM film_payment INNER JOIN customer ON film_payment.customer_id = customer.customer_id WHERE film_payment.payment_id = NEW.payment_id;
     INSERT INTO `log` (`user_email`, `user_type`, `action`, `target`, `action_date`, `applied`) VALUES
     (temp_email, 'Customer', 'Insert', 'Film Payment', temp_payment_date, 1);
@@ -286,7 +331,7 @@ CREATE TRIGGER log_update_serie_payment
   FOR EACH ROW
   BEGIN
     DECLARE temp_email VARCHAR(50);
-	DECLARE temp_payment_date DATETIME;
+    DECLARE temp_payment_date DATETIME;
     SELECT customer.email, serie_payment.payment_date INTO temp_email, temp_payment_date FROM serie_payment INNER JOIN customer ON serie_payment.customer_id = customer.customer_id WHERE serie_payment.payment_id = NEW.payment_id;
     INSERT INTO `log` (`user_email`, `user_type`, `action`, `target`, `action_date`, `applied`) VALUES
     (temp_email, 'Customer', 'Update', 'Serie Payment', temp_payment_date, 1);
@@ -305,7 +350,7 @@ CREATE TRIGGER log_update_film_payment
   FOR EACH ROW
   BEGIN
     DECLARE temp_email VARCHAR(50);
-	DECLARE temp_payment_date DATETIME;
+    DECLARE temp_payment_date DATETIME;
     SELECT customer.email, film_payment.payment_date INTO temp_email, temp_payment_date FROM film_payment INNER JOIN customer ON film_payment.customer_id = customer.customer_id WHERE film_payment.payment_id = NEW.payment_id;
     INSERT INTO `log` (`user_email`, `user_type`, `action`, `target`, `action_date`, `applied`) VALUES
     (temp_email, 'Customer', 'Update', 'Film Payment', temp_payment_date, 1);
@@ -324,7 +369,7 @@ CREATE TRIGGER log_delete_serie_payment
   FOR EACH ROW
   BEGIN
     DECLARE temp_email VARCHAR(50);
-	DECLARE temp_payment_date DATETIME;
+    DECLARE temp_payment_date DATETIME;
     SELECT customer.email, serie_payment.payment_date INTO temp_email, temp_payment_date FROM serie_payment INNER JOIN customer ON serie_payment.customer_id = customer.customer_id WHERE serie_payment.payment_id = OLD.payment_id;
     INSERT INTO `log` (`user_email`, `user_type`, `action`, `target`, `action_date`, `applied`) VALUES
     (temp_email, 'Customer', 'Delete', 'Serie Payment', temp_payment_date, 1);
@@ -343,7 +388,7 @@ CREATE TRIGGER log_delete_film_payment
   FOR EACH ROW
   BEGIN
     DECLARE temp_email VARCHAR(50);
-	DECLARE temp_payment_date DATETIME;
+    DECLARE temp_payment_date DATETIME;
     SELECT customer.email, film_payment.payment_date INTO temp_email, temp_payment_date FROM film_payment INNER JOIN customer ON film_payment.customer_id = customer.customer_id WHERE film_payment.payment_id = OLD.payment_id;
     INSERT INTO `log` (`user_email`, `user_type`, `action`, `target`, `action_date`, `applied`) VALUES
     (temp_email, 'Customer', 'Delete', 'Film Payment', temp_payment_date, 1);

@@ -5,3 +5,5 @@ Add documentation
 -- Choose if i am going to rent every episode 1 by 1 or the whole serie and caclulate total cost by episode number
 -- ISA for users (customers, employees, administrators) -- Made select better instead
 -- Add trigger to check if email on registration is unique
+-- Add Elias procedures and make trigger 4.2
+-- Maybe add addresses to administrators and employees?
