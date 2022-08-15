@@ -1,0 +1,15 @@
+<h1>Filmsssss</h1>
+
+
+
+<ul *ngFor="let film of films">
+  <li>
+
+    <a routerLink="/film/:{{film.film_id}}" routerLinkActive="active"> <h1>{{film.title}}</h1></a>
+    <p>{{film.description}}</p>
+
+    <div>release year: {{film.release_year}}</div>
+  </li>
+</ul>
+
+<router-outlet></router-outlet>

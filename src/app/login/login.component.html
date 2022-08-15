@@ -1,0 +1,17 @@
+
+<p>Choose your user type:</p>
+
+<form>
+  <input #customer type="radio"  id="customer" name="usertype" value="1">
+  <label for="customer">Customer</label><br>
+  <input #emp type="radio" id="employee" name="usertype" value="2">
+  <label for="employee">Employee</label><br>
+  <input #admin type="radio" id="admin" name="usertype" value="3">
+  <label for="admin">Administrator</label>
+</form>
+
+<input #email type="email">
+
+<button (click)="getMail(email.value,[customer.checked,emp.checked,admin.checked])">login</button>
+
+<div>{{login}}</div>
