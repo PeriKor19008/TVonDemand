@@ -4,5 +4,6 @@ export interface ILogin{
   message:string
 }
 export interface Login{
-  count:boolean
+  Found:boolean,
+  Type:string
 }

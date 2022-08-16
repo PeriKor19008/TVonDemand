@@ -4,17 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { FilmsService } from './films.service';
 import { HttpClientModule } from "@angular/common/http";
-import { FilmsComponent } from './films/films.component';
 import { AppRoutingModule } from './app-routing.module';
-import { FilmComponent } from './film/film.component';
-import { LoginComponent } from './login/login.component';
+import { routingComponents } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FilmsComponent,
-    FilmComponent,
-    LoginComponent
+    routingComponents
   ],
   imports: [
     BrowserModule,

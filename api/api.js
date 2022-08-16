@@ -39,7 +39,8 @@ app.get('/films', function (req, res) {
 app.get('/login/:email',function (req,res){
   let email=req.params.email;
   console.log(req.params.email);
-  Db.dbConn.query("select count(*) as count from customer where email=?",email,function (error,results,fields){
+  Db.dbConn.query("SELECT count(*) AS Found, 'Customer' AS Type FROM customer WHERE email=? UNION SELECT count(*) AS Found, 'Employee' AS Type FROM employee WHERE email=? UNION SELECT count(*) AS Found, 'Administrator' AS Type FROM administrator WHERE email=? ORDER BY Found DESC LIMIT 0,1",
+    [email, email, email], function (error, results, fields){
     if (error) throw error;
     return res.send({ data:results});
   });
