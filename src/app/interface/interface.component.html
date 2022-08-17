@@ -1,7 +1,7 @@
 <h1>Customer Interface:</h1>
 
 <ul class="items">
-    <li (click)="onSelect(option)" [class.selected]="isSelected(option)" *ngFor="let option of options">
+    <li (click)="onSelect(option.option_id)" [class.selected]="isSelected(option)" *ngFor="let option of options">
         <span class="badge">{{option.option_id}}</span> {{option.name}}
     </li>
 </ul>

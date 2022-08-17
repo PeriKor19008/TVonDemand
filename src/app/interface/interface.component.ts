@@ -16,12 +16,14 @@ export class InterfaceComponent implements OnInit {
   ];
 
   public selectedId:any;
+  public customerType:any;
   public customerId:any;
 
   constructor(private router:Router, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params:ParamMap) => {
+      this.customerType = String(params.get('type'));
       this.customerId = Number(params.get('id'));
     })
   }
@@ -31,7 +33,8 @@ export class InterfaceComponent implements OnInit {
     {
       case 1:
       {
-        //this.router.navigate('/')
+        console.log("Testing");
+        this.router.navigate(['/profile', {type: this.customerType, id: this.customerId}]);
         break;
       }
       case 2:
@@ -47,7 +50,6 @@ export class InterfaceComponent implements OnInit {
         break;
       }
     }
-    this.router.navigate([option.id], {relativeTo: this.route});
   }
 
   isSelected(option:any){

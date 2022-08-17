@@ -12,11 +12,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: 'interface',
-    component: InterfaceComponent,
-    children: [
-      { path: 'profile', component: ProfileComponent }
-    ]
+    component: InterfaceComponent
   },
+  { path: 'profile', component: ProfileComponent },
   { path: 'film/:id', component: FilmComponent },
   { path: 'films', component: FilmsComponent },
   { path: '**', component: PageNotFoundComponent}
