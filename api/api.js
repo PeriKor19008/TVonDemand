@@ -1,5 +1,4 @@
 var  Db = require('./dboperations');
-var  films = require('./film');
 var  express = require('express');
 var  bodyParser = require('body-parser');
 var  cors = require('cors');
@@ -39,7 +38,7 @@ app.get('/films', function (req, res) {
 app.get('/login/:email',function (req,res){
   let email=req.params.email;
   console.log(req.params.email);
-  Db.dbConn.query("SELECT count(*) AS Found, 'Customer' AS Type FROM customer WHERE email=? UNION SELECT count(*) AS Found, 'Employee' AS Type FROM employee WHERE email=? UNION SELECT count(*) AS Found, 'Administrator' AS Type FROM administrator WHERE email=? ORDER BY Found DESC LIMIT 0,1",
+  Db.dbConn.query("SELECT count(*) AS Found, 'Customer' AS Type, customer_id AS ID FROM customer WHERE email=? UNION SELECT count(*) AS Found, 'Employee' AS Type, employee_id AS ID FROM employee WHERE email=? UNION SELECT count(*) AS Found, 'Administrator' AS Type, administrator_id AS ID FROM administrator WHERE email=? ORDER BY Found DESC LIMIT 0,1",
     [email, email, email], function (error, results, fields){
     if (error) throw error;
     return res.send({ data:results});

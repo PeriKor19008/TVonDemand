@@ -5,5 +5,6 @@ export interface ILogin{
 }
 export interface Login{
   Found:boolean,
-  Type:string
+  Type:string,
+  ID:number
 }

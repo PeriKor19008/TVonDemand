@@ -6,11 +6,15 @@ import { FilmsService } from './films.service';
 import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { routingComponents } from './app-routing.module';
+import { InterfaceComponent } from './interface/interface.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents
+    routingComponents,
+    InterfaceComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

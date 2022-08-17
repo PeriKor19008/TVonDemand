@@ -33,25 +33,50 @@ DELIMITER ;
 
 
 -- 
--- Stored procedure to show the number of rentals of a specific customer in a day
+-- Stored procedure to show the number of rentals of a specific customer in a day (used in triggers)
 --
 
 DROP PROCEDURE IF EXISTS number_of_rentals_for_customer_in_day;
 DELIMITER $
-CREATE PROCEDURE number_of_rentals_for_customer_in_day(IN email VARCHAR(45), IN date3 DATE, OUT film_num SMALLINT, OUT serie_num SMALLINT)
+CREATE PROCEDURE number_of_rentals_for_customer_in_day(IN email VARCHAR(45), IN date1 DATE, OUT film_num SMALLINT, OUT serie_num SMALLINT)
 BEGIN
 	SELECT COUNT(film_rental.customer_id) 
 	FROM customer
 	INNER JOIN film_rental ON customer.customer_id = film_rental.customer_id
 	WHERE customer.email = email
-	AND film_rental.rental_date LIKE CONCAT('%',date3,'%')
+	AND film_rental.rental_date LIKE CONCAT('%',date1,'%')
 	INTO film_num;
 	SELECT COUNT(serie_rental.customer_id) 
 	FROM customer
 	INNER JOIN serie_rental ON customer.customer_id = serie_rental.customer_id
 	WHERE customer.email = email
-	AND serie_rental.rental_date LIKE CONCAT('%',date3,'%')
+	AND serie_rental.rental_date LIKE CONCAT('%',date1,'%')
 	INTO serie_num;
+END$
+DELIMITER ;
+
+
+-- 
+-- Stored procedure to show the number of rentals of a specific customer in a day according to view_type
+--
+
+DROP PROCEDURE IF EXISTS show_number_of_rentals_for_customer_in_day;
+DELIMITER $
+CREATE PROCEDURE show_number_of_rentals_for_customer_in_day(IN email VARCHAR(45), IN date1 DATE)
+BEGIN
+	DECLARE temp1 SMALLINT;
+	DECLARE temp2 SMALLINT;
+	DECLARE subscription ENUM('Films', 'Series', 'Both');
+	CALL number_of_rentals_for_customer_in_day(email, date1, temp1, temp2);
+	SELECT view_type INTO subscription FROM customer WHERE customer.email = email;
+	CASE (subscription)
+		WHEN 'Films' THEN
+			SELECT temp1 AS MoviesRentedInADay;
+		WHEN 'Series' THEN
+			SELECT temp2 AS SeriesEpisodesRentedInADay;
+		WHEN 'Both' THEN
+			SELECT temp1 AS MoviesRentedInADay, temp2 AS SeriesEpisodesRentedInADay;
+	END CASE;
 END$
 DELIMITER ;
 
