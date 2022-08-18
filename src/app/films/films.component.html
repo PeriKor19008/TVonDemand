@@ -1,15 +1,9 @@
-<h2>Films</h2>
+<h2>Available Films</h2>
 
-
-
-<ul *ngFor="let film of films">
-  <li>
-
-    <a routerLink="/film/:{{film.film_id}}" routerLinkActive="active"> <h1>{{film.title}}</h1></a>
-    <p>{{film.description}}</p>
-
-    <div>release year: {{film.release_year}}</div>
+<ul class="items">
+  <li (click)="onSelect(film.film_id)" *ngFor="let film of films">
+    <span class="badge">ID: {{film.film_id}}</span>{{film.title}}
   </li>
 </ul>
 
-<router-outlet></router-outlet>
+<button (click)="gotoInterface()">Back</button>

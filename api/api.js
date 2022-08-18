@@ -29,9 +29,25 @@ app.get('/', function (req, res) {
 });
 
 app.get('/films', function (req, res) {
-    Db.dbConn.query('SELECT * FROM film', function (error, results, fields) {
+    Db.dbConn.query('SELECT film_id, title FROM film', function (error, results, fields) {
         if (error) throw error;
-        return res.send({ error: false, data: results, message: 'users list.' });
+        return res.send({ error, data: results});
+    });
+});
+
+app.get('/film/:id', function (req, res) {
+  let id = req.params.id;
+  Db.dbConn.query('SELECT * FROM film WHERE film_id = ?',
+  id, function (error, results, fields) {
+      if (error) throw error;
+      return res.send({ error, data: results});
+  });
+});
+
+app.get('/series', function (req, res) {
+    Db.dbConn.query('SELECT serie_id, title FROM serie', function (error, results, fields) {
+        if (error) throw error;
+        return res.send({ error, data: results});
     });
 });
 
@@ -68,6 +84,16 @@ app.get('/profile/employee/:id',function (req,res){
 app.get('/profile/administrator/:id',function (req,res){
       let id = Number(req.params.id);
       Db.dbConn.query("SELECT * FROM administrator WHERE administrator_id = ?",
+      id, function (error, results)
+      {
+        if(error) throw error;
+        return res.send({ data:results });
+      });
+});
+
+app.get('/get/view_type/:id',function (req,res){
+      let id = Number(req.params.id);
+      Db.dbConn.query("SELECT view_type FROM customer WHERE customer_id = ?",
       id, function (error, results)
       {
         if(error) throw error;

@@ -1,10 +1,9 @@
-export interface IFilms{
+export interface IFilm{
   error:boolean,
   data:[Films],
-  message:string
 }
 
-export interface Films{
+export interface Film{
   film_id:number,
   title:string,
   description:string,
@@ -14,6 +13,26 @@ export interface Films{
   length:number,
   rating:string,
   special_features:string
+}
+
+export interface IFilms{
+  error:boolean,
+  data:[Films],
+}
+
+export interface Films{
+  film_id:number,
+  title:string
+}
+
+export interface ISeries{
+  error:boolean,
+  data:[Series],
+}
+
+export interface Series{
+  serie_id:number,
+  title:string
 }
 
 export interface ILogin{
@@ -67,4 +86,12 @@ export interface AdministratorProfile{
   address_id:number,
   active:boolean,
   create_date:string
+}
+
+export interface IGetViewType{
+  data:[GetViewType]
+}
+
+export interface GetViewType{
+  view_type:string
 }

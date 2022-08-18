@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { routingComponents } from './app-routing.module';
 import { InterfaceComponent } from './interface/interface.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SeriesComponent } from './series/series.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { ProfileComponent } from './profile/profile.component';
     routingComponents,
     InterfaceComponent,
     ProfileComponent,
+    SeriesComponent,
   ],
   imports: [
     BrowserModule,

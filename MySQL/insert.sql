@@ -10198,7 +10198,7 @@ INSERT INTO `customer` (`customer_id`, `first_name`, `last_name`, `email`, `addr
 (16, 'SANDRA', 'MARTIN', 'SANDRA.MARTIN@sakilacustomer.org', 20, 0, '2006-02-14 22:04:36', 'Films'),
 (556, 'ARMANDO', 'GRUBER', 'ARMANDO.GRUBER@sakilacustomer.org', 562, 1, '2006-02-14 22:04:37', 'Films'),
 (477, 'DAN', 'PAINE', 'DAN.PAINE@sakilacustomer.org', 482, 1, '2006-02-14 22:04:37', 'Both'),
-(497, 'GILBERT', 'SLEDGE', 'GILBERT.SLEDGE@sakilacustomer.org', 502, 1, '2006-02-14 22:04:37', 'Both');
+(497, 'GILBERT', 'SLEDGE', 'GILBERT.SLEDGE@sakilacustomer.org', 502, 1, '2006-02-14 22:04:37', 'Series');
 
 
 --

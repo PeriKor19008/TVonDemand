@@ -6,6 +6,7 @@ import { FilmsComponent } from "./films/films.component";
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SeriesComponent } from './series/series.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -15,8 +16,9 @@ const routes: Routes = [
     component: InterfaceComponent
   },
   { path: 'profile', component: ProfileComponent },
-  { path: 'film/:id', component: FilmComponent },
+  { path: 'film', component: FilmComponent },
   { path: 'films', component: FilmsComponent },
+  { path: 'series', component: SeriesComponent },
   { path: '**', component: PageNotFoundComponent}
 ];
 
@@ -29,6 +31,7 @@ export const routingComponents = [
                                     LoginComponent,
                                     FilmComponent,
                                     FilmsComponent,
+                                    SeriesComponent,
                                     InterfaceComponent,
                                     PageNotFoundComponent,
                                     ProfileComponent

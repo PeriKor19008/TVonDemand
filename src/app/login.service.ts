@@ -7,7 +7,7 @@ import { Observable } from "rxjs";
 })
 export class LoginService {
   constructor(private http:HttpClient) { }
-  getLogin(email:string,):Observable<ILogin>{
+  getLogin(email:string):Observable<ILogin>{
     return this.http.get<ILogin>("http://localhost:8090/login/"+email);
   }
 }

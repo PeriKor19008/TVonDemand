@@ -1,7 +1,19 @@
 <h2>Customer Interface:</h2>
 
 <ul class="items">
-    <li (click)="onSelect(option.option_id)" [class.selected]="isSelected(option)" *ngFor="let option of options">
-        <span class="badge">{{option.option_id}}</span> {{option.name}}
+    <li (click)="onSelect(options[0].option_id)" [class.selected]="isSelected(options[0])">
+        <span class="badge">{{options[0].option_id}}</span> {{options[0].name}}
+    </li>
+    <li *ngIf = "customerViewType != 'Series'" (click)="onSelect(options[1].option_id)" [class.selected]="isSelected(options[1])">
+        <span class="badge">{{options[1].option_id}}</span> {{options[1].name}}
+    </li>
+    <li *ngIf = "customerViewType != 'Films'" (click)="onSelect(options[2].option_id)" [class.selected]="isSelected(options[2])">
+        <span class="badge">{{options[2].option_id}}</span> {{options[2].name}}
+    </li>
+    <li (click)="onSelect(options[3].option_id)" [class.selected]="isSelected(options[3])">
+        <span class="badge">{{options[3].option_id}}</span> {{options[3].name}}
+    </li>
+    <li (click)="onSelect(options[4].option_id)" [class.selected]="isSelected(options[4])">
+        <span class="badge">{{options[4].option_id}}</span> {{options[4].name}}
     </li>
 </ul>
