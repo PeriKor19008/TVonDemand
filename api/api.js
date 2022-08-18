@@ -44,3 +44,33 @@ app.get('/login/:email',function (req,res){
     return res.send({ data:results});
   });
 });
+
+app.get('/profile/customer/:id',function (req,res){
+      let id = Number(req.params.id);
+      Db.dbConn.query("SELECT * FROM customer WHERE customer_id = ?",
+      id, function (error, results)
+      {
+        if(error) throw error;
+        return res.send({ data:results });
+      });
+});
+
+app.get('/profile/employee/:id',function (req,res){
+      let id = Number(req.params.id);
+      Db.dbConn.query("SELECT * FROM employee WHERE employee_id = ?",
+      id, function (error, results)
+      {
+        if(error) throw error;
+        return res.send({ data:results });
+      });
+});
+
+app.get('/profile/administrator/:id',function (req,res){
+      let id = Number(req.params.id);
+      Db.dbConn.query("SELECT * FROM administrator WHERE administrator_id = ?",
+      id, function (error, results)
+      {
+        if(error) throw error;
+        return res.send({ data:results });
+      });
+});

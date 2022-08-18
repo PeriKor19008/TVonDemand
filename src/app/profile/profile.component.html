@@ -1,1 +1,30 @@
-<p>profile works!</p>
+<h2>Customer Profile:</h2>
+
+<ul class="items">
+    <li (click)="onSelect(userId)" [class.selected]="isSelected(userId)">
+        <span class="badge">1. </span> {{"ID: " + userId}}
+    </li>
+    <li (click)="onSelect(userEmail)" [class.selected]="isSelected(userEmail)">
+        <span class="badge">2. </span> {{"Email: " + userEmail}}
+    </li>
+    <li (click)="onSelect(userFirstName)" [class.selected]="isSelected(userFirstName)">
+        <span class="badge">3. </span> {{"First Name: " + userFirstName}}
+    </li>
+    <li (click)="onSelect(userLastName)" [class.selected]="isSelected(userLastName)">
+        <span class="badge">4. </span> {{"Last Name: " + userLastName}}
+    </li>
+    <li (click)="onSelect(userAddressId)" [class.selected]="isSelected(userAddressId)">
+        <span class="badge">5. </span> {{"Address ID: " + userAddressId}}
+    </li>
+    <li (click)="onSelect(userActive)" [class.selected]="isSelected(userActive)">
+        <span class="badge">6. </span> {{"Profile Active Status: " + userActive}}
+    </li>
+    <li (click)="onSelect(userCreateDate)" [class.selected]="isSelected(userCreateDate)">
+        <span class="badge">7. </span> {{"Profile Creation Date: " + userCreateDate}}
+    </li>
+    <li (click)="onSelect(userViewType)" [class.selected]="isSelected(userViewType)">
+        <span class="badge">8. </span> {{"View Type: " + userViewType}}
+    </li>
+</ul>
+
+<button (click)="gotoInterface()">Back</button>
