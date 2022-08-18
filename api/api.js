@@ -51,6 +51,15 @@ app.get('/series', function (req, res) {
     });
 });
 
+app.get('/serie/:id', function (req, res) {
+  let id = req.params.id;
+  Db.dbConn.query('SELECT * FROM serie WHERE serie_id = ?',
+  id, function (error, results, fields) {
+      if (error) throw error;
+      return res.send({ error, data: results});
+  });
+});
+
 app.get('/login/:email',function (req,res){
   let email=req.params.email;
   console.log(req.params.email);

@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SeriesComponent } from './series/series.component';
+import { SerieComponent } from './serie/serie.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'film', component: FilmComponent },
   { path: 'films', component: FilmsComponent },
+  { path: 'serie', component: SerieComponent },
   { path: 'series', component: SeriesComponent },
   { path: '**', component: PageNotFoundComponent}
 ];
@@ -31,6 +33,7 @@ export const routingComponents = [
                                     LoginComponent,
                                     FilmComponent,
                                     FilmsComponent,
+                                    SerieComponent,
                                     SeriesComponent,
                                     InterfaceComponent,
                                     PageNotFoundComponent,

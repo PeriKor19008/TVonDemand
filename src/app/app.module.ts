@@ -9,6 +9,7 @@ import { routingComponents } from './app-routing.module';
 import { InterfaceComponent } from './interface/interface.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SeriesComponent } from './series/series.component';
+import { SerieComponent } from './serie/serie.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { SeriesComponent } from './series/series.component';
     InterfaceComponent,
     ProfileComponent,
     SeriesComponent,
+    SerieComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,38 @@
+<h2>Serie Interface:</h2>
+
+<ul class="items">
+  <li>
+    <span class="badge">1. ID: </span>{{serie[0].serie_id}}
+  </li>
+  <li>
+    <span class="badge">2. Title: </span>{{serie[0].title}}
+  </li>
+  <li>
+    <span class="badge">3. Description: </span>{{serie[0].description}}
+  </li>
+  <li>
+    <span class="badge">4. Release Year: </span>{{serie[0].release_year}}
+  </li>
+  <li>
+    <span class="badge">5. Language ID: </span>{{serie[0].language_id}}
+  </li>
+  <li *ngIf = "serie[0].optional_language_id == null; else elseBlock">
+    <span class="badge">6. Optional Language ID: </span>NULL
+  </li>
+  <ng-template #elseBlock>
+    <li>
+      <span class="badge">6. Optional Language ID: </span>{{serie[0].optional_language_id}}
+    </li>
+  </ng-template>
+  <li>
+    <span class="badge">7. Rating: </span>{{serie[0].rating}}
+  </li>
+  <li>
+    <span class="badge">8. Number of Seasons: </span>{{serie[0].no_of_seasons}}
+  </li>
+  <li>
+    <span class="badge">9. Special Features:</span>{{serie[0].special_features}}
+  </li>
+</ul>
+
+<button (click)="gotoSeries()">Back</button>

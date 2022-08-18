@@ -35,6 +35,23 @@ export interface Series{
   title:string
 }
 
+export interface ISerie{
+  error:boolean,
+  data:[Serie],
+}
+
+export interface Serie{
+  serie_id:number,
+  title:string,
+  description:string,
+  release_year:number,
+  language_id:number,
+  original_language_id:number,
+  rating:string,
+  special_features:string,
+  no_of_seasons:number
+}
+
 export interface ILogin{
   data:[Login]
 }
