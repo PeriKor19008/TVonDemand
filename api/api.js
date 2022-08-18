@@ -25,18 +25,19 @@ router.use((request, response, next) => {
 // connect to database
 
 app.get('/', function (req, res) {
-    return res.send({ error: true, message: 'hello' })
+  return res.send({ error: true, message: 'hello' })
 });
 
 app.get('/films', function (req, res) {
-    Db.dbConn.query('SELECT film_id, title FROM film', function (error, results, fields) {
-        if (error) throw error;
-        return res.send({ error, data: results});
-    });
+  Db.dbConn.query('SELECT film_id, title FROM film', function (error, results, fields) {
+      if (error) throw error;
+      return res.send({ error, data: results});
+  });
 });
 
 app.get('/film/:id', function (req, res) {
   let id = req.params.id;
+  console.log(req.params.id);
   Db.dbConn.query('SELECT * FROM film WHERE film_id = ?',
   id, function (error, results, fields) {
       if (error) throw error;
@@ -45,16 +46,37 @@ app.get('/film/:id', function (req, res) {
 });
 
 app.get('/series', function (req, res) {
-    Db.dbConn.query('SELECT serie_id, title FROM serie', function (error, results, fields) {
-        if (error) throw error;
-        return res.send({ error, data: results});
-    });
+  Db.dbConn.query('SELECT serie_id, title FROM serie', function (error, results, fields) {
+      if (error) throw error;
+      return res.send({ error, data: results});
+  });
 });
 
 app.get('/serie/:id', function (req, res) {
   let id = req.params.id;
+  console.log(req.params.id);
   Db.dbConn.query('SELECT * FROM serie WHERE serie_id = ?',
   id, function (error, results, fields) {
+      if (error) throw error;
+      return res.send({ error, data: results});
+  });
+});
+
+app.get('/seasons/:serie_id', function (req, res) {
+  let serie_id = Number(req.params.serie_id);
+  console.log(req.params.serie_id);
+  Db.dbConn.query('SELECT season_number, no_of_episodes, season_id FROM season WHERE belongs_to = ?',
+    serie_id, function (error, results, fields) {
+      if (error) throw error;
+      return res.send({ error, data: results});
+  });
+});
+
+app.get('/episodes/:season_id', function (req, res) {
+  let season_id = Number(req.params.season_id);
+  console.log(req.params.season_id);
+  Db.dbConn.query('SELECT episode_id, episode_number FROM episode WHERE belongs_to = ?',
+    season_id, function (error, results, fields) {
       if (error) throw error;
       return res.send({ error, data: results});
   });
@@ -71,41 +93,45 @@ app.get('/login/:email',function (req,res){
 });
 
 app.get('/profile/customer/:id',function (req,res){
-      let id = Number(req.params.id);
-      Db.dbConn.query("SELECT * FROM customer WHERE customer_id = ?",
-      id, function (error, results)
-      {
-        if(error) throw error;
-        return res.send({ data:results });
-      });
+  let id = Number(req.params.id);
+  console.log(req.params.id);
+  Db.dbConn.query("SELECT * FROM customer WHERE customer_id = ?",
+  id, function (error, results)
+  {
+    if(error) throw error;
+    return res.send({ data:results });
+  });
 });
 
 app.get('/profile/employee/:id',function (req,res){
-      let id = Number(req.params.id);
-      Db.dbConn.query("SELECT * FROM employee WHERE employee_id = ?",
-      id, function (error, results)
-      {
-        if(error) throw error;
-        return res.send({ data:results });
-      });
+  let id = Number(req.params.id);
+  console.log(req.params.id);
+  Db.dbConn.query("SELECT * FROM employee WHERE employee_id = ?",
+  id, function (error, results)
+  {
+    if(error) throw error;
+    return res.send({ data:results });
+  });
 });
 
 app.get('/profile/administrator/:id',function (req,res){
-      let id = Number(req.params.id);
-      Db.dbConn.query("SELECT * FROM administrator WHERE administrator_id = ?",
-      id, function (error, results)
-      {
-        if(error) throw error;
-        return res.send({ data:results });
-      });
+  let id = Number(req.params.id);
+  console.log(req.params.id);
+  Db.dbConn.query("SELECT * FROM administrator WHERE administrator_id = ?",
+  id, function (error, results)
+  {
+    if(error) throw error;
+    return res.send({ data:results });
+  });
 });
 
 app.get('/get/view_type/:id',function (req,res){
-      let id = Number(req.params.id);
-      Db.dbConn.query("SELECT view_type FROM customer WHERE customer_id = ?",
-      id, function (error, results)
-      {
-        if(error) throw error;
-        return res.send({ data:results });
-      });
+  let id = Number(req.params.id);
+  console.log(req.params.id);
+  Db.dbConn.query("SELECT view_type FROM customer WHERE customer_id = ?",
+  id, function (error, results)
+  {
+    if(error) throw error;
+    return res.send({ data:results });
+  });
 });

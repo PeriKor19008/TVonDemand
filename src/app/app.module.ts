@@ -10,6 +10,7 @@ import { InterfaceComponent } from './interface/interface.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SeriesComponent } from './series/series.component';
 import { SerieComponent } from './serie/serie.component';
+import { EpisodesComponent } from './episodes/episodes.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SerieComponent } from './serie/serie.component';
     ProfileComponent,
     SeriesComponent,
     SerieComponent,
+    EpisodesComponent,
   ],
   imports: [
     BrowserModule,

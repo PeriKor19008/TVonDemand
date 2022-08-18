@@ -1,6 +1,6 @@
 export interface IFilm{
   error:boolean,
-  data:[Films],
+  data:[Films]
 }
 
 export interface Film{
@@ -17,7 +17,7 @@ export interface Film{
 
 export interface IFilms{
   error:boolean,
-  data:[Films],
+  data:[Films]
 }
 
 export interface Films{
@@ -27,7 +27,7 @@ export interface Films{
 
 export interface ISeries{
   error:boolean,
-  data:[Series],
+  data:[Series]
 }
 
 export interface Series{
@@ -37,7 +37,7 @@ export interface Series{
 
 export interface ISerie{
   error:boolean,
-  data:[Serie],
+  data:[Serie]
 }
 
 export interface Serie{
@@ -50,6 +50,27 @@ export interface Serie{
   rating:string,
   special_features:string,
   no_of_seasons:number
+}
+
+export interface ISeasons{
+  error:boolean,
+  data:[Seasons]
+}
+
+export interface Seasons{
+  season_number:number,
+  no_of_episodes:number,
+  season_id:number
+}
+
+export interface IEpisodes{
+  error:boolean,
+  data:[Seasons]
+}
+
+export interface Episodes{
+  episode_id:number,
+  episode_number:number
 }
 
 export interface ILogin{

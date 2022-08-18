@@ -17,11 +17,11 @@
     <span class="badge">5. Language ID: </span>{{film[0].language_id}}
   </li>
   <li *ngIf = "film[0].optional_language_id == null; else elseBlock">
-    <span class="badge">6. Optional Language ID: </span>NULL
+    <span class="badge">6. Original Language ID: </span>NULL
   </li>
   <ng-template #elseBlock>
     <li>
-      <span class="badge">6. Optional Language ID: </span>{{film[0].optional_language_id}}
+      <span class="badge">6. Original Language ID: </span>{{film[0].optional_language_id}}
     </li>
   </ng-template>
   <li>

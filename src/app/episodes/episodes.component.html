@@ -1,0 +1,9 @@
+<h2>Episodes Interface!</h2>
+
+<ul class="items">
+  <li (click)="onSelect(episode.episode_id)" *ngFor="let episode of episodes">
+    <span class="badge">{{"Episode Number: " + episode.episode_number}}</span>{{"ID: " + episode.episode_id}}
+  </li>
+</ul>
+
+<button (click)="gotoSerie()">Back</button>
