@@ -2,8 +2,10 @@
 <p>Note: To Register Please Contact An Administrator!<br>
 Please enter your email to log in:</p>
 
-<input #email type="email" id="loginTextField">
-<button (click)="getMail(email.value)" id="loginButton">login</button>
+<div>
+    <input #email type="email" id="loginTextField">
+    <button (click)="getMail(email.value)" id="loginButton">Login</button>
+</div>
 <p *ngIf="notFound">
     Invalid email address! Please enter a new address!
 </p>
