@@ -9,6 +9,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SeriesComponent } from './series/series.component';
 import { SerieComponent } from './serie/serie.component';
 import { EpisodesComponent } from './episodes/episodes.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'serie', component: SerieComponent },
   { path: 'series', component: SeriesComponent },
   { path: 'episodes', component: EpisodesComponent },
+  { path: 'cart', component: CartComponent },
   { path: '**', component: PageNotFoundComponent}
 ];
 
@@ -38,6 +40,7 @@ export const routingComponents = [
                                     SerieComponent,
                                     SeriesComponent,
                                     EpisodesComponent,
+                                    CartComponent,
                                     InterfaceComponent,
                                     PageNotFoundComponent,
                                     ProfileComponent

@@ -25,7 +25,6 @@ export class FilmComponent implements OnInit {
       this.filmId = Number(params.get('film_id'));
     });
     this._filmService.getFilm(this.filmId).subscribe(data => this.film=data.data);
-      console.log(this.film);
   }
 
   gotoFilms()
@@ -36,6 +35,5 @@ export class FilmComponent implements OnInit {
   rentFilm()
   { 
     this._filmService.rentFilms(Number(this.film[0].inventory_id), this.userId).subscribe(data => this.rental=data.data);
-    console.log(Number(this.rental.changedRows));
   }
 }

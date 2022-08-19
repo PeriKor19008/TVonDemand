@@ -11,6 +11,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SeriesComponent } from './series/series.component';
 import { SerieComponent } from './serie/serie.component';
 import { EpisodesComponent } from './episodes/episodes.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { EpisodesComponent } from './episodes/episodes.component';
     SeriesComponent,
     SerieComponent,
     EpisodesComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

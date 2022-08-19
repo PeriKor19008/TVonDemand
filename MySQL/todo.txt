@@ -8,4 +8,8 @@ Add documentation
 -- Add Elias procedures and make trigger 4.2
 -- Maybe add addresses to administrators and employees?
 
-Make sure stuff is in the inventory
+-- Make sure stuff is in the inventory
+Make addresses viewable
+Make descriptions clearer
+Make Languages and Categories available
+Make profile editable
