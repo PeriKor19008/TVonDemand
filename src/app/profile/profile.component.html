@@ -13,8 +13,8 @@
     <li (click)="onSelect(userLastName)" [class.selected]="isSelected(userLastName)">
         <span class="badge">4. </span> {{"Last Name: " + userLastName}}
     </li>
-    <li (click)="onSelect(userAddressId)" [class.selected]="isSelected(userAddressId)">
-        <span class="badge">5. </span> {{"Address ID: " + userAddressId}}
+    <li (click)="showAddress()" [class.selected]="isSelected(userAddressId)">
+        <span class="badge">5. </span> {{"Address ID: " + userAddressId + " (Click To Expand)"}}
     </li>
     <li (click)="onSelect(userActive)" [class.selected]="isSelected(userActive)">
         <span class="badge">6. </span> {{"Profile Active Status: " + userActive}}

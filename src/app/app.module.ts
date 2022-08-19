@@ -12,6 +12,7 @@ import { SeriesComponent } from './series/series.component';
 import { SerieComponent } from './serie/serie.component';
 import { EpisodesComponent } from './episodes/episodes.component';
 import { CartComponent } from './cart/cart.component';
+import { AddressComponent } from './address/address.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CartComponent } from './cart/cart.component';
     SerieComponent,
     EpisodesComponent,
     CartComponent,
+    AddressComponent,
   ],
   imports: [
     BrowserModule,

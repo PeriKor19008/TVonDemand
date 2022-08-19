@@ -180,3 +180,18 @@ export interface IGetViewType{
 export interface GetViewType{
   view_type:string
 }
+
+export interface IAddress{
+  data:[Address]
+}
+
+export interface Address{
+  address_id:number,
+  city_id:number,
+  country_id:number,
+  address:string,
+  district:string,
+  city:string,
+  country:string,
+  postal_code:number
+}

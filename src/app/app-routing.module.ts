@@ -10,6 +10,7 @@ import { SeriesComponent } from './series/series.component';
 import { SerieComponent } from './serie/serie.component';
 import { EpisodesComponent } from './episodes/episodes.component';
 import { CartComponent } from './cart/cart.component';
+import { AddressComponent } from './address/address.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -19,6 +20,7 @@ const routes: Routes = [
     component: InterfaceComponent
   },
   { path: 'profile', component: ProfileComponent },
+  { path: 'address', component: AddressComponent},
   { path: 'film', component: FilmComponent },
   { path: 'films', component: FilmsComponent },
   { path: 'serie', component: SerieComponent },
@@ -42,6 +44,7 @@ export const routingComponents = [
                                     EpisodesComponent,
                                     CartComponent,
                                     InterfaceComponent,
+                                    AddressComponent,
                                     PageNotFoundComponent,
                                     ProfileComponent
                                  ]

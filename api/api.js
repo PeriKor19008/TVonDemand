@@ -167,6 +167,17 @@ app.get('/profile/customer/:id',function (req,res){
   });
 });
 
+app.get('/profile/customer/address/:id',function (req,res){
+  let id = Number(req.params.id);
+  console.log(req.params.id);
+  Db.dbConn.query("SELECT address.address_id, city.city_id, country.country_id, address.address, address.district, city.city, country.country, address.postal_code FROM customer INNER JOIN address ON customer.address_id = address.address_id INNER JOIN city ON address.city_id = city.city_id INNER JOIN country ON city.country_id = country.country_id WHERE customer.customer_id = ?",
+  id, function (error, results)
+  {
+    if(error) throw error;
+    return res.send({ data:results });
+  });
+});
+
 app.get('/profile/employee/:id',function (req,res){
   let id = Number(req.params.id);
   console.log(req.params.id);

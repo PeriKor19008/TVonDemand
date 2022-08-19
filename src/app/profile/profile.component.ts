@@ -61,7 +61,7 @@ export class ProfileComponent implements OnInit {
           this.userFirstName = data.data[0].first_name;
           this.userLastName = data.data[0].last_name;
           this.userEmail = data.data[0].email; 
-          this.userAddressId = data.data[0].address_id;
+          this.userAddressId = Number(data.data[0].address_id);
           this.userActive = data.data[0].active;
           this.userCreateDate = data.data[0].create_date;
         });
@@ -80,5 +80,9 @@ export class ProfileComponent implements OnInit {
 
   gotoInterface(){
     this.router.navigate(['/interface', {type: this.userType, id: this.userId}]);
+  }
+
+  showAddress(){
+    this.router.navigate(['/address', {type: this.userType, id: this.userId}]);
   }
 }
