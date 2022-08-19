@@ -16,12 +16,12 @@ export interface Film{
   inventory_id:number
 }
 
-export interface IFilmRental{
+export interface IUpdate{
   error:boolean,
-  data:[FilmRental]
+  data:[Update]
 }
 
-export interface FilmRental{
+export interface Update{
   fieldCount:number,
   affectedRows:number,
   insertId:number,
@@ -88,7 +88,8 @@ export interface IEpisodes{
 
 export interface Episodes{
   episode_id:number,
-  episode_number:number
+  episode_number:number,
+  inventory_id:number
 }
 
 export interface ILogin{

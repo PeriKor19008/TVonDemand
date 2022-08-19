@@ -14,6 +14,8 @@ export class EpisodesComponent implements OnInit {
   public seasonId = new Number;
   public serieId = new Number;
   public episodes:any;
+  public rental:any;
+  public rented = new Boolean;
 
   constructor(private _episodesService:EpisodesService, private router:Router, private route:ActivatedRoute) { }
 
@@ -29,13 +31,15 @@ export class EpisodesComponent implements OnInit {
     });
   }
 
-  onSelect(episode_id:Number)
-  {
-
-  }
-
   gotoSerie()
   {
     this.router.navigate(['/serie', {type: this.userType, id: this.userId, serie_id: this.serieId}]);
+  }
+
+  episodeRent(inventory_id:number)
+  {
+    this._episodesService.rentEpisodes(Number(inventory_id), this.userId).subscribe(data => this.rental=data.data);
+    this.rented = Boolean(this.rental.affectedRows);
+    console.log(this.rented);
   }
 }

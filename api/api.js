@@ -87,8 +87,20 @@ app.get('/seasons_available/:serie_id', function (req, res) {
 app.get('/episodes_available/:season_id', function (req, res) {
   let season_id = Number(req.params.season_id);
   console.log(req.params.season_id);
-  Db.dbConn.query('SELECT episode.episode_id, episode.episode_number FROM episode INNER JOIN serie_inventory ON episode.episode_id = serie_inventory.episode_id WHERE belongs_to = ?',
+  Db.dbConn.query('SELECT episode.episode_id, episode.episode_number, serie_inventory.inventory_id FROM episode INNER JOIN serie_inventory ON episode.episode_id = serie_inventory.episode_id WHERE belongs_to = ?',
     season_id, function (error, results, fields) {
+      if (error) throw error;
+      return res.send({ error, data: results});
+  });
+});
+
+app.get('/episode/rent/:inventory_id/:customer_id', function (req, res) {
+  let inventory_id = Number(req.params.inventory_id);
+  let customer_id = Number(req.params.customer_id);
+  console.log(req.params.inventory_id);
+  console.log(req.params.customer_id);
+  Db.dbConn.query('INSERT INTO serie_rental(`rental_date`, `inventory_id`, `customer_id`) VALUES (NOW(), ?, ?)',
+  [inventory_id, customer_id], function (error, results, fields) {
       if (error) throw error;
       return res.send({ error, data: results});
   });

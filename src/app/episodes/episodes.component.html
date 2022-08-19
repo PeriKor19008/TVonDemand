@@ -1,9 +1,12 @@
 <h2>Episodes Interface!</h2>
 
 <ul class="items">
-  <li (click)="onSelect(episode.episode_id)" *ngFor="let episode of episodes">
-    <span class="badge">{{"Episode Number: " + episode.episode_number}}</span>{{"ID: " + episode.episode_id}}
+  <li (click)="episodeRent(episode.inventory_id)" *ngFor="let episode of episodes">
+    <span class="badge">{{"Episode Number: " + episode.episode_number}}</span>Click To Rent!
   </li>
 </ul>
 
 <button (click)="gotoSerie()">Back</button>
+
+
+<h2 *ngIf="rented">Episode Successfully Rented!</h2>
