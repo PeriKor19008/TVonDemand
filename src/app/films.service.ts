@@ -12,7 +12,7 @@ export class FilmsService {
 
   getFilms():Observable<IFilms>{
 
-    return this.http.get<IFilms>("http://localhost:8090/films");
+    return this.http.get<IFilms>("http://localhost:8090/films_available");
 
   }
 }

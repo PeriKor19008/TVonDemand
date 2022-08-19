@@ -12,7 +12,24 @@ export interface Film{
   original_language_id:number,
   length:number,
   rating:string,
-  special_features:string
+  special_features:string,
+  inventory_id:number
+}
+
+export interface IFilmRental{
+  error:boolean,
+  data:[FilmRental]
+}
+
+export interface FilmRental{
+  fieldCount:number,
+  affectedRows:number,
+  insertId:number,
+  serverStatus:number,
+  warningCount:number,
+  message:string,
+  protocol41:boolean,
+  changedRows:number
 }
 
 export interface IFilms{
@@ -60,7 +77,8 @@ export interface ISeasons{
 export interface Seasons{
   season_number:number,
   no_of_episodes:number,
-  season_id:number
+  season_id:number,
+  belongs_to:number
 }
 
 export interface IEpisodes{

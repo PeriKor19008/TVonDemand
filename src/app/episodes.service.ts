@@ -10,6 +10,6 @@ export class EpisodesService {
 
   constructor(private http:HttpClient) { }
   getEpisodes(season_id:Number):Observable<IEpisodes>{
-    return this.http.get<IEpisodes>("http://localhost:8090/episodes/"+season_id);
+    return this.http.get<IEpisodes>("http://localhost:8090/episodes_available/"+season_id);
   }
 }

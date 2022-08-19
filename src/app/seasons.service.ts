@@ -10,6 +10,6 @@ export class SeasonsService {
 
   constructor(private http:HttpClient) { }
    getSeasons(serie_id:Number):Observable<ISeasons>{
-    return this.http.get<ISeasons>("http://localhost:8090/seasons/"+serie_id);
+    return this.http.get<ISeasons>("http://localhost:8090/seasons_available/"+serie_id);
   }
 }

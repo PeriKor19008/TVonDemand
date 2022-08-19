@@ -10,6 +10,6 @@ export class SeriesService {
 
   constructor(private http:HttpClient) { }
   getSeries():Observable<ISeries>{
-    return this.http.get<ISeries>("http://localhost:8090/series");
+    return this.http.get<ISeries>("http://localhost:8090/series_available");
   }
 }

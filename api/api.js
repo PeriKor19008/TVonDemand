@@ -28,25 +28,37 @@ app.get('/', function (req, res) {
   return res.send({ error: true, message: 'hello' })
 });
 
-app.get('/films', function (req, res) {
-  Db.dbConn.query('SELECT film_id, title FROM film', function (error, results, fields) {
+app.get('/films_available', function (req, res) {
+  Db.dbConn.query('SELECT film.film_id, film.title FROM film INNER JOIN film_inventory ON film.film_id = film_inventory.film_id', function (error, results, fields) {
       if (error) throw error;
       return res.send({ error, data: results});
   });
 });
 
 app.get('/film/:id', function (req, res) {
-  let id = req.params.id;
+  let id = Number(req.params.id);
   console.log(req.params.id);
-  Db.dbConn.query('SELECT * FROM film WHERE film_id = ?',
+  Db.dbConn.query('SELECT film.film_id, title, description, release_year, language_id, original_language_id, length, rating, special_features, inventory_id FROM film INNER JOIN film_inventory ON film.film_id = film_inventory.film_id WHERE film.film_id = ?',
   id, function (error, results, fields) {
       if (error) throw error;
       return res.send({ error, data: results});
   });
 });
 
-app.get('/series', function (req, res) {
-  Db.dbConn.query('SELECT serie_id, title FROM serie', function (error, results, fields) {
+app.get('/film/rent/:inventory_id/:customer_id', function (req, res) {
+  let inventory_id = Number(req.params.inventory_id);
+  let customer_id = Number(req.params.customer_id);
+  console.log(req.params.inventory_id);
+  console.log(req.params.customer_id);
+  Db.dbConn.query('INSERT INTO film_rental(`rental_date`, `inventory_id`, `customer_id`) VALUES (NOW(), ?, ?)',
+  [inventory_id, customer_id], function (error, results, fields) {
+      if (error) throw error;
+      return res.send({ error, data: results});
+  });
+});
+
+app.get('/series_available', function (req, res) {
+  Db.dbConn.query('SELECT serie.serie_id, serie.title FROM serie INNER JOIN season ON serie.serie_id = season.belongs_to INNER JOIN episode ON season.season_id = episode.belongs_to INNER JOIN serie_inventory ON episode.episode_id = serie_inventory.episode_id GROUP BY serie.serie_id', function (error, results, fields) {
       if (error) throw error;
       return res.send({ error, data: results});
   });
@@ -62,20 +74,20 @@ app.get('/serie/:id', function (req, res) {
   });
 });
 
-app.get('/seasons/:serie_id', function (req, res) {
+app.get('/seasons_available/:serie_id', function (req, res) {
   let serie_id = Number(req.params.serie_id);
   console.log(req.params.serie_id);
-  Db.dbConn.query('SELECT season_number, no_of_episodes, season_id FROM season WHERE belongs_to = ?',
+  Db.dbConn.query('SELECT season.season_number, season.no_of_episodes, season.season_id, season.belongs_to FROM season INNER JOIN episode ON season.season_id = episode.belongs_to INNER JOIN serie_inventory ON episode.episode_id = serie_inventory.episode_id GROUP BY season.season_id HAVING season.belongs_to = ?',
     serie_id, function (error, results, fields) {
       if (error) throw error;
       return res.send({ error, data: results});
   });
 });
 
-app.get('/episodes/:season_id', function (req, res) {
+app.get('/episodes_available/:season_id', function (req, res) {
   let season_id = Number(req.params.season_id);
   console.log(req.params.season_id);
-  Db.dbConn.query('SELECT episode_id, episode_number FROM episode WHERE belongs_to = ?',
+  Db.dbConn.query('SELECT episode.episode_id, episode.episode_number FROM episode INNER JOIN serie_inventory ON episode.episode_id = serie_inventory.episode_id WHERE belongs_to = ?',
     season_id, function (error, results, fields) {
       if (error) throw error;
       return res.send({ error, data: results});

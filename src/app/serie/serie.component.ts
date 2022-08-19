@@ -15,7 +15,6 @@ export class SerieComponent implements OnInit {
   public serie:any;
   public serieId = new Number;
   public seasons:any;
-  public seasonId:any;
 
   constructor(private _serieService:SerieService, private _seasonsService:SeasonsService, private router:Router, private route:ActivatedRoute) { }
 
@@ -28,7 +27,6 @@ export class SerieComponent implements OnInit {
         this.serie=data.data;
         this._seasonsService.getSeasons(this.serieId).subscribe(data => {
           this.seasons=data.data;
-          this.seasonId = Number(data.data[0].season_id);
         });
       });
     });
@@ -41,6 +39,6 @@ export class SerieComponent implements OnInit {
 
   onSelect(season_id:number)
   {
-    this.router.navigate(['/episodes', {type: this.userType, id: this.userId, serie_id: this.serieId, season_id: this.seasonId}])
+    this.router.navigate(['/episodes', {type: this.userType, id: this.userId, serie_id: this.serieId, season_id: season_id}])
   }
 }

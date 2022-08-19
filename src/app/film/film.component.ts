@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute, ParamMap } from '@angular/router';
 import { FilmService } from '../film.service';
@@ -13,8 +14,9 @@ export class FilmComponent implements OnInit {
   public userId = new Number;
   public film:any;
   public filmId = new Number;
+  public rental:any;
 
-  constructor(private _filmService: FilmService, private router:Router, private route:ActivatedRoute) { }
+  constructor(private _filmService: FilmService, private router:Router, private route:ActivatedRoute, private http:HttpClient) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params:ParamMap) => {
@@ -31,4 +33,9 @@ export class FilmComponent implements OnInit {
     this.router.navigate(['/films', {type: this.userType, id: this.userId}]);
   }
 
+  rentFilm()
+  { 
+    this._filmService.rentFilms(Number(this.film[0].inventory_id), this.userId).subscribe(data => this.rental=data.data);
+    console.log(Number(this.rental.changedRows));
+  }
 }

@@ -36,3 +36,6 @@
 </ul>
 
 <button (click)="gotoFilms()">Back</button>
+<button (click)="rentFilm()">Rent</button>
+
+<h2 *ngIf="rental.affectedRows == 1">Film Successfully Rented!</h2>
