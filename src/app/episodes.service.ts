@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IEpisodes, IUpdate } from './exports_for_services';
+import { IEpisodes, ISeriesCart, IUpdate } from './exports_for_services';
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +14,11 @@ export class EpisodesService {
   }
   rentEpisodes(inventory_id:Number, customer_id:Number):Observable<IUpdate>{
     return this.http.get<IUpdate>("http://localhost:8090/episode/rent/"+Number(inventory_id)+"/"+Number(customer_id));
+  }
+  getSeriesCart(id:Number):Observable<ISeriesCart>{
+    return this.http.get<ISeriesCart>("http://localhost:8090/serie/cart/"+id);
+  }
+  paySerie(rental_id:Number):Observable<IUpdate>{
+    return this.http.get<IUpdate>("http://localhost:8090/serie/pay/"+rental_id);
   }
 }

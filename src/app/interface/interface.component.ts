@@ -13,7 +13,7 @@ export class InterfaceComponent implements OnInit {
     {"option_id":1, "name": "Profile"},
     {"option_id":2, "name": "Rent Film"},
     {"option_id":3, "name": "Rent Serie"},
-    {"option_id":4, "name": "Basket and Checkout"},
+    {"option_id":4, "name": "Shopping Cart and Checkout"},
     {"option_id":5, "name": "Log Out"}
   ];
 
@@ -59,6 +59,7 @@ export class InterfaceComponent implements OnInit {
       }
       case 4:
       {
+        this.router.navigate(['/cart', {type: this.userType, id: this.userId}]);
         break;
       }
       case 5:

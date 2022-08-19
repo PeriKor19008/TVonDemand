@@ -16,6 +16,19 @@ export interface Film{
   inventory_id:number
 }
 
+export interface IFilmsCart{
+  error:boolean,
+  data:[FilmsCart]
+}
+
+export interface FilmsCart{
+  rental_id:number,
+  title:string,
+  paid:boolean,
+  type:string,
+  customer_id:number
+}
+
 export interface IUpdate{
   error:boolean,
   data:[Update]
@@ -90,6 +103,21 @@ export interface Episodes{
   episode_id:number,
   episode_number:number,
   inventory_id:number
+}
+
+export interface ISeriesCart{
+  error:boolean,
+  data:[SeriesCart]
+}
+
+export interface SeriesCart{
+  rental_id:number,
+  title:string,
+  season_number:number,
+  episode_number:number,
+  paid:boolean,
+  type:string,
+  customer_id:number
 }
 
 export interface ILogin{
