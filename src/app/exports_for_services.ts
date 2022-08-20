@@ -195,3 +195,13 @@ export interface Address{
   country:string,
   postal_code:number
 }
+
+export interface ILanuguage{
+  error:boolean,
+  data:[Language]
+}
+
+export interface Language{
+  language_id:number,
+  name:string
+}

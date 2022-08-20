@@ -36,4 +36,9 @@ export class FilmComponent implements OnInit {
   { 
     this._filmService.rentFilms(Number(this.film[0].inventory_id), this.userId).subscribe(data => this.rental=data.data);
   }
+
+  gotoLanguages(languageId:Number)
+  {
+    this.router.navigate(['/language', {type: this.userType, id: this.userId, language_id: languageId, back_id: this.filmId, backto: "film"}])
+  }
 }

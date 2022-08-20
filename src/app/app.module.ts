@@ -13,6 +13,8 @@ import { SerieComponent } from './serie/serie.component';
 import { EpisodesComponent } from './episodes/episodes.component';
 import { CartComponent } from './cart/cart.component';
 import { AddressComponent } from './address/address.component';
+import { LanguagesComponent } from './languages/languages.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { AddressComponent } from './address/address.component';
     EpisodesComponent,
     CartComponent,
     AddressComponent,
+    LanguagesComponent,
+    CategoriesComponent,
   ],
   imports: [
     BrowserModule,

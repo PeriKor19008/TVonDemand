@@ -11,6 +11,7 @@ import { SerieComponent } from './serie/serie.component';
 import { EpisodesComponent } from './episodes/episodes.component';
 import { CartComponent } from './cart/cart.component';
 import { AddressComponent } from './address/address.component';
+import { LanguagesComponent } from './languages/languages.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -24,8 +25,10 @@ const routes: Routes = [
   { path: 'film', component: FilmComponent },
   { path: 'films', component: FilmsComponent },
   { path: 'serie', component: SerieComponent },
+  { path: 'language', component: LanguagesComponent },
   { path: 'series', component: SeriesComponent },
   { path: 'episodes', component: EpisodesComponent },
+  { path: 'languages', component: LanguagesComponent },
   { path: 'cart', component: CartComponent },
   { path: '**', component: PageNotFoundComponent}
 ];
@@ -42,6 +45,7 @@ export const routingComponents = [
                                     SerieComponent,
                                     SeriesComponent,
                                     EpisodesComponent,
+                                    LanguagesComponent,
                                     CartComponent,
                                     InterfaceComponent,
                                     AddressComponent,

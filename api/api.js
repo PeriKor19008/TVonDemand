@@ -77,6 +77,16 @@ app.get('/film/pay/:rental_id', function (req, res) {
   });
 });
 
+app.get('/language/:language_id', function (req, res) {
+  let language_id = Number(req.params.language_id);
+  console.log(req.params.language_id);
+  Db.dbConn.query("SELECT * FROM language where language_id = ?",
+   language_id, function (error, results, fields) {
+      if (error) throw error;
+      return res.send({ error, data: results});
+  });
+});
+
 app.get('/series_available', function (req, res) {
   Db.dbConn.query('SELECT serie.serie_id, serie.title FROM serie INNER JOIN season ON serie.serie_id = season.belongs_to INNER JOIN episode ON season.season_id = episode.belongs_to INNER JOIN serie_inventory ON episode.episode_id = serie_inventory.episode_id GROUP BY serie.serie_id', function (error, results, fields) {
       if (error) throw error;

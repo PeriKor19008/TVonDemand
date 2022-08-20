@@ -41,4 +41,9 @@ export class SerieComponent implements OnInit {
   {
     this.router.navigate(['/episodes', {type: this.userType, id: this.userId, serie_id: this.serieId, season_id: season_id}])
   }
+
+  gotoLanguages(languageId:number)
+  {
+    this.router.navigate(['/language', {type: this.userType, id: this.userId, language_id: languageId, back_id: this.serieId, backto: "serie"}])
+  }
 }
