@@ -15,6 +15,7 @@ import { CartComponent } from './cart/cart.component';
 import { AddressComponent } from './address/address.component';
 import { LanguagesComponent } from './languages/languages.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { ActorsComponent } from './actors/actors.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { CategoriesComponent } from './categories/categories.component';
     AddressComponent,
     LanguagesComponent,
     CategoriesComponent,
+    ActorsComponent,
   ],
   imports: [
     BrowserModule,

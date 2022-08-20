@@ -50,4 +50,9 @@ export class FilmComponent implements OnInit {
   {
     this.router.navigate(['/categories', {type: this.userType, id: this.userId, gettype: 'film', getid: this.filmId}]);
   }
+
+  gotoActors()
+  {
+    this.router.navigate(['/actors', {type: this.userType, id: this.userId, gettype: 'film', getid: this.filmId}]);
+  }
 }

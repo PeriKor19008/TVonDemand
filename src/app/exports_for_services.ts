@@ -215,3 +215,14 @@ export interface Categories{
   category_id:number,
   name:string
 }
+
+export interface IActors{
+  error:boolean,
+  data:[Actors]
+}
+
+export interface Actors{
+  actor_id:number,
+  first_name:string,
+  last_name:string
+}

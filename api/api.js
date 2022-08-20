@@ -87,6 +87,16 @@ app.get('/film/categories/:film_id', function (req, res) {
   });
 });
 
+app.get('/film/actors/:film_id', function (req, res) {
+  let film_id = Number(req.params.film_id);
+  console.log(req.params.film_id);
+  Db.dbConn.query("SELECT film_actor.actor_id, actor.first_name, actor.last_name FROM film INNER JOIN film_actor ON film.film_id = film_actor.film_id INNER JOIN actor ON film_actor.actor_id = actor.actor_id WHERE film.film_id = ?",
+   film_id, function (error, results, fields) {
+      if (error) throw error;
+      return res.send({ error, data: results});
+  });
+});
+
 app.get('/language/:language_id', function (req, res) {
   let language_id = Number(req.params.language_id);
   console.log(req.params.language_id);
@@ -170,6 +180,16 @@ app.get('/serie/categories/:serie_id', function (req, res) {
   let serie_id = Number(req.params.serie_id);
   console.log(req.params.serie_id);
   Db.dbConn.query("SELECT serie_category.category_id, category.name FROM serie INNER JOIN serie_category ON serie.serie_id = serie_category.serie_id INNER JOIN category ON serie_category.category_id = category.category_id WHERE serie.serie_id = ?",
+   serie_id, function (error, results, fields) {
+      if (error) throw error;
+      return res.send({ error, data: results});
+  });
+});
+
+app.get('/serie/actors/:serie_id', function (req, res) {
+  let serie_id = Number(req.params.serie_id);
+  console.log(req.params.serie_id);
+  Db.dbConn.query("SELECT serie_actor.actor_id, actor.first_name, actor.last_name FROM serie INNER JOIN serie_actor ON serie.serie_id = serie_actor.serie_id INNER JOIN actor ON serie_actor.actor_id = actor.actor_id WHERE serie.serie_id = ?",
    serie_id, function (error, results, fields) {
       if (error) throw error;
       return res.send({ error, data: results});

@@ -13,6 +13,7 @@ import { CartComponent } from './cart/cart.component';
 import { AddressComponent } from './address/address.component';
 import { LanguagesComponent } from './languages/languages.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { ActorsComponent } from './actors/actors.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'episodes', component: EpisodesComponent },
   { path: 'languages', component: LanguagesComponent },
   { path: 'categories', component: CategoriesComponent},
+  { path: 'actors', component: ActorsComponent},
   { path: 'cart', component: CartComponent },
   { path: '**', component: PageNotFoundComponent}
 ];
@@ -49,6 +51,7 @@ export const routingComponents = [
                                     EpisodesComponent,
                                     LanguagesComponent,
                                     CategoriesComponent,
+                                    ActorsComponent,
                                     CartComponent,
                                     InterfaceComponent,
                                     AddressComponent,

@@ -12,4 +12,5 @@ Add documentation
 -- Make addresses viewable
 -- Make descriptions clearer
 -- Make Languages and Categories available
+Make actors available
 Make profile editable
