@@ -46,4 +46,9 @@ export class SerieComponent implements OnInit {
   {
     this.router.navigate(['/language', {type: this.userType, id: this.userId, language_id: languageId, back_id: this.serieId, backto: "serie"}])
   }
+
+  gotoCategories()
+  {
+    this.router.navigate(['/categories', {type: this.userType, id: this.userId, gettype: 'serie', getid: this.serieId}]);
+  }
 }

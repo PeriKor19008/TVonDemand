@@ -77,6 +77,16 @@ app.get('/film/pay/:rental_id', function (req, res) {
   });
 });
 
+app.get('/film/categories/:film_id', function (req, res) {
+  let film_id = Number(req.params.film_id);
+  console.log(req.params.film_id);
+  Db.dbConn.query("SELECT film_category.category_id, category.name FROM film INNER JOIN film_category ON film.film_id = film_category.film_id INNER JOIN category ON film_category.category_id = category.category_id WHERE film.film_id = ?",
+   film_id, function (error, results, fields) {
+      if (error) throw error;
+      return res.send({ error, data: results});
+  });
+});
+
 app.get('/language/:language_id', function (req, res) {
   let language_id = Number(req.params.language_id);
   console.log(req.params.language_id);
@@ -151,6 +161,16 @@ app.get('/serie/pay/:rental_id', function (req, res) {
   console.log(req.params.rental_id);
   Db.dbConn.query("UPDATE serie_payment SET paid = 1 WHERE rental_id=?",
    id, function (error, results, fields) {
+      if (error) throw error;
+      return res.send({ error, data: results});
+  });
+});
+
+app.get('/serie/categories/:serie_id', function (req, res) {
+  let serie_id = Number(req.params.serie_id);
+  console.log(req.params.serie_id);
+  Db.dbConn.query("SELECT serie_category.category_id, category.name FROM serie INNER JOIN serie_category ON serie.serie_id = serie_category.serie_id INNER JOIN category ON serie_category.category_id = category.category_id WHERE serie.serie_id = ?",
+   serie_id, function (error, results, fields) {
       if (error) throw error;
       return res.send({ error, data: results});
   });

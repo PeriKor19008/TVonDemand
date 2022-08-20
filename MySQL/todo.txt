@@ -11,5 +11,5 @@ Add documentation
 -- Make sure stuff is in the inventory
 -- Make addresses viewable
 -- Make descriptions clearer
-Make Languages and Categories available
+-- Make Languages and Categories available
 Make profile editable

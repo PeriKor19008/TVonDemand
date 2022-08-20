@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute, ParamMap } from '@angular/router';
+import { CategoriesService } from '../categories.service';
 import { FilmService } from '../film.service';
 
 @Component({
@@ -23,8 +24,11 @@ export class FilmComponent implements OnInit {
       this.userType = String(params.get('type'));
       this.userId = Number(params.get('id'));
       this.filmId = Number(params.get('film_id'));
+      this._filmService.getFilm(this.filmId).subscribe(data => 
+      {
+          this.film=data.data;
+      });
     });
-    this._filmService.getFilm(this.filmId).subscribe(data => this.film=data.data);
   }
 
   gotoFilms()
@@ -40,5 +44,10 @@ export class FilmComponent implements OnInit {
   gotoLanguages(languageId:Number)
   {
     this.router.navigate(['/language', {type: this.userType, id: this.userId, language_id: languageId, back_id: this.filmId, backto: "film"}])
+  }
+
+  gotoCategories()
+  {
+    this.router.navigate(['/categories', {type: this.userType, id: this.userId, gettype: 'film', getid: this.filmId}]);
   }
 }

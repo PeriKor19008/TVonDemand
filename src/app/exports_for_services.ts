@@ -205,3 +205,13 @@ export interface Language{
   language_id:number,
   name:string
 }
+
+export interface ICategories{
+  error:boolean,
+  data:[Categories]
+}
+
+export interface Categories{
+  category_id:number,
+  name:string
+}
