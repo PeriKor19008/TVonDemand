@@ -9,12 +9,27 @@ import { GetViewTypeService } from '../get-view-type.service';
 })
 export class InterfaceComponent implements OnInit {
 
-  public customerOptions= [
+  public customerOptions = [
     {"option_id":1, "name": "Profile"},
     {"option_id":2, "name": "Rent Film"},
     {"option_id":3, "name": "Rent Serie"},
     {"option_id":4, "name": "Shopping Cart and Checkout"},
     {"option_id":5, "name": "Log Out"}
+  ];
+
+  public employeeOptions = [
+    {"option_id":1, "name": "View Customer Profiles"},
+    {"option_id":2, "name": "View Customer Rentals"},
+    {"option_id":3, "name": "Update Database"},
+    {"option_id":4, "name": "Show Most Popular Listings"},
+    {"option_id":5, "name": "Log Out"}
+  ];
+
+  public administratorOptions = [
+    {"option_id":1, "name": "Manage Accounts"},
+    {"option_id":2, "name": "Show Total Profits"},
+    {"option_id":3, "name": "Change Prices"},
+    {"option_id":4, "name": "Log Out"}
   ];
 
   public numbering = 0;
@@ -40,33 +55,92 @@ export class InterfaceComponent implements OnInit {
   }
 
   onSelect(option:any){
-    switch(option)
+    switch(this.userType)
     {
-      case 1:
+      case 'Customer':
       {
-        this.router.navigate(['/profile', {type: this.userType, id: this.userId}]);
-        break;
+        switch(option)
+        {
+          case 1:
+          {
+            this.router.navigate(['/profile', {type: this.userType, id: this.userId}]);
+            break;
+          }
+          case 2:
+          {
+            this.router.navigate(['/films', {type: this.userType, id: this.userId}]);
+            break;
+          }
+          case 3:
+          {
+            this.router.navigate(['/series', {type: this.userType, id: this.userId}]);
+            break;
+          }
+          case 4:
+          {
+            this.router.navigate(['/cart', {type: this.userType, id: this.userId}]);
+            break;
+          }
+          case 5:
+          {
+            this.router.navigate(['/login']);
+            break;
+          }
+        }
       }
-      case 2:
+      break;
+      case 'Employee':
       {
-        this.router.navigate(['/films', {type: this.userType, id: this.userId}]);
-        break;
+        switch(option)
+        {
+          case 1:
+          {
+            break;
+          }
+          case 2:
+          {
+            break;
+          }
+          case 3:
+          {
+            break;
+          }
+          case 4:
+          {
+            break;
+          }
+          case 5:
+          {
+            this.router.navigate(['/login']);
+            break;
+          }
+        }
       }
-      case 3:
+      break;
+      case 'Administrator':
       {
-        this.router.navigate(['/series', {type: this.userType, id: this.userId}]);
-        break;
+        switch(option)
+        {
+          case 1:
+          {
+            break;
+          }
+          case 2:
+          {
+            break;
+          }
+          case 3:
+          {
+            break;
+          }
+          case 4:
+          {
+            this.router.navigate(['/login']);
+            break;
+          }
+        }
       }
-      case 4:
-      {
-        this.router.navigate(['/cart', {type: this.userType, id: this.userId}]);
-        break;
-      }
-      case 5:
-      {
-        this.router.navigate(['/login']);
-        break;
-      }
+      break;
     }
   }
 

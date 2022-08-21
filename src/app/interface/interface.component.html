@@ -1,55 +1,94 @@
 <div [ngSwitch]="userType">
+
+    <div>
     <h2 *ngSwitchCase="'Customer'">Customer Interface:</h2>
-    <h2 *ngSwitchCase="'Employee'">Employee Interface:</h2>
-    <h2 *ngSwitchCase="'Administrator'">Administrator Interface:</h2>
-</div>
+    <div [ngSwitch]="customerViewType">
+    <ul *ngSwitchCase="'Both'" class="items">
+        <li (click)="onSelect(customerOptions[0].option_id)" [class.selected]="isSelected(customerOptions[0])">
+            <span class="badge">1. </span> {{customerOptions[0].name}}
+        </li>
+        <li (click)="onSelect(customerOptions[1].option_id)" [class.selected]="isSelected(customerOptions[1])">
+            <span class="badge">2. </span> {{customerOptions[1].name}}
+        </li>
+        <li (click)="onSelect(customerOptions[2].option_id)" [class.selected]="isSelected(customerOptions[2])">
+            <span class="badge">3. </span> {{customerOptions[2].name}}
+        </li>
+        <li (click)="onSelect(customerOptions[3].option_id)" [class.selected]="isSelected(customerOptions[3])">
+            <span class="badge">4. </span> {{customerOptions[3].name}}
+        </li>
+        <li (click)="onSelect(customerOptions[4].option_id)" [class.selected]="isSelected(customerOptions[4])">
+            <span class="badge">5.</span> {{customerOptions[4].name}}
+        </li>
+    </ul>
 
-<div *ngIf="userType == 'Customer'" [ngSwitch]="customerViewType">
-<ul *ngSwitchCase="'Both'" class="items">
-    <li (click)="onSelect(customerOptions[0].option_id)" [class.selected]="isSelected(customerOptions[0])">
-        <span class="badge">1. </span> {{customerOptions[0].name}}
-    </li>
-    <li (click)="onSelect(customerOptions[1].option_id)" [class.selected]="isSelected(customerOptions[1])">
-        <span class="badge">2. </span> {{customerOptions[1].name}}
-    </li>
-    <li (click)="onSelect(customerOptions[2].option_id)" [class.selected]="isSelected(customerOptions[2])">
-        <span class="badge">3. </span> {{customerOptions[2].name}}
-    </li>
-    <li (click)="onSelect(customerOptions[3].option_id)" [class.selected]="isSelected(customerOptions[3])">
-        <span class="badge">4. </span> {{customerOptions[3].name}}
-    </li>
-    <li (click)="onSelect(customerOptions[4].option_id)" [class.selected]="isSelected(customerOptions[4])">
-        <span class="badge">5.</span> {{customerOptions[4].name}}
-    </li>
-</ul>
+    <ul *ngSwitchCase="'Films'" class="items">
+        <li (click)="onSelect(customerOptions[0].option_id)" [class.selected]="isSelected(customerOptions[0])">
+            <span class="badge">1. </span> {{customerOptions[0].name}}
+        </li>
+        <li (click)="onSelect(customerOptions[1].option_id)" [class.selected]="isSelected(customerOptions[1])">
+            <span class="badge">2. </span> {{customerOptions[1].name}}
+        </li>
+        <li (click)="onSelect(customerOptions[3].option_id)" [class.selected]="isSelected(customerOptions[3])">
+            <span class="badge">3. </span> {{customerOptions[3].name}}
+        </li>
+        <li (click)="onSelect(customerOptions[4].option_id)" [class.selected]="isSelected(customerOptions[4])">
+            <span class="badge">4. </span> {{customerOptions[4].name}}
+        </li>
+    </ul>
 
-<ul *ngSwitchCase="'Films'" class="items">
-    <li (click)="onSelect(customerOptions[0].option_id)" [class.selected]="isSelected(customerOptions[0])">
-        <span class="badge">1. </span> {{customerOptions[0].name}}
-    </li>
-    <li (click)="onSelect(customerOptions[1].option_id)" [class.selected]="isSelected(customerOptions[1])">
-        <span class="badge">2. </span> {{customerOptions[1].name}}
-    </li>
-    <li (click)="onSelect(customerOptions[3].option_id)" [class.selected]="isSelected(customerOptions[3])">
-        <span class="badge">3. </span> {{customerOptions[3].name}}
-    </li>
-    <li (click)="onSelect(customerOptions[4].option_id)" [class.selected]="isSelected(customerOptions[4])">
-        <span class="badge">4. </span> {{customerOptions[4].name}}
-    </li>
-</ul>
+    <ul *ngSwitchCase="'Series'" class="items">
+        <li (click)="onSelect(customerOptions[0].option_id)" [class.selected]="isSelected(customerOptions[0])">
+            <span class="badge">1. </span> {{customerOptions[0].name}}
+        </li>
+        <li (click)="onSelect(customerOptions[2].option_id)" [class.selected]="isSelected(customerOptions[2])">
+            <span class="badge">2. </span> {{customerOptions[2].name}}
+        </li>
+        <li (click)="onSelect(customerOptions[3].option_id)" [class.selected]="isSelected(customerOptions[3])">
+            <span class="badge">3. </span> {{customerOptions[3].name}}
+        </li>
+        <li (click)="onSelect(customerOptions[4].option_id)" [class.selected]="isSelected(customerOptions[4])">
+            <span class="badge">4. </span> {{customerOptions[4].name}}
+        </li>
+    </ul>
+    </div>
+    </div>
 
-<ul *ngSwitchCase="'Series'" class="items">
-    <li (click)="onSelect(customerOptions[0].option_id)" [class.selected]="isSelected(customerOptions[0])">
-        <span class="badge">1. </span> {{customerOptions[0].name}}
-    </li>
-    <li (click)="onSelect(customerOptions[2].option_id)" [class.selected]="isSelected(customerOptions[2])">
-        <span class="badge">2. </span> {{customerOptions[2].name}}
-    </li>
-    <li (click)="onSelect(customerOptions[3].option_id)" [class.selected]="isSelected(customerOptions[3])">
-        <span class="badge">3. </span> {{customerOptions[3].name}}
-    </li>
-    <li (click)="onSelect(customerOptions[4].option_id)" [class.selected]="isSelected(customerOptions[4])">
-        <span class="badge">4. </span> {{customerOptions[4].name}}
-    </li>
-</ul>
+    <div *ngSwitchCase="'Employee'">
+    <h2>Employee Interface:</h2>
+    <ul class="items">
+        <li (click)="onSelect(employeeOptions[0].option_id)" [class.selected]="isSelected(employeeOptions[0])">
+            <span class="badge">1. </span> {{employeeOptions[0].name}}
+        </li>
+        <li (click)="onSelect(employeeOptions[1].option_id)" [class.selected]="isSelected(employeeOptions[1])">
+            <span class="badge">2. </span> {{employeeOptions[1].name}}
+        </li>
+        <li (click)="onSelect(employeeOptions[2].option_id)" [class.selected]="isSelected(employeeOptions[2])">
+            <span class="badge">3. </span> {{employeeOptions[2].name}}
+        </li>
+        <li (click)="onSelect(employeeOptions[3].option_id)" [class.selected]="isSelected(employeeOptions[3])">
+            <span class="badge">4. </span> {{employeeOptions[3].name}}
+        </li>
+        <li (click)="onSelect(employeeOptions[4].option_id)" [class.selected]="isSelected(employeeOptions[4])">
+            <span class="badge">5.</span> {{employeeOptions[4].name}}
+        </li>
+    </ul>
+    </div>
+
+    <div *ngSwitchCase="'Administrator'">
+    <h2>Administrator Interface:</h2>
+    <ul class="items">
+        <li (click)="onSelect(administratorOptions[0].option_id)" [class.selected]="isSelected(administratorOptions[0])">
+            <span class="badge">1. </span> {{administratorOptions[0].name}}
+        </li>
+        <li (click)="onSelect(administratorOptions[1].option_id)" [class.selected]="isSelected(administratorOptions[1])">
+            <span class="badge">2. </span> {{administratorOptions[1].name}}
+        </li>
+        <li (click)="onSelect(administratorOptions[2].option_id)" [class.selected]="isSelected(administratorOptions[2])">
+            <span class="badge">3. </span> {{administratorOptions[2].name}}
+        </li>
+        <li (click)="onSelect(administratorOptions[3].option_id)" [class.selected]="isSelected(administratorOptions[3])">
+            <span class="badge">4. </span> {{administratorOptions[3].name}}
+        </li>
+    </ul>
+    </div>
 </div>
