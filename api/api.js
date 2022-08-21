@@ -228,6 +228,25 @@ app.get('/profile/customer/address/:id',function (req,res){
   });
 });
 
+app.get('/update/:table/:column/:value/:where/:condvalue',function (req,res){
+  let table = String(req.params.table);
+  let column = String(req.params.column);
+  let value = String(req.params.value);
+  let where = String(req.params.where);
+  let condvalue = String(req.params.condvalue);
+  console.log(req.params.table);
+  console.log(req.params.column);
+  console.log(req.params.value);
+  console.log(req.params.where);
+  console.log(req.params.condvalue);
+  Db.dbConn.query("UPDATE " + table + " SET " + column  + " = " + value + " WHERE " + where + " = " + condvalue,
+  function (error, results)
+  {
+    if(error) throw error;
+    return res.send({ data:results });
+  });
+});
+
 app.get('/profile/employee/:id',function (req,res){
   let id = Number(req.params.id);
   console.log(req.params.id);

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NotFoundError } from 'rxjs';
 import { LoginService } from "../login.service";
 import { Router } from '@angular/router';
 
-declare function autoEnter():any;
+declare function autoEnter(elementName:String, buttonName:String):any;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,7 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(private _loginService:LoginService, private router:Router) { }
 
   ngOnInit() {
-    autoEnter();
+    autoEnter("loginTextField", "loginButton");
   }
 
   getMail(email:string){

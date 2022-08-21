@@ -16,6 +16,8 @@ import { AddressComponent } from './address/address.component';
 import { LanguagesComponent } from './languages/languages.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ActorsComponent } from './actors/actors.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { ActorsComponent } from './actors/actors.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatSelectModule,
+    BrowserAnimationsModule
   ],
   providers: [FilmsService],
   bootstrap: [AppComponent]

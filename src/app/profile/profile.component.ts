@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { EditDbService } from '../edit-db.service';
 import { ProfileService } from '../profile.service';
+
+declare function autoEnter(elementName:String, buttonName:String):any;
 
 @Component({
   selector: 'app-profile',
@@ -20,8 +23,14 @@ export class ProfileComponent implements OnInit {
   public userActive = new Boolean;
   public userCreateDate = new String;
   public userViewType = new String;
+  public enableEdit = false;
+  public editSelection = new String;
+  public update:any;
+  public updated = false;
 
-  constructor(private _profileService:ProfileService, private router:Router, private route:ActivatedRoute) { }
+  public editEntries: any[] = ['customer_id', 'email', 'first_name', 'last_name', 'address_id', 'active', 'view_type'];
+
+  constructor(private _profileService:ProfileService, private _editDbService:EditDbService, private router:Router, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params:ParamMap) => {
@@ -70,10 +79,6 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  onSelect(option:any){
-
-  }
-
   isSelected(option:any){
     return option === this.selectedId;
   }
@@ -84,5 +89,24 @@ export class ProfileComponent implements OnInit {
 
   showAddress(){
     this.router.navigate(['/address', {type: this.userType, id: this.userId}]);
+  }
+
+  onChange(event:any)
+  {
+    this.editSelection = String(event.value);
+  }
+
+  submit(value:string)
+  {
+    this._editDbService.editTables("customer", this.editSelection, value, "customer_id", this.userId).subscribe(data => {
+      this.update=data.data;
+      this.updated = true;
+    });
+  }
+
+  enable_edit()
+  {
+    this.enableEdit = true;
+    setTimeout(function(){autoEnter("valueTextField", "submitButton")}, 1000);
   }
 }

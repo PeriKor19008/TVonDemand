@@ -1,31 +1,46 @@
 <h2>Customer Profile:</h2>
 
 <ul class="items">
-    <li (click)="onSelect(userId)" [class.selected]="isSelected(userId)">
+    <li [class.selected]="isSelected(userId)">
         <span class="badge">1. </span> {{"ID: " + userId}}
     </li>
-    <li (click)="onSelect(userEmail)" [class.selected]="isSelected(userEmail)">
+    <li [class.selected]="isSelected(userEmail)">
         <span class="badge">2. </span> {{"Email: " + userEmail}}
     </li>
-    <li (click)="onSelect(userFirstName)" [class.selected]="isSelected(userFirstName)">
+    <li [class.selected]="isSelected(userFirstName)">
         <span class="badge">3. </span> {{"First Name: " + userFirstName}}
     </li>
-    <li (click)="onSelect(userLastName)" [class.selected]="isSelected(userLastName)">
+    <li [class.selected]="isSelected(userLastName)">
         <span class="badge">4. </span> {{"Last Name: " + userLastName}}
     </li>
     <li (click)="showAddress()" [class.selected]="isSelected(userAddressId)">
         <span class="badge">5. </span> {{"Address ID: " + userAddressId + " (Click To Expand)"}}
     </li>
-    <li (click)="onSelect(userActive)" [class.selected]="isSelected(userActive)">
+    <li [class.selected]="isSelected(userActive)">
         <span class="badge">6. </span> {{"Profile Active Status: " + userActive}}
     </li>
-    <li (click)="onSelect(userCreateDate)" [class.selected]="isSelected(userCreateDate)">
+    <li [class.selected]="isSelected(userCreateDate)">
         <span class="badge">7. </span> {{"Profile Creation Date: " + userCreateDate}}
     </li>
-    <li (click)="onSelect(userViewType)" [class.selected]="isSelected(userViewType)">
+    <li [class.selected]="isSelected(userViewType)">
         <span class="badge">8. </span> {{"View Type: " + userViewType}}
     </li>
 </ul>
 
 <button (click)="gotoInterface()">Back</button>
-<button>Edit</button>
+<button (click)="enable_edit()">Edit</button>
+
+<div style="text-align:center" *ngIf="enableEdit" style="margin: 5%;">
+  <h2>Edit Interface:</h2>
+  <div style="text-align:center">
+    <mat-form-field style="text-align:center" appearance="fill">
+        <mat-label>Entry to Edit:</mat-label>
+        <mat-select (selectionChange)="onChange($event)" >
+        <mat-option *ngFor="let entry of editEntries" [value]="entry">{{entry}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <input value="Enter value:" style="margin-left:4em;" #value type="value" id="valueTextField">
+    <button style="margin-left:4em" (click)="submit(value.value)" id="submitButton">Submit</button>
+  </div>
+  <h2 *ngIf="updated">Edit Attempted! Please Refresh Page!</h2>
+</div>
