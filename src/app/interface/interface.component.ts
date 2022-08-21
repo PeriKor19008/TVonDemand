@@ -9,7 +9,7 @@ import { GetViewTypeService } from '../get-view-type.service';
 })
 export class InterfaceComponent implements OnInit {
 
-  public options= [
+  public customerOptions= [
     {"option_id":1, "name": "Profile"},
     {"option_id":2, "name": "Rent Film"},
     {"option_id":3, "name": "Rent Serie"},
