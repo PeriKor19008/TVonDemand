@@ -15,7 +15,7 @@ export class EpisodesComponent implements OnInit {
   public serieId = new Number;
   public episodes:any;
   public rental:any;
-  public rented = new Boolean;
+  public rented = false;
 
   constructor(private _episodesService:EpisodesService, private router:Router, private route:ActivatedRoute) { }
 
@@ -39,7 +39,7 @@ export class EpisodesComponent implements OnInit {
   episodeRent(inventory_id:number)
   {
     this._episodesService.rentEpisodes(Number(inventory_id), this.userId).subscribe(data => this.rental=data.data);
-    this.rented = Boolean(this.rental.affectedRows);
+    this.rented = true;
     console.log(this.rented);
   }
 }

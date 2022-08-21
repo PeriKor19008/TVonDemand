@@ -1,7 +1,7 @@
 <div [ngSwitch]="userType">
 
-    <div>
-    <h2 *ngSwitchCase="'Customer'">Customer Interface:</h2>
+    <div *ngSwitchCase="'Customer'">
+    <h2>Customer Interface:</h2>
     <div [ngSwitch]="customerViewType">
     <ul *ngSwitchCase="'Both'" class="items">
         <li (click)="onSelect(customerOptions[0].option_id)" [class.selected]="isSelected(customerOptions[0])">
