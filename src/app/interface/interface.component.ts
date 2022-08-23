@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router'
 import { GetViewTypeService } from '../get-view-type.service';
 
 @Component({
-  selector: 'app-customer',
+  selector: 'app-interface',
   templateUrl: './interface.component.html',
   styleUrls: ['./interface.component.css']
 })
@@ -63,27 +63,27 @@ export class InterfaceComponent implements OnInit {
         {
           case 1:
           {
-            this.router.navigate(['/profile', {type: this.userType, id: this.userId}]);
+            this.router.navigate(['profile', {type: this.userType, id: this.userId}], {relativeTo: this.route});
             break;
           }
           case 2:
           {
-            this.router.navigate(['/films', {type: this.userType, id: this.userId}]);
+            this.router.navigate(['films', {type: this.userType, id: this.userId}], {relativeTo: this.route});
             break;
           }
           case 3:
           {
-            this.router.navigate(['/series', {type: this.userType, id: this.userId}]);
+            this.router.navigate(['series', {type: this.userType, id: this.userId}], {relativeTo: this.route});
             break;
           }
           case 4:
           {
-            this.router.navigate(['/cart', {type: this.userType, id: this.userId}]);
+            this.router.navigate(['cart', {type: this.userType, id: this.userId}], {relativeTo: this.route});
             break;
           }
           case 5:
           {
-            this.router.navigate(['/login']);
+            this.router.navigate(['..'], {relativeTo: this.route});
             break;
           }
         }

@@ -34,8 +34,8 @@ export class LanguagesComponent implements OnInit {
   goBack()
   {
     if(this.backTo == 'film')
-      this.router.navigate(["/" + this.backTo, {type: this.userType, id: this.userId, film_id: this.backId}])
+      this.router.navigate(["../" + this.backTo, {type: this.userType, id: this.userId, film_id: this.backId}], {relativeTo: this.route})
     else
-      this.router.navigate(["/" + this.backTo, {type: this.userType, id: this.userId, serie_id: this.backId}])
+      this.router.navigate(["../" + this.backTo, {type: this.userType, id: this.userId, serie_id: this.backId}], {relativeTo: this.route})
   }
 }

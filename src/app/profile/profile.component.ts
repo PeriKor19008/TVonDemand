@@ -84,11 +84,11 @@ export class ProfileComponent implements OnInit {
   }
 
   gotoInterface(){
-    this.router.navigate(['/interface', {type: this.userType, id: this.userId}]);
+    this.router.navigate(['..', {type: this.userType, id: this.userId}], {relativeTo: this.route});
   }
 
   showAddress(){
-    this.router.navigate(['/address', {type: this.userType, id: this.userId}]);
+    this.router.navigate(['../address', {type: this.userType, id: this.userId}], {relativeTo: this.route});
   }
 
   onChange(event:any)

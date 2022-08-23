@@ -33,7 +33,7 @@ export class EpisodesComponent implements OnInit {
 
   gotoSerie()
   {
-    this.router.navigate(['/serie', {type: this.userType, id: this.userId, serie_id: this.serieId}]);
+    this.router.navigate(['../serie', {type: this.userType, id: this.userId, serie_id: this.serieId}], {relativeTo: this.route});
   }
 
   episodeRent(inventory_id:number)

@@ -38,8 +38,8 @@ export class CategoriesComponent implements OnInit {
   goBack()
   {
     if(this.getType == 'film')
-      this.router.navigate(['/film', {type: this.userType, id: this.userId, film_id: this.getId}]);
+      this.router.navigate(['../film', {type: this.userType, id: this.userId, film_id: this.getId}], {relativeTo: this.route});
     else
-      this.router.navigate(['/serie', {type: this.userType, id: this.userId, serie_id: this.getId}]);
+      this.router.navigate(['../serie', {type: this.userType, id: this.userId, serie_id: this.getId}], {relativeTo: this.route});
   }
 }

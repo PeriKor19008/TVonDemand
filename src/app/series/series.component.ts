@@ -26,7 +26,7 @@ export class SeriesComponent implements OnInit {
 
   onSelect(serie_id:number)
   {
-    this.router.navigate(['/serie', {type: this.userType, id: this.userId, serie_id: serie_id}]);
+    this.router.navigate(['../serie', {type: this.userType, id: this.userId, serie_id: serie_id}], {relativeTo: this.route});
   }
 
   gotoInterface(){

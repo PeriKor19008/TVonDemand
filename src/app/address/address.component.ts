@@ -31,6 +31,6 @@ export class AddressComponent implements OnInit {
   }
 
   gotoProfile(){
-    this.router.navigate(['/profile', {type: this.userType, id: this.userId}]);
+    this.router.navigate(['../profile', {type: this.userType, id: this.userId}], {relativeTo: this.route});
   }
 }

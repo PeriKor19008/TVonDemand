@@ -20,20 +20,23 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: 'interface',
-    component: InterfaceComponent
+    component: InterfaceComponent,
+    children:
+    [
+      { path: 'profile', component: ProfileComponent },
+      { path: 'address', component: AddressComponent },
+      { path: 'film', component: FilmComponent },
+      { path: 'films', component: FilmsComponent },
+      { path: 'serie', component: SerieComponent },
+      { path: 'language', component: LanguagesComponent },
+      { path: 'series', component: SeriesComponent },
+      { path: 'episodes', component: EpisodesComponent },
+      { path: 'languages', component: LanguagesComponent },
+      { path: 'categories', component: CategoriesComponent},
+      { path: 'actors', component: ActorsComponent},
+      { path: 'cart', component: CartComponent },
+    ]
   },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'address', component: AddressComponent},
-  { path: 'film', component: FilmComponent },
-  { path: 'films', component: FilmsComponent },
-  { path: 'serie', component: SerieComponent },
-  { path: 'language', component: LanguagesComponent },
-  { path: 'series', component: SeriesComponent },
-  { path: 'episodes', component: EpisodesComponent },
-  { path: 'languages', component: LanguagesComponent },
-  { path: 'categories', component: CategoriesComponent},
-  { path: 'actors', component: ActorsComponent},
-  { path: 'cart', component: CartComponent },
   { path: '**', component: PageNotFoundComponent}
 ];
 

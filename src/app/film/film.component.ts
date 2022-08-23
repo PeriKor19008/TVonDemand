@@ -33,7 +33,7 @@ export class FilmComponent implements OnInit {
 
   gotoFilms()
   {
-    this.router.navigate(['/films', {type: this.userType, id: this.userId}]);
+    this.router.navigate(['..', {type: this.userType, id: this.userId}], {relativeTo: this.route});
   }
 
   rentFilm()
@@ -43,16 +43,16 @@ export class FilmComponent implements OnInit {
 
   gotoLanguages(languageId:Number)
   {
-    this.router.navigate(['/language', {type: this.userType, id: this.userId, language_id: languageId, back_id: this.filmId, backto: "film"}])
+    this.router.navigate(['../language', {type: this.userType, id: this.userId, language_id: languageId, back_id: this.filmId, backto: "film"}], {relativeTo: this.route})
   }
 
   gotoCategories()
   {
-    this.router.navigate(['/categories', {type: this.userType, id: this.userId, gettype: 'film', getid: this.filmId}]);
+    this.router.navigate(['../categories', {type: this.userType, id: this.userId, gettype: 'film', getid: this.filmId}], {relativeTo: this.route});
   }
 
   gotoActors()
   {
-    this.router.navigate(['/actors', {type: this.userType, id: this.userId, gettype: 'film', getid: this.filmId}]);
+    this.router.navigate(['../actors', {type: this.userType, id: this.userId, gettype: 'film', getid: this.filmId}], {relativeTo: this.route});
   }
 }

@@ -34,26 +34,26 @@ export class SerieComponent implements OnInit {
 
   gotoSeries()
   {
-    this.router.navigate(['/series', {type: this.userType, id: this.userId}]);
+    this.router.navigate(['../series', {type: this.userType, id: this.userId}], {relativeTo: this.route});
   }
 
   onSelect(season_id:number)
   {
-    this.router.navigate(['/episodes', {type: this.userType, id: this.userId, serie_id: this.serieId, season_id: season_id}])
+    this.router.navigate(['../episodes', {type: this.userType, id: this.userId, serie_id: this.serieId, season_id: season_id}], {relativeTo: this.route})
   }
 
   gotoLanguages(languageId:number)
   {
-    this.router.navigate(['/language', {type: this.userType, id: this.userId, language_id: languageId, back_id: this.serieId, backto: "serie"}])
+    this.router.navigate(['../language', {type: this.userType, id: this.userId, language_id: languageId, back_id: this.serieId, backto: "serie"}], {relativeTo: this.route})
   }
 
   gotoCategories()
   {
-    this.router.navigate(['/categories', {type: this.userType, id: this.userId, gettype: 'serie', getid: this.serieId}]);
+    this.router.navigate(['../categories', {type: this.userType, id: this.userId, gettype: 'serie', getid: this.serieId}], {relativeTo: this.route});
   }
 
   gotoActors()
   {
-    this.router.navigate(['/actors', {type: this.userType, id: this.userId, gettype: 'serie', getid: this.serieId}]);
+    this.router.navigate(['../actors', {type: this.userType, id: this.userId, gettype: 'serie', getid: this.serieId}], {relativeTo: this.route});
   }
 }

@@ -28,10 +28,10 @@ export class FilmsComponent implements OnInit {
 
   onSelect(film_id:number)
   {
-    this.router.navigate(['/film', {type: this.userType, id: this.userId, film_id: film_id}]);
+    this.router.navigate(['../film', {type: this.userType, id: this.userId, film_id: film_id}], {relativeTo: this.route});
   }
 
   gotoInterface(){
-    this.router.navigate(['/interface', {type: this.userType, id: this.userId}]);
+    this.router.navigate(['..', {type: this.userType, id: this.userId}], {relativeTo: this.route});
   }
 }
