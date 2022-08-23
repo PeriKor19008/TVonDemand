@@ -30,6 +30,6 @@ export class SeriesComponent implements OnInit {
   }
 
   gotoInterface(){
-    this.router.navigate(['/interface', {type: this.userType, id: this.userId}]);
+    this.router.navigate(['../profile', {type: this.userType, id: this.userId}], {relativeTo: this.route});
   }
 }

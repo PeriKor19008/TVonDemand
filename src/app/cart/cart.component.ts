@@ -57,6 +57,6 @@ export class CartComponent implements OnInit {
   }
 
   gotoInterface(){
-    this.router.navigate(['..', {type: this.userType, id: this.userId}], {relativeTo: this.route});
+    this.router.navigate(['../profile', {type: this.userType, id: this.userId}], {relativeTo: this.route});
   }
 }

@@ -52,6 +52,7 @@ export class InterfaceComponent implements OnInit {
         this.customerViewType = data.data[0].view_type;
       });
     }
+    this.router.navigate(['profile', {type: this.userType, id: this.userId}], {relativeTo: this.route});
   }
 
   onSelect(option:any){

@@ -83,10 +83,6 @@ export class ProfileComponent implements OnInit {
     return option === this.selectedId;
   }
 
-  gotoInterface(){
-    this.router.navigate(['..', {type: this.userType, id: this.userId}], {relativeTo: this.route});
-  }
-
   showAddress(){
     this.router.navigate(['../address', {type: this.userType, id: this.userId}], {relativeTo: this.route});
   }
