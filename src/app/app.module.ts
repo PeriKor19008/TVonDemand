@@ -19,22 +19,12 @@ import { ActorsComponent } from './actors/actors.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
 import { CustomersComponent } from './customers/customers.component';
+import { MostPopularComponent } from './most-popular/most-popular.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
-    InterfaceComponent,
-    ProfileComponent,
-    SeriesComponent,
-    SerieComponent,
-    EpisodesComponent,
-    CartComponent,
-    AddressComponent,
-    LanguagesComponent,
-    CategoriesComponent,
-    ActorsComponent,
-    CustomersComponent,
   ],
   imports: [
     BrowserModule,

@@ -108,6 +108,7 @@ export class InterfaceComponent implements OnInit {
           }
           case 3:
           {
+            this.router.navigate(['most_popular', {type: this.userType, id: this.userId}], {relativeTo: this.route})
             break;
           }
           case 4:

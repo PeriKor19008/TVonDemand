@@ -301,10 +301,26 @@ app.get('/get/view_type/:id',function (req,res){
 });
 
 app.get('/customers',function (req,res){
-  let id = Number(req.params.id);
-  console.log(req.params.id);
   Db.dbConn.query("SELECT customer_id, first_name, last_name FROM customer",
-  id, function (error, results)
+  function (error, results)
+  {
+    if(error) throw error;
+    return res.send({ data:results });
+  });
+});
+
+app.get('/most_popular/films',function (req,res){
+  Db.dbConn.query("CALL show_top_movies_or_series_in_timeframe('m', 5, DATE_SUB(NOW(), INTERVAL 1 MONTH), NOW())",
+  function (error, results)
+  {
+    if(error) throw error;
+    return res.send({ data:results });
+  });
+});
+
+app.get('/most_popular/series',function (req,res){
+  Db.dbConn.query("CALL show_top_movies_or_series_in_timeframe('s', 5, DATE_SUB(NOW(), INTERVAL 1 MONTH), NOW())",
+  function (error, results)
   {
     if(error) throw error;
     return res.send({ data:results });

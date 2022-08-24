@@ -15,6 +15,7 @@ import { LanguagesComponent } from './languages/languages.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ActorsComponent } from './actors/actors.component';
 import { CustomersComponent } from './customers/customers.component';
+import { MostPopularComponent } from './most-popular/most-popular.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -36,7 +37,8 @@ const routes: Routes = [
       { path: 'categories', component: CategoriesComponent},
       { path: 'actors', component: ActorsComponent},
       { path: 'cart', component: CartComponent },
-      { path: 'customers', component: CustomersComponent}
+      { path: 'customers', component: CustomersComponent },
+      { path: 'most_popular', component: MostPopularComponent }
     ]
   },
   { path: '**', component: PageNotFoundComponent}
@@ -62,5 +64,6 @@ export const routingComponents = [
                                     AddressComponent,
                                     CustomersComponent,
                                     PageNotFoundComponent,
-                                    ProfileComponent
+                                    ProfileComponent,
+                                    MostPopularComponent
                                  ]

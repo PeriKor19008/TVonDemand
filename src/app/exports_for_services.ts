@@ -237,3 +237,21 @@ export interface Customers{
   first_name:string,
   last_name:string
 }
+
+export interface IMostPopular{
+  data:[MostPopular],
+  fieldCount:number,
+  affectedRows:number,
+  insertId:number,
+  serverStatus:number,
+  warningCount:number,
+  message:string,
+  protocol41:boolean,
+  changedRows:number
+}
+
+export interface MostPopular{
+  title:string,
+  id:number,
+  count:number
+}

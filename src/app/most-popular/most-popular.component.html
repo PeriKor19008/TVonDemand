@@ -1,0 +1,16 @@
+<h2>Top 5 Most Rented Films In The Last Month:</h2>
+
+<ul class="items">
+  <li *ngFor="let film of mostPopularFilms">
+    <span class="badge">ID: {{film.id}}, Times Rented: {{film.count}}</span>{{film.title}}
+  </li>
+</ul>
+
+<h2>Top 5 Most Rented Series In The Last Month:</h2>
+<ul class="items">
+  <li *ngFor="let serie of mostPopularSeries">
+    <span class="badge">ID: {{serie.id}}, Times Rented: {{serie.count}}</span>{{serie.title}}
+  </li>
+</ul>
+
+<button (click)="goBack()">Back</button>

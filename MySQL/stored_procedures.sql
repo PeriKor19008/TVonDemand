@@ -8,15 +8,15 @@ CREATE PROCEDURE show_top_movies_or_series_in_timeframe(IN mors CHAR, IN num INT
 BEGIN 
 CASE (mors)
 	WHEN 'm' THEN
-		SELECT film.title, film.film_id, COUNT(film_rental.inventory_id)
+		SELECT film.title, film.film_id AS id, COUNT(film_rental.inventory_id) AS count
 		FROM film
 		INNER JOIN film_inventory ON film.film_id = film_inventory.film_id
 		INNER JOIN film_rental ON film_inventory.inventory_id = film_rental.inventory_id
-		WHERE film_rental.rental_date BETWEEN date1 AND date2
+		WHERE film_rental.rental_date BETWEEN DATE_SUB(date1, INTERVAL 1 DAY) AND DATE_ADD(date2, INTERVAL 1 DAY)
 		GROUP BY film.title
 		ORDER BY COUNT(film_rental.inventory_id) DESC LIMIT num;
 	WHEN 's' THEN
-		SELECT serie.title, serie.serie_id, COUNT(serie_rental.inventory_id)
+		SELECT serie.title, serie.serie_id AS id, COUNT(serie_rental.inventory_id) AS count
 		FROM serie
 		INNER JOIN season ON season.belongs_to = serie.serie_id
 		INNER JOIN episode ON episode.belongs_to = season.season_id
