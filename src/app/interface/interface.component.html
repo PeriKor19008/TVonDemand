@@ -53,7 +53,6 @@
     </div>
 
     <div *ngSwitchCase="'Employee'">
-      <h2>Employee Interface:</h2>
       <ul class="items">
         <li (click)="onSelect(employeeOptions[0].option_id)" [class.selected]="isSelected(employeeOptions[0])">
            {{employeeOptions[0].name}}
@@ -67,14 +66,10 @@
         <li (click)="onSelect(employeeOptions[3].option_id)" [class.selected]="isSelected(employeeOptions[3])">
            {{employeeOptions[3].name}}
         </li>
-        <li (click)="onSelect(employeeOptions[4].option_id)" [class.selected]="isSelected(employeeOptions[4])">
-           {{employeeOptions[4].name}}
-        </li>
       </ul>
     </div>
 
     <div *ngSwitchCase="'Administrator'">
-      <h2>Administrator Interface:</h2>
       <ul class="items">
         <li (click)="onSelect(administratorOptions[0].option_id)" [class.selected]="isSelected(administratorOptions[0])">
            {{administratorOptions[0].name}}

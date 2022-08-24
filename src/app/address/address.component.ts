@@ -13,6 +13,7 @@ export class AddressComponent implements OnInit {
   public userId = new Number;
   public addressId = new Number;
   public address:any;
+  public getId = new Number;
 
   constructor(private _addressService:AddressService, private route:ActivatedRoute, private router:Router) { }
 
@@ -20,9 +21,24 @@ export class AddressComponent implements OnInit {
     this.route.paramMap.subscribe((params:ParamMap) => {
       this.userType = String(params.get('type'));
       this.userId = Number(params.get('id'));
-      this._addressService.getAddress(this.userId).subscribe(data => {
-        this.address = data.data;
-      });
+      this.getId = Number(params.get('customer_id'));
+      switch(this.userType)
+      {
+        case 'Customer':
+        {
+          this._addressService.getAddress(this.userId).subscribe(data => {
+            this.address = data.data;
+          });
+          break;
+        }
+        case 'Employee':
+        {
+          this._addressService.getAddress(this.getId).subscribe(data => {
+            this.address = data.data;
+          });
+          break;
+        }
+      }
     });
   }
 
@@ -31,6 +47,18 @@ export class AddressComponent implements OnInit {
   }
 
   gotoProfile(){
-    this.router.navigate(['../profile', {type: this.userType, id: this.userId}], {relativeTo: this.route});
+    switch(this.userType)
+    {
+      case 'Customer':
+      {
+        this.router.navigate(['../profile', {type: this.userType, id: this.userId}], {relativeTo: this.route});
+        break;
+      }
+      case 'Employee':
+      {
+        this.router.navigate(['../profile', {type: this.userType, id: this.userId, customer_id: this.getId}], {relativeTo: this.route});
+        break;
+      }
+    }
   }
 }
