@@ -9,17 +9,17 @@ export class ProfileService {
 
   constructor(private http:HttpClient) { }
 
-  getCustomerProfile(id:number)
+  getCustomerProfile(id:Number)
   {
     return this.http.get<ICustomerProfile>("http://localhost:8090/profile/customer/"+id);
   }
 
-  getEmployeeProfile(id:number)
+  getEmployeeProfile(id:Number)
   {
     return this.http.get<IEmployeeProfile>("http://localhost:8090/profile/employee/"+id);
   }
 
-  getAdministratorProfile(id:number)
+  getAdministratorProfile(id:Number)
   {
     return this.http.get<IAdministratorProfile>("http://localhost:8090/profile/administrator/"+id);
   }

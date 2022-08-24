@@ -226,3 +226,14 @@ export interface Actors{
   first_name:string,
   last_name:string
 }
+
+export interface ICustomers{
+  error:boolean,
+  data:[Customers]
+}
+
+export interface Customers{
+  customer_id:number,
+  first_name:string,
+  last_name:string
+}

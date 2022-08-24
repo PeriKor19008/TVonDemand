@@ -1,0 +1,7 @@
+<h2>Available Customers:</h2>
+
+<ul class="items">
+  <li (click)="onSelect(customer.customer_id)" *ngFor="let customer of customers">
+    <span class="badge">ID: {{customer.customer_id}}</span>{{customer.first_name + " " + customer.last_name}}
+  </li>
+</ul>

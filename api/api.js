@@ -67,6 +67,16 @@ app.get('/film/cart/:id', function (req, res) {
   });
 });
 
+app.get('/film/old_rentals/:id', function (req, res) {
+  let id = Number(req.params.id);
+  console.log(req.params.id);
+  Db.dbConn.query("SELECT film_rental.rental_id, film.title, film_payment.paid, 'film' AS type, film_rental.customer_id FROM film INNER JOIN film_inventory ON film.film_id = film_inventory.film_id INNER JOIN film_rental ON film_inventory.inventory_id = film_rental.inventory_id INNER JOIN film_payment ON film_rental.rental_id = film_payment.rental_id WHERE film_payment.paid = 1 AND film_rental.customer_id = ?",
+   id, function (error, results, fields) {
+      if (error) throw error;
+      return res.send({ error, data: results});
+  });
+});
+
 app.get('/film/pay/:rental_id', function (req, res) {
   let id = Number(req.params.rental_id);
   console.log(req.params.rental_id);
@@ -160,6 +170,16 @@ app.get('/serie/cart/:id', function (req, res) {
   let id = Number(req.params.id);
   console.log(req.params.id);
   Db.dbConn.query("SELECT serie_rental.rental_id, serie.title, season.season_number, episode.episode_number, serie_payment.paid, 'serie' AS type, serie_rental.customer_id FROM serie INNER JOIN season ON serie.serie_id = season.belongs_to INNER JOIN episode ON season.season_id = episode.belongs_to INNER JOIN serie_inventory ON episode.episode_id = serie_inventory.episode_id INNER JOIN serie_rental ON serie_inventory.inventory_id = serie_rental.inventory_id INNER JOIN serie_payment ON serie_rental.rental_id = serie_payment.rental_id WHERE serie_payment.paid = 0 AND serie_rental.customer_id = ?",
+   id, function (error, results, fields) {
+      if (error) throw error;
+      return res.send({ error, data: results});
+  });
+});
+
+app.get('/serie/old_rentals/:id', function (req, res) {
+  let id = Number(req.params.id);
+  console.log(req.params.id);
+  Db.dbConn.query("SELECT serie_rental.rental_id, serie.title, season.season_number, episode.episode_number, serie_payment.paid, 'serie' AS type, serie_rental.customer_id FROM serie INNER JOIN season ON serie.serie_id = season.belongs_to INNER JOIN episode ON season.season_id = episode.belongs_to INNER JOIN serie_inventory ON episode.episode_id = serie_inventory.episode_id INNER JOIN serie_rental ON serie_inventory.inventory_id = serie_rental.inventory_id INNER JOIN serie_payment ON serie_rental.rental_id = serie_payment.rental_id WHERE serie_payment.paid = 1 AND serie_rental.customer_id = ?",
    id, function (error, results, fields) {
       if (error) throw error;
       return res.send({ error, data: results});
@@ -273,6 +293,17 @@ app.get('/get/view_type/:id',function (req,res){
   let id = Number(req.params.id);
   console.log(req.params.id);
   Db.dbConn.query("SELECT view_type FROM customer WHERE customer_id = ?",
+  id, function (error, results)
+  {
+    if(error) throw error;
+    return res.send({ data:results });
+  });
+});
+
+app.get('/customers',function (req,res){
+  let id = Number(req.params.id);
+  console.log(req.params.id);
+  Db.dbConn.query("SELECT customer_id, first_name, last_name FROM customer",
   id, function (error, results)
   {
     if(error) throw error;

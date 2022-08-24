@@ -1,7 +1,7 @@
 <h2>Shopping Cart and Checkout Interface</h2>
-
+<div *ngIf="!showPaid">
 <div *ngIf="userType != 'Series'">
-    <h2>Films In Cart</h2>
+    <h2>Films In Cart:</h2>
     <ul class="items">
         <li (click)="filmPay(cart.rental_id)" *ngFor="let cart of filmsCart">
         <span class="badge">{{"Click to Pay! Rental ID: " + cart.rental_id}}</span>{{cart.title}}
@@ -11,7 +11,7 @@
 </div>
 
 <div *ngIf="userType != 'Films'">
-    <h2>Series In Cart</h2>
+    <h2>Series In Cart:</h2>
     <ul class="items">
         <li (click)="seriePay(cart.rental_id)" *ngFor="let cart of seriesCart">
         <span class="badge">{{"Click to Pay! Rental ID: " + cart.rental_id}}</span>{{cart.title + "\tSeason:\t" + cart.season_number + "\tEpisode:\t" + cart.episode_number}}
@@ -19,4 +19,29 @@
     </ul>
     <h2 *ngIf="seriePaid">Serie Payment Successful! Please refresh page!</h2>
 </div>
+</div>
+<div *ngIf="showPaid">
+<div *ngIf="userType != 'Series'">
+    <h2>Old Film Rentals:</h2>
+    <ul class="items">
+        <li *ngFor="let cart of filmsOldRentals">
+        <span class="badge">{{"Rental ID: " + cart.rental_id}}</span>{{cart.title}}
+        </li>
+    </ul>
+    <h2 *ngIf="filmPaid">Film Payment Successful! Please refresh page!</h2>
+</div>
+
+<div *ngIf="userType != 'Films'">
+    <h2>Old Series Rentals:</h2>
+    <ul class="items">
+        <li *ngFor="let cart of seriesOldRentals">
+        <span class="badge">{{"Rental ID: " + cart.rental_id}}</span>{{cart.title + "\tSeason:\t" + cart.season_number + "\tEpisode:\t" + cart.episode_number}}
+        </li>
+    </ul>
+    <h2 *ngIf="seriePaid">Serie Payment Successful! Please refresh page!</h2>
+</div>
+</div>
+
+<button *ngIf="!showPaid" (click)="toggleOldRentals()">Show Old Rentals</button>
+<button *ngIf="showPaid" (click)="toggleOldRentals()">Show Cart</button>
 <button (click)="gotoInterface()">Back</button>

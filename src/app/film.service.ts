@@ -18,6 +18,9 @@ export class FilmService {
   getFilmsCart(id:Number):Observable<IFilmsCart>{
     return this.http.get<IFilmsCart>("http://localhost:8090/film/cart/"+id);
   }
+  getFilmsOldRentals(id:Number):Observable<IFilmsCart>{
+    return this.http.get<IFilmsCart>("http://localhost:8090/film/old_rentals/"+id);
+  }
   payFilm(rental_id:Number):Observable<IUpdate>{
     return this.http.get<IUpdate>("http://localhost:8090/film/pay/"+rental_id);
   }

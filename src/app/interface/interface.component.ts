@@ -51,8 +51,12 @@ export class InterfaceComponent implements OnInit {
       this._getViewTypeService.getViewType(this.userId).subscribe(data => {
         this.customerViewType = data.data[0].view_type;
       });
+      this.router.navigate(['profile', {type: this.userType, id: this.userId}], {relativeTo: this.route});
     }
-    this.router.navigate(['profile', {type: this.userType, id: this.userId}], {relativeTo: this.route});
+    else if(this.userType == "Employee")
+    {
+      this.router.navigate(['customers', {type: this.userType, id: this.userId}], {relativeTo: this.route});
+    }
   }
 
   onSelect(option:any){
@@ -96,6 +100,7 @@ export class InterfaceComponent implements OnInit {
         {
           case 1:
           {
+            this.router.navigate(['customers', {type: this.userType, id: this.userId}], {relativeTo: this.route});
             break;
           }
           case 2:

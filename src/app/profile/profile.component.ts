@@ -27,6 +27,7 @@ export class ProfileComponent implements OnInit {
   public editSelection = new String;
   public update:any;
   public updated = false;
+  public getId = new Number;
 
   public editEntries: any[] = ['customer_id', 'email', 'first_name', 'last_name', 'address_id', 'active', 'view_type'];
 
@@ -36,6 +37,7 @@ export class ProfileComponent implements OnInit {
     this.route.paramMap.subscribe((params:ParamMap) => {
       this.userType = String(params.get('type'));
       this.userId = Number(params.get('id'));
+      this.getId = Number(params.get('customer_id'));
     });
     switch(this.userType)
     {
@@ -54,7 +56,7 @@ export class ProfileComponent implements OnInit {
       };
       case 'Employee':
       {
-        this._profileService.getCustomerProfile(this.userId).subscribe(data => {
+        this._profileService.getCustomerProfile(this.getId).subscribe(data => {
           this.userFirstName = data.data[0].first_name;
           this.userLastName = data.data[0].last_name;
           this.userEmail = data.data[0].email; 
@@ -83,8 +85,15 @@ export class ProfileComponent implements OnInit {
     return option === this.selectedId;
   }
 
+  gotoCustomers(){
+    this.router.navigate(['../customers', {type: this.userType, id: this.userId}], {relativeTo: this.route});
+  }
+
   showAddress(){
-    this.router.navigate(['../address', {type: this.userType, id: this.userId}], {relativeTo: this.route});
+    if(this.userType == 'Customer')
+      this.router.navigate(['../address', {type: this.userType, id: this.userId}], {relativeTo: this.route});
+    else 
+      this.router.navigate(['../address', {type: this.userType, id: this.getId}], {relativeTo: this.route});
   }
 
   onChange(event:any)
@@ -94,10 +103,20 @@ export class ProfileComponent implements OnInit {
 
   submit(value:string)
   {
-    this._editDbService.editTables("customer", this.editSelection, value, "customer_id", this.userId).subscribe(data => {
-      this.update=data.data;
-      this.updated = true;
-    });
+    if(this.userType == 'Customer')
+    {
+      this._editDbService.editTables("customer", this.editSelection, value, "customer_id", this.userId).subscribe(data => {
+        this.update=data.data;
+        this.updated = true;
+      });
+    }
+    else
+    {
+      this._editDbService.editTables("customer", this.editSelection, value, "customer_id", String(this.getId)).subscribe(data => {
+        this.update=data.data;
+        this.updated = true;
+      });
+    }
   }
 
   enable_edit()

@@ -18,6 +18,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { ActorsComponent } from './actors/actors.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
+import { CustomersComponent } from './customers/customers.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MatSelectModule } from '@angular/material/select';
     LanguagesComponent,
     CategoriesComponent,
     ActorsComponent,
+    CustomersComponent,
   ],
   imports: [
     BrowserModule,

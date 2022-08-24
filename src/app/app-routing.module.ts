@@ -14,6 +14,7 @@ import { AddressComponent } from './address/address.component';
 import { LanguagesComponent } from './languages/languages.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ActorsComponent } from './actors/actors.component';
+import { CustomersComponent } from './customers/customers.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -35,6 +36,7 @@ const routes: Routes = [
       { path: 'categories', component: CategoriesComponent},
       { path: 'actors', component: ActorsComponent},
       { path: 'cart', component: CartComponent },
+      { path: 'customers', component: CustomersComponent}
     ]
   },
   { path: '**', component: PageNotFoundComponent}
@@ -58,6 +60,7 @@ export const routingComponents = [
                                     CartComponent,
                                     InterfaceComponent,
                                     AddressComponent,
+                                    CustomersComponent,
                                     PageNotFoundComponent,
                                     ProfileComponent
                                  ]
