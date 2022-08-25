@@ -1,23 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
 /* Master Styles */
+*{
+  background: #454b4e;
+}
 h1 {
     text-align: center;
-    color: #369; 
-    font-family: Arial, Helvetica, sans-serif;   
+    color: #369;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 250%;
   }
-  h2, h3 { 
+  h2, h3 {
     color: #369;
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif;   
+    font-family: Arial, Helvetica, sans-serif;
     font-size:200%
   }
-  body { 
-    margin: 2em; 
+  body {
+    margin: 2em;
+    background: #131313;
+
   }
-  body, input[text], button { 
-    color: #888; 
-    font-family: Cambria, Georgia; 
+  body, input[text], button {
+    color: #888;
+    font-family: Cambria, Georgia;
   }
   a {
     cursor: pointer;
@@ -39,10 +44,10 @@ h1 {
   }
   button:disabled {
     background-color: #eee;
-    color: #aaa; 
+    color: #aaa;
     cursor: auto;
   }
-  
+
   /* Navigation link styles */
   nav a {
     padding: 5px 10px;
@@ -62,7 +67,7 @@ h1 {
   nav a.active {
     color: #039be5;
   }
-  
+
   /* items class */
   .items {
     margin: 0 0 2em 0;
@@ -90,12 +95,12 @@ h1 {
     background-color: #BBD8DC;
     color: white;
   }
-  
+
   .items .text {
     position: relative;
     top: -3px;
   }
-  
+
   .items li {
     cursor: pointer;
     position: relative;
@@ -128,7 +133,7 @@ h1 {
     height: 1.6em;
     border-radius: 4px;
   }
-  
+
   .items .badge {
     display: inline-block;
     font-size: small;
@@ -148,8 +153,8 @@ h1 {
     color: white;
   }
   /* everywhere else */
-  * { 
-    font-family: Arial, Helvetica, sans-serif; 
+  * {
+    font-family: Arial, Helvetica, sans-serif;
   }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

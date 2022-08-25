@@ -1,8 +1,8 @@
-<h2>Available Films</h2>
+
 
 <ul class="items">
-  <li (click)="onSelect(film.film_id)" *ngFor="let film of films">
-    <span class="badge">ID: {{film.film_id}}</span>{{film.title}}
+  <li (click)="onSelect(film.film_id)" *ngFor="let film of films" class="Items">
+    <span class="badge">🎥 </span>{{film.title}}
   </li>
 </ul>
 

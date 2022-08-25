@@ -44,7 +44,7 @@ export class ProfileComponent implements OnInit {
         this._profileService.getCustomerProfile(this.userId).subscribe(data => {
           this.userFirstName = data.data[0].first_name;
           this.userLastName = data.data[0].last_name;
-          this.userEmail = data.data[0].email; 
+          this.userEmail = data.data[0].email;
           this.userAddressId = data.data[0].address_id;
           this.userActive = data.data[0].active;
           this.userCreateDate = data.data[0].create_date;
@@ -57,7 +57,7 @@ export class ProfileComponent implements OnInit {
         this._profileService.getCustomerProfile(this.userId).subscribe(data => {
           this.userFirstName = data.data[0].first_name;
           this.userLastName = data.data[0].last_name;
-          this.userEmail = data.data[0].email; 
+          this.userEmail = data.data[0].email;
           this.userAddressId = data.data[0].address_id;
           this.userActive = data.data[0].active;
           this.userCreateDate = data.data[0].create_date;
@@ -69,7 +69,7 @@ export class ProfileComponent implements OnInit {
         this._profileService.getCustomerProfile(this.userId).subscribe(data => {
           this.userFirstName = data.data[0].first_name;
           this.userLastName = data.data[0].last_name;
-          this.userEmail = data.data[0].email; 
+          this.userEmail = data.data[0].email;
           this.userAddressId = Number(data.data[0].address_id);
           this.userActive = data.data[0].active;
           this.userCreateDate = data.data[0].create_date;

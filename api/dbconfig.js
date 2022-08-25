@@ -1,6 +1,6 @@
 const  config = {
   user:  'root', // sql user
-  password:  '', //sql user password
+  password:  'peri1908', //sql user password
   server:  '127.0.0.1', // if it does not work try- localhost
   database:  'tvondemand',
   dialect: 'mysql',
