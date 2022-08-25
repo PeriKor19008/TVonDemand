@@ -44,7 +44,7 @@ const routes: Routes = [
       { path: 'cart', component: CartComponent },
       { path: 'customers', component: CustomersComponent },
       { path: 'most_popular', component: MostPopularComponent },
-      { path: 'update_database', component: UpdateDatabaseComponent }
+      { path: 'update_database', component: UpdateDatabaseComponent },
       
       //Might be deletable
       { path: 'profiles', component: ProfilesComponent},
