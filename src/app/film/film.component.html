@@ -1,1 +1,48 @@
-<p>film works!</p>
+<h2>Film Interface:</h2>
+
+<ul class="items">
+
+  <li>
+    <span class="badge">1. ID: </span>{{film[0].film_id}}
+  </li>
+  <li>
+    <span class="badge">2. Title: </span>{{film[0].title}}
+  </li>
+  <li class="li2">
+    <span class="badge">3. Description: </span>{{film[0].description}}
+  </li>
+  <li>
+    <span class="badge">4. Release Year: </span>{{film[0].release_year}}
+  </li>
+  <li (click)="gotoLanguages(film[0].language_id)">
+    <span class="badge">5. Language ID: </span>{{film[0].language_id + "\t(Click To Expand)"}}
+  </li>
+  <li *ngIf = "film[0].optional_language_id == null; else elseBlock">
+    <span class="badge">6. Original Language ID: </span>NULL
+  </li>
+  <ng-template #elseBlock>
+    <li (click)="gotoLanguages(film[0].original_language_id)">
+      <span class="badge">6. Original Language ID: </span>{{film[0].optional_language_id + "\t(Click To Expand)"}}
+    </li>
+  </ng-template>
+  <li>
+    <span class="badge">7. Rating: </span>{{film[0].rating}}
+  </li>
+  <li>
+    <span class="badge">8. Length: </span>{{film[0].length}}
+  </li>
+  <li>
+    <span class="badge">9. Special Features:</span>{{film[0].special_features}}
+  </li>
+  <li (click)="gotoCategories()">
+    <span class="badge">10. Categories:</span>(Click to Expand!)
+  </li>
+  <li (click)="gotoActors()">
+    <span class="badge">11. Actors:</span>(Click to Expand!)
+  </li>
+</ul>
+
+<button (click)="gotoFilms()">Back</button>
+<button (click)="rentFilm()">Rent</button>
+
+<h2 *ngIf="rental.affectedRows == 1">Film Successfully Rented!</h2>

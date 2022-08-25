@@ -1,0 +1,16 @@
+-- Make Trigger so that when adding a season to a series no_of_seasons auto increments
+-- Add data to every new table
+Add documentation
+-- Add relational diagram
+-- Choose if i am going to rent every episode 1 by 1 or the whole serie and caclulate total cost by episode number
+-- ISA for users (customers, employees, administrators) -- Made select better instead
+-- Add trigger to check if email on registration is unique
+-- Add Elias procedures and make trigger 4.2
+-- Maybe add addresses to administrators and employees?
+
+-- Make sure stuff is in the inventory
+-- Make addresses viewable
+-- Make descriptions clearer
+-- Make Languages and Categories available
+-- Make actors available
+-- Make profile editable

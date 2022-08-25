@@ -7,8 +7,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-Run `ng build --base-href ./ && electron .` to get electron app.
-Run `nodemon api.js` to launch the API.
+Run `node run electron` to get electron app.
+Run `node api/api.js` to launch the API.
 
 
 

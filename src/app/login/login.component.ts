@@ -1,7 +1,8 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {LoginService} from "../login.service";
-import {LoginGuard} from "../login.guard";
+import { Component, OnInit } from '@angular/core';
+import { LoginService } from "../login.service";
+import { Router } from '@angular/router';
 
+declare function autoEnter(elementName:String, buttonName:String):any;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,33 +10,31 @@ import {LoginGuard} from "../login.guard";
 })
 export class LoginComponent implements OnInit {
 
-  public login=false;
-  constructor(private _loginService:LoginService,public loginguard:LoginGuard) { }
+  public notFound = false;
+  public found = new Boolean;
+  public type = new String;
+  public id = new Number;
 
+  constructor(private _loginService:LoginService, private router:Router) { }
 
-  ngOnInit(): void {
-      console.log(this.loginguard.isLoggedIn);
+  ngOnInit() {
+    autoEnter("loginTextField", "loginButton");
   }
 
-
-  public type:string="none";
-
-  loggedInEmit(logged: boolean)
-  {
-    this.loginguard.isLoggedIn=logged;
+  getMail(email:string){
+    console.log(email);
+    this._loginService.getLogin(email).subscribe(data=> {
+      this.found = data.data[0].Found;
+      this.type = data.data[0].Type;
+      this.id = data.data[0].ID;
+      if(!this.found)
+      {
+        this.notFound = true;
+      }
+      else
+      {
+        this.router.navigate(['/interface', {type: this.type, id: this.id}]);
+      }
+    });
   }
-  getMail(email:string,usertype:[boolean,boolean,boolean]){
-
-    if(usertype[0])
-      this.type="customer";
-    else if(usertype[1])
-      this.type="employee";
-    else
-      this.type="administrator";
-    console.log(email,this.type)
-    this._loginService.getLogin(email).subscribe(data=>this.login=data.data[0].count)
-    this.loggedInEmit(this.login);
-
-  }
-
 }

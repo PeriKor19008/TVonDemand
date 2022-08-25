@@ -1,0 +1,9 @@
+<h2>Available Series</h2>
+
+<ul class="items">
+  <li (click)="onSelect(serie.serie_id)" *ngFor="let serie of series">
+    <span class="badge">ID: {{serie.serie_id}}</span>{{serie.title}}
+  </li>
+</ul>
+
+<button (click)="gotoInterface()">Back</button>

@@ -1,0 +1,30 @@
+
+<h2>Address Interface:</h2>
+<ul class="items">
+    <li (click)="onSelect(address[0].address_id)">
+        <span class="badge">1. </span> {{"Address ID: " + address[0].address_id}}
+    </li>
+    <li (click)="onSelect(address[0].city_id)">
+        <span class="badge">2. </span> {{"City ID: " + address[0].city_id}}
+    </li>
+    <li (click)="onSelect(address[0].country_id)">
+        <span class="badge">3. </span> {{"Country ID: " + address[0].country_id}}
+    </li>
+    <li (click)="onSelect(address[0].address)">
+        <span class="badge">4. </span> {{"Address: " + address[0].address}}
+    </li>
+    <li (click)="onSelect(address[0].district)">
+        <span class="badge">5. </span> {{"District: " + address[0].district}}
+    </li>
+    <li (click)="onSelect(address[0].city)">
+        <span class="badge">6. </span> {{"City: " + address[0].city}}
+    </li>
+    <li (click)="onSelect(address[0].country)">
+        <span class="badge">7. </span> {{"Country: " + address[0].country}}
+    </li>
+    <li (click)="onSelect(address[0].postal_code)">
+        <span class="badge">8. </span> {{"Postal Code: " + address[0].postal_code}}
+    </li>
+</ul>
+
+<button (click)="gotoProfile()">Back</button>
