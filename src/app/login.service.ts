@@ -10,4 +10,6 @@ export class LoginService {
   getLogin(email:string):Observable<ILogin>{
     return this.http.get<ILogin>("http://localhost:8090/login/"+email);
   }
+
+  public logedin:boolean=false;
 }
