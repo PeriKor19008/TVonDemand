@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div [ngSwitch]="userType">
   <nav class="navbar">
+  
     <h1 class="logo">TVonDemand🎬</h1>
     <div *ngSwitchCase="'Customer'">
 
@@ -63,7 +64,6 @@
     </div>
 
     <div *ngSwitchCase="'Employee'">
-      <h2>Employee Interface:</h2>
       <ul class="items">
         <li (click)="onSelect(employeeOptions[0].option_id)" [class.selected]="isSelected(employeeOptions[0])">
            {{employeeOptions[0].name}}
@@ -77,9 +77,6 @@
         <li (click)="onSelect(employeeOptions[3].option_id)" [class.selected]="isSelected(employeeOptions[3])">
            {{employeeOptions[3].name}}
         </li>
-        <li (click)="onSelect(employeeOptions[4].option_id)" [class.selected]="isSelected(employeeOptions[4])">
-           {{employeeOptions[4].name}}
-        </li>
       </ul>
     </div>
 
@@ -91,7 +88,6 @@
         </li>
         <li (click)="onSelect(administratorOptions[1].option_id)" [class.selected]="isSelected(administratorOptions[1])">
           <span class="material-icons">account_balance</span>
-
         </li>
         <li (click)="onSelect(administratorOptions[2].option_id)" [class.selected]="isSelected(administratorOptions[2])">
           <span class="material-icons">euro</span>

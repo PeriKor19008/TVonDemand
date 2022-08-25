@@ -33,7 +33,7 @@ export class FilmComponent implements OnInit {
 
   gotoFilms()
   {
-    this.router.navigate(['..', {type: this.userType, id: this.userId}], {relativeTo: this.route});
+    this.router.navigate(['../films', {type: this.userType, id: this.userId}], {relativeTo: this.route});
   }
 
   rentFilm()

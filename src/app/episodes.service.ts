@@ -18,6 +18,9 @@ export class EpisodesService {
   getSeriesCart(id:Number):Observable<ISeriesCart>{
     return this.http.get<ISeriesCart>("http://localhost:8090/serie/cart/"+id);
   }
+  getSeriesOldRentals(id:Number):Observable<ISeriesCart>{
+    return this.http.get<ISeriesCart>("http://localhost:8090/serie/old_rentals/"+id);
+  }
   paySerie(rental_id:Number):Observable<IUpdate>{
     return this.http.get<IUpdate>("http://localhost:8090/serie/pay/"+rental_id);
   }

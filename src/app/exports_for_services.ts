@@ -160,34 +160,6 @@ export interface CustomerProfile{
   view_type:string
 }
 
-export interface IEmployeeProfile{
-  data:[EmployeeProfile]
-}
-
-export interface EmployeeProfile{
-    employee_id:number,
-    first_name:string,
-    last_name:string,
-    email:string,
-    address_id:number,
-    active:boolean,
-    create_date:string
-}
-
-export interface IAdministratorProfile{
-  data:[AdministratorProfile]
-}
-
-export interface AdministratorProfile{
-  administrator_id:number,
-  first_name:string,
-  last_name:string,
-  email:string,
-  address_id:number,
-  active:boolean,
-  create_date:string
-}
-
 export interface IGetViewType{
   data:[GetViewType]
 }
@@ -240,4 +212,33 @@ export interface Actors{
   actor_id:number,
   first_name:string,
   last_name:string
+}
+
+export interface ICustomers{
+  error:boolean,
+  data:[Customers]
+}
+
+export interface Customers{
+  customer_id:number,
+  first_name:string,
+  last_name:string
+}
+
+export interface IMostPopular{
+  data:[MostPopular],
+  fieldCount:number,
+  affectedRows:number,
+  insertId:number,
+  serverStatus:number,
+  warningCount:number,
+  message:string,
+  protocol41:boolean,
+  changedRows:number
+}
+
+export interface MostPopular{
+  title:string,
+  id:number,
+  count:number
 }

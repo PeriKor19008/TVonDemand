@@ -17,6 +17,11 @@ import { CategoriesComponent } from './categories/categories.component';
 import { ActorsComponent } from './actors/actors.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
+import { CustomersComponent } from './customers/customers.component';
+import { MostPopularComponent } from './most-popular/most-popular.component';
+import { UpdateDatabaseComponent } from './update-database/update-database.component';
+
+//Might be deletable
 import { ProfilesComponent } from './profiles/profiles.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 
@@ -24,18 +29,6 @@ import { ProfileEditComponent } from './profile-edit/profile-edit.component';
   declarations: [
     AppComponent,
     routingComponents,
-    InterfaceComponent,
-    ProfileComponent,
-    SeriesComponent,
-    SerieComponent,
-    EpisodesComponent,
-    CartComponent,
-    AddressComponent,
-    LanguagesComponent,
-    CategoriesComponent,
-    ActorsComponent,
-    ProfilesComponent,
-    ProfileEditComponent,
   ],
   imports: [
     BrowserModule,

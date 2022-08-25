@@ -1,4 +1,31 @@
-/* NAVBAR STYLING STARTS */
+/* Greg Old Navbar
+// LOGO 
+.logo {
+  color: #dea446;
+  margin-right: 10%;
+}
+// NAVBAR MENU 
+.items {
+  justify-content: center;
+  background-color: #607D8B;
+  display: flex;
+  gap: 1em;
+  font-size: 22px;
+  padding-bottom: 0em;
+}
+.items li:hover {
+  color: #dea446;
+  background-color: #4c9e9e;
+  transition: 0.3s ease;
+  padding-bottom: 0;
+}
+.items li {
+  text-align: center;
+  align-items: center;
+  margin-bottom: 0;
+  background-color: #607D8B;
+=======
+// NAVBAR STYLING STARTS
 * {
   background-color: #454545;
 }
@@ -14,7 +41,7 @@
 .nav-links a {
   color: #fff;
 }
-/* LOGO */
+// LOGO 
 .logo {
   padding-left: 11px;
   text-shadow: 2px 2px 5px red;
@@ -23,7 +50,7 @@
   font-size: 38px;
 }
 
-/* NAVBAR MENU */
+// NAVBAR MENU 
 .items {
   font-weight: bold;
   background-color: #454545;
@@ -50,6 +77,9 @@
 .items li {
   background-color: #454545;
   padding: 5px 14px;
+  */
+  
+//Peri Navbar
 }
 /* DROPDOWN MENU */
 .services {

@@ -19,11 +19,10 @@ export class InterfaceComponent implements OnInit {
   ];
 
   public employeeOptions = [
-    {"option_id":1, "name": "View Customer Profiles"},
-    {"option_id":2, "name": "View Customer Rentals"},
-    {"option_id":3, "name": "Update Database"},
-    {"option_id":4, "name": "Show Most Popular Listings"},
-    {"option_id":5, "name": "Log Out"}
+    {"option_id":1, "name": "Customer Profiles"},
+    {"option_id":2, "name": "Update Database"},
+    {"option_id":3, "name": "Show Most Popular Listings"},
+    {"option_id":4, "name": "Log Out"}
   ];
 
   public administratorOptions = [
@@ -50,8 +49,13 @@ export class InterfaceComponent implements OnInit {
     {
       console.log(this.userId)
       this._getViewTypeService.getViewType(this.userId).subscribe(data => {
-        this.customerViewType = data.data[0].view_type;
+        this.customerViewType = String(data.data[0].view_type);
       });
+      this.router.navigate(['profile', {type: this.userType, id: this.userId}], {relativeTo: this.route});
+    }
+    else if(this.userType == "Employee")
+    {
+      this.router.navigate(['customers', {type: this.userType, id: this.userId}], {relativeTo: this.route});
     }
   }
 
@@ -79,7 +83,7 @@ export class InterfaceComponent implements OnInit {
           }
           case 4:
           {
-            this.router.navigate(['cart', {type: this.userType, id: this.userId}], {relativeTo: this.route});
+            this.router.navigate(['cart', {type: this.userType, id: this.userId, get_type: this.customerViewType}], {relativeTo: this.route});
             break;
           }
           case 5:
@@ -96,21 +100,20 @@ export class InterfaceComponent implements OnInit {
         {
           case 1:
           {
+            this.router.navigate(['customers', {type: this.userType, id: this.userId}], {relativeTo: this.route});
             break;
           }
           case 2:
           {
+            this.router.navigate(['update_database', {type: this.userType, id: this.userId}], {relativeTo: this.route});
             break;
           }
           case 3:
           {
+            this.router.navigate(['most_popular', {type: this.userType, id: this.userId}], {relativeTo: this.route})
             break;
           }
           case 4:
-          {
-            break;
-          }
-          case 5:
           {
             this.router.navigate(['/login']);
             break;

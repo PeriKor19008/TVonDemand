@@ -1,34 +1,35 @@
 <h2>Customer Profile:</h2>
 
 <ul class="items">
-    <li [class.selected]="isSelected(userId)">
-        <span class="badge">1. </span> {{"ID: " + userId}}
+    <li [class.selected]="isSelected(customerId)">
+        <span class="badge">1. </span> {{"ID: " + customerId}}
     </li>
-    <li [class.selected]="isSelected(userEmail)">
-        <span class="badge">2. </span> {{"Email: " + userEmail}}
+    <li [class.selected]="isSelected(customerEmail)">
+        <span class="badge">2. </span> {{"Email: " + customerEmail}}
     </li>
-    <li [class.selected]="isSelected(userFirstName)">
-        <span class="badge">3. </span> {{"First Name: " + userFirstName}}
+    <li [class.selected]="isSelected(customerFirstName)">
+        <span class="badge">3. </span> {{"First Name: " + customerFirstName}}
     </li>
-    <li [class.selected]="isSelected(userLastName)">
-        <span class="badge">4. </span> {{"Last Name: " + userLastName}}
+    <li [class.selected]="isSelected(customerLastName)">
+        <span class="badge">4. </span> {{"Last Name: " + customerLastName}}
     </li>
-    <li (click)="showAddress()" [class.selected]="isSelected(userAddressId)">
-        <span class="badge">5. </span> {{"Address ID: " + userAddressId + " (Click To Expand)"}}
+    <li (click)="showAddress()" [class.selected]="isSelected(customerAddressId)">
+        <span class="badge">5. </span> {{"Address ID: " + customerAddressId + " (Click To Expand)"}}
     </li>
-    <li [class.selected]="isSelected(userActive)">
-        <span class="badge">6. </span> {{"Profile Active Status: " + userActive}}
+    <li [class.selected]="isSelected(customerActive)">
+        <span class="badge">6. </span> {{"Profile Active Status: " + customerActive}}
     </li>
-    <li [class.selected]="isSelected(userCreateDate)">
-        <span class="badge">7. </span> {{"Profile Creation Date: " + userCreateDate}}
+    <li [class.selected]="isSelected(customerCreateDate)">
+        <span class="badge">7. </span> {{"Profile Creation Date: " + customerCreateDate}}
     </li>
-    <li [class.selected]="isSelected(userViewType)">
-        <span class="badge">8. </span> {{"View Type: " + userViewType}}
+    <li [class.selected]="isSelected(customerViewType)">
+        <span class="badge">8. </span> {{"View Type: " + customerViewType}}
     </li>
 </ul>
 
-<button (click)="gotoInterface()">Back</button>
+<button *ngIf="userType == 'Employee'" (click)="gotoCustomers()">Back</button>
 <button (click)="enable_edit()">Edit</button>
+<button *ngIf="userType == 'Employee'" (click)="gotoRentals()">View Rentals</button>
 
 <div style="text-align:center" *ngIf="enableEdit" style="margin: 5%;">
   <h2>Edit Interface:</h2>
