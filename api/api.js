@@ -267,6 +267,21 @@ app.get('/update/:table/:column/:value/:where/:condvalue',function (req,res){
   });
 });
 
+app.get('/delete/:table/:where/:condvalue',function (req,res){
+  let table = String(req.params.table);
+  let where = String(req.params.where);
+  let condvalue = String(req.params.condvalue);
+  console.log(req.params.table);
+  console.log(req.params.where);
+  console.log(req.params.condvalue);
+  Db.dbConn.query("DELETE FROM " + table + " WHERE " + where + " = " + condvalue,
+  function (error, results)
+  {
+    if(error) throw error;
+    return res.send({ data:results });
+  });
+});
+
 app.get('/profile/employee/:id',function (req,res){
   let id = Number(req.params.id);
   console.log(req.params.id);

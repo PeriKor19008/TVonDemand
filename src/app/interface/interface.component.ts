@@ -104,6 +104,7 @@ export class InterfaceComponent implements OnInit {
           }
           case 2:
           {
+            this.router.navigate(['update_database', {type: this.userType, id: this.userId}], {relativeTo: this.route});
             break;
           }
           case 3:

@@ -145,34 +145,6 @@ export interface CustomerProfile{
   view_type:string
 }
 
-export interface IEmployeeProfile{
-  data:[EmployeeProfile]
-}
-
-export interface EmployeeProfile{
-    employee_id:number,
-    first_name:string,
-    last_name:string,
-    email:string,
-    address_id:number,
-    active:boolean,
-    create_date:string
-}
-
-export interface IAdministratorProfile{
-  data:[AdministratorProfile]
-}
-
-export interface AdministratorProfile{
-  administrator_id:number,
-  first_name:string,
-  last_name:string,
-  email:string,
-  address_id:number,
-  active:boolean,
-  create_date:string
-}
-
 export interface IGetViewType{
   data:[GetViewType]
 }

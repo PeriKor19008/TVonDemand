@@ -101,14 +101,14 @@ export class ProfileComponent implements OnInit {
   {
     if(this.userType == 'Customer')
     {
-      this._editDbService.editTables("customer", this.editSelection, value, "customer_id", this.userId).subscribe(data => {
+      this._editDbService.updateTable("customer", this.editSelection, value, "customer_id", this.userId).subscribe(data => {
         this.update=data.data;
         this.updated = true;
       });
     }
     else
     {
-      this._editDbService.editTables("customer", this.editSelection, value, "customer_id", String(this.getId)).subscribe(data => {
+      this._editDbService.updateTable("customer", this.editSelection, value, "customer_id", String(this.getId)).subscribe(data => {
         this.update=data.data;
         this.updated = true;
       });
