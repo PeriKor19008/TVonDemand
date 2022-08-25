@@ -248,6 +248,21 @@ app.get('/profile/customer/address/:id',function (req,res){
   });
 });
 
+app.get('/insert/:table/:columns/:value',function (req,res){
+  let table = String(req.params.table);
+  let columns = String(req.params.columns);
+  let value = String(req.params.value);
+  console.log(req.params.table);
+  console.log(req.params.columns);
+  console.log(req.params.value);
+  Db.dbConn.query("INSERT INTO " + table + " (" + columns + ") VALUES (" + value + ")",
+  function (error, results)
+  {
+    if(error) throw error;
+    return res.send({ data:results });
+  });
+});
+
 app.get('/update/:table/:column/:value/:where/:condvalue',function (req,res){
   let table = String(req.params.table);
   let column = String(req.params.column);

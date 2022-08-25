@@ -70,13 +70,20 @@ export class UpdateDatabaseComponent implements OnInit {
     this.whereSelection = String(event.value);
   }
 
+  insertToDb(value:string, columns:string)
+  {
+    this._editDbService.insertToTable(this.tableSelection, columns, value).subscribe(data => {
+      this.update=data.data;
+      this.updated = true;
+    })
+  }
+
   updateToDb(value:string, condvalue:string)
   {
     this._editDbService.updateTable(this.tableSelection, this.columnSelection, value, this.whereSelection, condvalue).subscribe(data => {
       this.update=data.data;
       this.updated = true;
     });
-    this.updated = true;
   }
 
   deleteFromDb(condvalue:string)
@@ -85,7 +92,6 @@ export class UpdateDatabaseComponent implements OnInit {
       this.update=data.data;
       this.updated = true;
     });
-    this.updated = true;
   }
 
   goBack()

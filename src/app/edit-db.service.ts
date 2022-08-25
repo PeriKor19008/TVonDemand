@@ -9,6 +9,11 @@ import { IUpdate } from './exports_for_services';
 export class EditDbService {
 
   constructor(private http:HttpClient) { }
+  insertToTable(table:String, column:String, value:String):Observable<IUpdate>{
+    console.log("http://localhost:8090/insert/" + table + "/" + column + "/" + value);
+    return this.http.get<IUpdate>("http://localhost:8090/insert/" + table + "/" + column + "/" + value);
+  }
+
   updateTable(table:String, column:String, value:String, where:String, condvalue:String):Observable<IUpdate>{
     console.log("http://localhost:8090/update/" + table + "/" + column + "/" + value + "/" + where + "/" + condvalue);
     return this.http.get<IUpdate>("http://localhost:8090/update/" + table + "/" + column + "/" + value + "/" + where + "/" + condvalue);

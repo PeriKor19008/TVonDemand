@@ -1,26 +1,153 @@
 <h2>Database Management Interface:</h2>
 <div style="text-align:center">
-  <mat-form-field style="text-align:center; padding-right: 4em;" appearance="fill">
+    <mat-form-field style="text-align:center; padding-right: 4em;" appearance="fill">
       <mat-label>Function:</mat-label>
       <mat-select (selectionChange)="onOptionChange($event)" >
       <mat-option *ngFor="let option of options" [value]="option">{{option}}</mat-option>
       </mat-select>
-  </mat-form-field>
-  <mat-form-field style="text-align:center" appearance="fill">
+    </mat-form-field>
+    <mat-form-field style="text-align:center" appearance="fill">
       <mat-label>Table:</mat-label>
       <mat-select (selectionChange)="onTableChange($event)" >
       <mat-option *ngFor="let table of tables" [value]="table">{{table}}</mat-option>
       </mat-select>
-  </mat-form-field>
-  <div *ngIf="optionSelection == 'INSERT'; else elseBlock">
+    </mat-form-field>
+    <div *ngIf="optionSelection == 'INSERT'">
+      <input value="Specify Columns:" style="margin-left:4em;" #columns type="value" id="specValuesTextField">
+      <input value="Enter Values:" style="margin-left:4em;" #value type="value" id="valuesTextField">
+      <button style="margin-left:4em" (click)="insertToDb(value.value, columns.value)" id="submitButton">Submit</button>
       <div [ngSwitch]="tableSelection">
           <div *ngSwitchCase="'actor'">
-              <h2>Test</h2>
-              <input *ngFor="let entry of actorValues", value=entry, style="margin-left:4em;", #entry type=entry, id=entry>
+            <h2>Available Columns To Add Values To:</h2>
+            <ul style="text-align:left;" class="items">
+              <li *ngFor="let value of actorValues">
+                <span class="badge">actor.</span>{{value}}
+              </li>
+            </ul>
+          </div>
+          <div *ngSwitchCase="'address'">
+            <h2>Available Columns To Add Values To:</h2>
+            <ul style="text-align:left;" class="items">
+              <li *ngFor="let value of addressValues">
+                <span class="badge">address.</span>{{value}}
+              </li>
+            </ul>
+          </div>
+          <div *ngSwitchCase="'category'">
+            <h2>Available Columns To Add Values To:</h2>
+            <ul style="text-align:left;" class="items">
+              <li *ngFor="let value of categoryValues">
+                <span class="badge">category.</span>{{value}}
+              </li>
+            </ul>
+          </div>
+          <div *ngSwitchCase="'city'">
+            <h2>Available Columns To Add Values To:</h2>
+            <ul style="text-align:left;" class="items">
+              <li *ngFor="let value of cityValues">
+                <span class="badge">city.</span>{{value}}
+              </li>
+            </ul>
+          </div>
+          <div *ngSwitchCase="'country'">
+            <h2>Available Columns To Add Values To:</h2>
+            <ul style="text-align:left;" class="items">
+              <li *ngFor="let value of countryValues">
+                <span class="badge">country.</span>{{value}}
+              </li>
+            </ul>
+          </div>
+          <div *ngSwitchCase="'episode'">
+            <h2>Available Columns To Add Values To:</h2>
+            <ul style="text-align:left;" class="items">
+              <li *ngFor="let value of episodeValues">
+                <span class="badge">episode.</span>{{value}}
+              </li>
+            </ul>
+          </div>
+          <div *ngSwitchCase="'film'">
+            <h2>Available Columns To Add Values To:</h2>
+            <ul style="text-align:left;" class="items">
+              <li *ngFor="let value of filmValues">
+                <span class="badge">film.</span>{{value}}
+              </li>
+            </ul>
+          </div>
+          <div *ngSwitchCase="'film_actor'">
+            <h2>Available Columns To Add Values To:</h2>
+            <ul style="text-align:left;" class="items">
+              <li *ngFor="let value of film_actorValues">
+                <span class="badge">film_actor.</span>{{value}}
+              </li>
+            </ul>
+          </div>
+          <div *ngSwitchCase="'film_category'">
+            <h2>Available Columns To Add Values To:</h2>
+            <ul style="text-align:left;" class="items">
+              <li *ngFor="let value of film_categoryValues">
+                <span class="badge">film_category.</span>{{value}}
+              </li>
+            </ul>
+          </div>
+          <div *ngSwitchCase="'film_inventory'">
+            <h2>Available Columns To Add Values To:</h2>
+            <ul style="text-align:left;" class="items">
+              <li *ngFor="let value of film_inventoryValues">
+                <span class="badge">film_inventory.</span>{{value}}
+              </li>
+            </ul>
+          </div>
+          <div *ngSwitchCase="'language'">
+            <h2>Available Columns To Add Values To:</h2>
+            <ul style="text-align:left;" class="items">
+              <li *ngFor="let value of languageValues">
+                <span class="badge">language.</span>{{value}}
+              </li>
+            </ul>
+          </div>
+          <div *ngSwitchCase="'season'">
+            <h2>Available Columns To Add Values To:</h2>
+            <ul style="text-align:left;" class="items">
+              <li *ngFor="let value of seasonValues">
+                <span class="badge">season.</span>{{value}}
+              </li>
+            </ul>
+          </div>
+          <div *ngSwitchCase="'serie'">
+            <h2>Available Columns To Add Values To:</h2>
+            <ul style="text-align:left;" class="items">
+              <li *ngFor="let value of serieValues">
+                <span class="badge">serie.</span>{{value}}
+              </li>
+            </ul>
+          </div>
+          <div *ngSwitchCase="'serie_actor'">
+            <h2>Available Columns To Add Values To:</h2>
+            <ul style="text-align:left;" class="items">
+              <li *ngFor="let value of serie_actorValues">
+                <span class="badge">serie_actor.</span>{{value}}
+              </li>
+            </ul>
+          </div>
+          <div *ngSwitchCase="'serie_category'">
+            <h2>Available Columns To Add Values To:</h2>
+            <ul style="text-align:left;" class="items">
+              <li *ngFor="let value of serie_categoryValues">
+                <span class="badge">serie_category.</span>{{value}}
+              </li>
+            </ul>
+          </div>
+          <div *ngSwitchCase="'serie_inventory'">
+            <h2>Available Columns To Add Values To:</h2>
+            <ul style="text-align:left;" class="items">
+              <li *ngFor="let value of serie_inventoryValues">
+                <span class="badge">serie_inventory.</span>{{value}}
+              </li>
+            </ul>
           </div>
       </div>
     </div>
-    <ng-template #elseBlock>
+    <div *ngIf="optionSelection == 'UPDATE' || optionSelection == 'DELETE'">
         <div [ngSwitch]="tableSelection">
             <div *ngSwitchCase="'actor'">
                 <mat-form-field *ngIf="optionSelection != 'DELETE'" style="text-align:center; padding-right: 4em;" appearance="fill">
@@ -134,7 +261,7 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-            <div *ngSwitchCase="'flim_category'">
+            <div *ngSwitchCase="'film_category'">
                 <mat-form-field *ngIf="optionSelection != 'DELETE'" style="text-align:center; padding-right: 4em;" appearance="fill">
                     <mat-label>Column to Change:</mat-label>
                     <mat-select (selectionChange)="onColumnChange($event)" >
@@ -256,7 +383,7 @@
             <input value="Enter Where Value:" style="margin-left:4em;" #condvalue type="value" id="conditionValueTextField">
             <button style="margin-left:4em" (click)="deleteFromDb(condvalue.value)" id="submitButton">Submit</button>
         </ng-template>
-    </ng-template>
+    </div>
 </div>
 <h2 *ngIf="updated">Edit Attempted! Please Refresh Page!</h2>
 
