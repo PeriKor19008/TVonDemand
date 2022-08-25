@@ -18,6 +18,8 @@ import { CategoriesComponent } from './categories/categories.component';
 import { ActorsComponent } from './actors/actors.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
+import { ProfilesComponent } from './profiles/profiles.component';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { MatSelectModule } from '@angular/material/select';
     LanguagesComponent,
     CategoriesComponent,
     ActorsComponent,
+    ProfilesComponent,
+    ProfileEditComponent,
   ],
   imports: [
     BrowserModule,

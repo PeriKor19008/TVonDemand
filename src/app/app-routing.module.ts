@@ -14,6 +14,8 @@ import { AddressComponent } from './address/address.component';
 import { LanguagesComponent } from './languages/languages.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ActorsComponent } from './actors/actors.component';
+import {ProfilesComponent} from "./profiles/profiles.component";
+import {ProfileEditComponent} from "./profile-edit/profile-edit.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -35,6 +37,9 @@ const routes: Routes = [
       { path: 'categories', component: CategoriesComponent},
       { path: 'actors', component: ActorsComponent},
       { path: 'cart', component: CartComponent },
+      { path: 'profiles', component: ProfilesComponent},
+      {path:'profile_edit',component:ProfileEditComponent}
+
     ]
   },
   { path: '**', component: PageNotFoundComponent}

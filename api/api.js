@@ -35,6 +35,15 @@ app.get('/films_available', function (req, res) {
   });
 });
 
+app.get('/all_profiles', function (req, res) {
+  Db.dbConn.query('SELECT * FROM customer', function (error, results, fields) {
+    if (error) throw error;
+    return res.send({ error, data: results});
+  });
+});
+
+
+
 app.get('/film/:id', function (req, res) {
   let id = Number(req.params.id);
   console.log(req.params.id);
