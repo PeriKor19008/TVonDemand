@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { FilmsService } from './films.service';
 import { HttpClientModule } from "@angular/common/http";
@@ -21,6 +20,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { CustomersComponent } from './customers/customers.component';
 import { MostPopularComponent } from './most-popular/most-popular.component';
 import { UpdateDatabaseComponent } from './update-database/update-database.component';
+
+//Might be deletable
+import { ProfilesComponent } from './profiles/profiles.component';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 
 @NgModule({
   declarations: [

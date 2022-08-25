@@ -3,6 +3,21 @@ export interface IFilm{
   data:[Films]
 }
 
+export interface Profiles{
+  customer_id:number,
+  first_name:string,
+  last_name:string,
+  email:string,
+  address_id:number,
+  active:boolean,
+  created_date:string,
+  view_type:string
+}
+export interface IProfiles{
+  error:boolean,
+  data:[Profiles]
+}
+
 export interface Film{
   film_id:number,
   title:string,
