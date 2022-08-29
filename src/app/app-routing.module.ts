@@ -20,10 +20,6 @@ import { UpdateDatabaseComponent } from './update-database/update-database.compo
 import { IncomeComponent } from './income/income.component';
 import { PriceUpdaterComponent } from './price-updater/price-updater.component';
 
-// Might be deletable
-import {ProfilesComponent} from "./profiles/profiles.component";
-import {ProfileEditComponent} from "./profile-edit/profile-edit.component";
-
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent },

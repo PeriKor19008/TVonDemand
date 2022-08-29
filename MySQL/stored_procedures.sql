@@ -163,7 +163,9 @@ DROP PROCEDURE IF EXISTS actors_with_specific_last_name;
 DELIMITER $
 CREATE PROCEDURE actors_with_specific_last_name(IN name3 VARCHAR(30))
 BEGIN
-	SELECT last_name, first_name, COUNT(last_name) FROM actor FORCE INDEX(last_name_actor_desc)
+	SELECT last_name, first_name FROM actor FORCE INDEX(last_name_actor_desc)
+	WHERE last_name = name3;
+	SELECT COUNT(last_name) FROM actor FORCE INDEX (last_name_actor_desc)
 	WHERE last_name = name3;
 END$
 DELIMITER ;
