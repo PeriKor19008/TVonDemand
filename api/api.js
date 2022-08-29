@@ -356,3 +356,13 @@ app.get('/most_popular/series',function (req,res){
     return res.send({ data:results });
   });
 });
+
+app.get('/income',function (req,res){
+  console.log("CALL for income");
+  Db.dbConn.query("CALL show_income_by_month",
+  function (error, results)
+  {
+    if(error) throw error;
+    return res.send({ data:results });
+  });
+});

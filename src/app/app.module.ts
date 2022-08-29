@@ -21,6 +21,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { CustomersComponent } from './customers/customers.component';
 import { MostPopularComponent } from './most-popular/most-popular.component';
 import { UpdateDatabaseComponent } from './update-database/update-database.component';
+import { IncomeComponent } from './income/income.component';
 
 @NgModule({
   declarations: [

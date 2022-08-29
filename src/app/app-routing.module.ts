@@ -17,6 +17,7 @@ import { ActorsComponent } from './actors/actors.component';
 import { CustomersComponent } from './customers/customers.component';
 import { MostPopularComponent } from './most-popular/most-popular.component';
 import { UpdateDatabaseComponent } from './update-database/update-database.component';
+import { IncomeComponent } from './income/income.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -40,7 +41,8 @@ const routes: Routes = [
       { path: 'cart', component: CartComponent },
       { path: 'customers', component: CustomersComponent },
       { path: 'most_popular', component: MostPopularComponent },
-      { path: 'update_database', component: UpdateDatabaseComponent }
+      { path: 'update_database', component: UpdateDatabaseComponent },
+      { path: 'income', component: IncomeComponent }
     ]
   },
   { path: '**', component: PageNotFoundComponent}
@@ -68,5 +70,6 @@ export const routingComponents = [
                                     PageNotFoundComponent,
                                     ProfileComponent,
                                     MostPopularComponent,
-                                    UpdateDatabaseComponent
+                                    UpdateDatabaseComponent,
+                                    IncomeComponent
                                  ]

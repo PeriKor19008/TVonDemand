@@ -254,3 +254,14 @@ export interface MostPopular{
   id:number,
   count:number
 }
+
+export interface IIncome{
+  data:[Income],
+}
+
+export interface Income{
+  Year:number,
+  Month:number,
+  Films_Income:string,
+  Series_Income:string
+}
