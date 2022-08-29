@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router'
 import { GetViewTypeService } from '../get-view-type.service';
@@ -130,7 +131,9 @@ export class InterfaceComponent implements OnInit {
         {
           case 1:
           {
+
             this.router.navigate(['update_database', {type: this.userType, id: this.userId}], {relativeTo: this.route});
+
             break;
           }
           case 2:

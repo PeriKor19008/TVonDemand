@@ -1,0 +1,21 @@
+*{
+  background-color: #131313;
+}
+.Items{
+  background-color: #454b4e;
+}
+.Items:hover{
+  color: black;
+  background-color: white;
+}
+.items{
+  color: #ffffff;
+}
+.items:hover{
+
+
+}
+
+.badge {
+  background-color: #ab3a42;
+}
