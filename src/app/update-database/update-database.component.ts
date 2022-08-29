@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { EditDbService } from '../edit-db.service';
+import { ProfileService } from '../profile.service';
 
 @Component({
   selector: 'app-update-database',
@@ -12,6 +13,7 @@ export class UpdateDatabaseComponent implements OnInit {
   public userType = new String;
   public userId = new Number;
   public update:any;
+  public delete:any;
   public updated = false;
 
   public options: any[] = ['INSERT', 'UPDATE', 'DELETE'];
@@ -32,6 +34,15 @@ export class UpdateDatabaseComponent implements OnInit {
   public serie_actorValues: any = ['serie_id', 'actor_id'];
   public serie_categoryValues: any = ['serie_id', 'category_id'];
   public serie_inventoryValues: any = ['inventory_id', 'episode_id'];
+
+  public adminOptions: any[] = ['INSERT','DELETE', 'TOGGLE EMPLOYEE AND ADMIN'];
+  public adminTables: any[] = ['customer', 'employee'];
+  public adminToggleTables: any[] = ['employee', 'administrator'];
+  public customerValues: any[] = ['customer_id', 'first_name', 'last_name', 'email', 'address_id', 'active', 'create_date', 'view_type'];
+  public employeeValues: any[] = ['employee_id', 'first_name', 'last_name', 'email', 'address_id', 'active', 'create_date'];
+  public administratorValues: any[] = ['administrator_id', 'first_name', 'last_name', 'email', 'address_id', 'active', 'create_date'];
+
+  public profile:any;
   
   public optionSelection = new String;
   public tableSelection = new String;
@@ -39,7 +50,7 @@ export class UpdateDatabaseComponent implements OnInit {
   public whereSelection = new String;
 
 
-  constructor(private _editDbService:EditDbService, private router:Router, private route:ActivatedRoute) { }
+  constructor(private _editDbService:EditDbService, private _profileService:ProfileService, private router:Router, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params:ParamMap) => {
@@ -92,6 +103,36 @@ export class UpdateDatabaseComponent implements OnInit {
       this.update=data.data;
       this.updated = true;
     });
+  }
+
+  toggleType(id:string)
+  {
+    console.log(id);
+    if(this.tableSelection == 'employee')
+    {
+      this._profileService.getEmployeeProfile(Number(id)).subscribe(data =>
+        this.profile = data.data[0]);
+      this._editDbService.deleteFromTable(this.tableSelection, 'employee_id', id).subscribe(data => {
+        this.update=data.data;
+        console.log(this.profile.employee_id + ", '" + this.profile.first_name + "', " + "'" + this.profile.last_name + "', " + this.profile.email + "', '" + this.profile.address_id + "', " + this.profile.active + ', ' + this.profile.create_date);
+        this._editDbService.insertToTable('administrator', "administrator_id, first_name, last_name, email, address_id, active, create_date", this.profile.employee_id + ", '" + this.profile.first_name + "', " + "'" + this.profile.last_name + "', " + this.profile.email + "', '" + this.profile.address_id + "', " + this.profile.active + ', ' + this.profile.create_date).subscribe(data => {
+          this.delete=data.data;
+          this.updated = true;
+        });
+      });
+    }
+    else
+    {
+      this._profileService.getAdministratorProfile(Number(id)).subscribe(data =>
+        this.profile = data.data[0]);
+      this._editDbService.deleteFromTable(this.tableSelection, 'administrator_id', id).subscribe(data => {
+        this.update=data.data;
+        this._editDbService.insertToTable('employee', "employee_id, first_name, last_name, email, address_id, active, create_date", this.profile.employee_id + ', ' + this.profile.first_name + ', ' + this.profile.last_name + ', ' + this.profile.email + ', ' + this.profile.address_id + ', ' + this.profile.active + ', ' + this.profile.create_date).subscribe(data => {
+          this.delete=data.data;
+          this.updated = true;
+        });
+      });
+    }
   }
 
   goBack()
