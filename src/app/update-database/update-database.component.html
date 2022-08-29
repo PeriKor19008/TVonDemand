@@ -1,5 +1,5 @@
 <h2>Database Management Interface:</h2>
-<div style="text-align:center">
+<div *ngIf="userType == 'Employee'; else elseType" style="text-align:center">
     <mat-form-field style="text-align:center; padding-right: 4em;" appearance="fill">
       <mat-label>Function:</mat-label>
       <mat-select (selectionChange)="onOptionChange($event)" >
@@ -385,6 +385,78 @@
         </ng-template>
     </div>
 </div>
-<h2 *ngIf="updated">Edit Attempted! Please Refresh Page!</h2>
 
+<ng-template #elseType style="text-align:center;">
+  <div style="text-align:center;">
+    <mat-form-field style="text-align:center; padding-right: 4em;" appearance="fill">
+      <mat-label>Function:</mat-label>
+      <mat-select (selectionChange)="onOptionChange($event)" >
+      <mat-option *ngFor="let option of adminOptions" [value]="option">{{option}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="optionSelection == 'INSERT' || optionSelection == 'DELETE'" style="text-align:center" appearance="fill">
+      <mat-label>Table:</mat-label>
+      <mat-select (selectionChange)="onTableChange($event)" >
+      <mat-option *ngFor="let table of adminTables" [value]="table">{{table}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="optionSelection == 'TOGGLE EMPLOYEE AND ADMIN'" style="text-align:center" appearance="fill">
+      <mat-label>Table:</mat-label>
+      <mat-select (selectionChange)="onTableChange($event)" >
+      <mat-option *ngFor="let table of adminToggleTables" [value]="table">{{table}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div [ngSwitch]="optionSelection">
+      <div *ngSwitchCase="'INSERT'" [ngSwitch]="tableSelection">
+        <input value="Specify Columns:" style="margin-left:4em;" #columns type="value" id="specValuesTextField">
+        <input value="Enter Values:" style="margin-left:4em;" #value type="value" id="valuesTextField">
+        <button style="margin-left:4em" (click)="insertToDb(value.value, columns.value)" id="submitButton">Submit</button>
+        <div *ngSwitchCase="'customer'">
+          <h2>Available Columns To Add Values To:</h2>
+          <ul style="text-align:left;" class="items">
+            <li *ngFor="let value of customerValues">
+              <span class="badge">customer.</span>{{value}}
+            </li>
+          </ul>
+        </div>
+        <div *ngSwitchCase="'employee'">
+          <h2>Available Columns To Add Values To:</h2>
+          <ul style="text-align:left;" class="items">
+            <li *ngFor="let value of employeeValues">
+              <span class="badge">employee.</span>{{value}}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div *ngSwitchCase="'DELETE'" [ngSwitch]="tableSelection">
+        <div *ngSwitchCase="'customer'">
+            <mat-form-field style="text-align:center" appearance="fill">
+               <mat-label>Where Column:</mat-label>
+                <mat-select (selectionChange)="onWhereChange($event)" >
+                <mat-option *ngFor="let where of customerValues" [value]="where">{{where}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div *ngSwitchCase="'employee'">
+            <mat-form-field style="text-align:center" appearance="fill">
+                <mat-label>Where Option:</mat-label>
+                <mat-select (selectionChange)="onWhereChange($event)" >
+                <mat-option *ngFor="let where of employeeValues" [value]="where">{{where}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <input value="Enter Where Value:" style="margin-left:4em;" #condvalue type="value" id="conditionValueTextField">
+        <button style="margin-left:4em" (click)="deleteFromDb(condvalue.value)" id="submitButton">Submit</button>
+      </div>
+      <div *ngSwitchCase="'TOGGLE EMPLOYEE AND ADMIN'">
+        <div [ngSwitch]="tableSelection">
+        <input value="Enter ID of the account:" style="margin-left:4em;" #condvalue type="value" id="ditionValueTextField">
+        <button style="margin-left:4em" (click)="toggleType(condvalue.value)" id="submitButton">Submit</button>
+        </div>
+      </div>
+  </div>
+</div>
+
+</ng-template>
+<h2 *ngIf="updated">Edit Attempted! Please Refresh Page!</h2>
 <button (click)="goBack()">Back</button>

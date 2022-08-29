@@ -124,25 +124,6 @@ DELIMITER ;
 
 
 --
--- Trigger to update log table on insert on serie_rental
---
-
-DROP TRIGGER IF EXISTS log_insert_serie_rental;
-DELIMITER $
-CREATE TRIGGER log_insert_serie_rental
-  AFTER INSERT ON serie_rental
-  FOR EACH ROW
-  BEGIN
-    DECLARE temp_email VARCHAR(50);
-    DECLARE temp_rental_date DATETIME;
-    SELECT customer.email, serie_rental.rental_date INTO temp_email, temp_rental_date FROM serie_rental INNER JOIN customer ON serie_rental.customer_id = customer.customer_id WHERE serie_rental.rental_id= NEW.rental_id;
-    INSERT INTO `log` (`user_email`, `user_type`, `action`, `target`, `action_date`, `applied`) VALUES
-    (temp_email, 'Customer', 'Insert', 'Serie Rental', temp_rental_date, 1);
-  END$
-DELIMITER ;
-
-
---
 -- Trigger to update log table on insert on film_rental and create film_payment with possible discounts
 --
 
@@ -167,7 +148,7 @@ CREATE TRIGGER log_insert_film_rental_and_create_payment_with_discounts
     END IF;
     CALL number_of_rentals_for_customer_in_day(temp_email, CAST(NEW.rental_date AS Date), film_num, serie_num);
     IF (film_num = 3) THEN
-	SET temp_amount = temp_amount * 0.5;
+	  SET temp_amount = temp_amount * 0.5;
     END IF;
     INSERT INTO `film_payment` (`payment_id`, `customer_id`, `rental_id`, `amount`, `payment_date`)
     VALUES (NULL, NEW.customer_id, NEW.rental_id, temp_amount, NEW.rental_date);
@@ -200,12 +181,14 @@ CREATE TRIGGER log_insert_serie_rental_and_create_payment_with_discounts
     END IF;
     CALL number_of_rentals_for_customer_in_day(temp_email, CAST(NEW.rental_date AS Date), film_num, serie_num);
     IF (serie_num = 3) THEN
-	SET temp_amount = temp_amount * 0.5;
+	  SET temp_amount = temp_amount * 0.5;
     END IF;
     INSERT INTO `serie_payment` (`payment_id`, `customer_id`, `rental_id`, `amount`, `payment_date`)
     VALUES (NULL, NEW.customer_id, NEW.rental_id, temp_amount, NEW.rental_date);
   END$
 DELIMITER ;
+
+
 --
 -- Trigger to update log table on update on serie_rental
 --

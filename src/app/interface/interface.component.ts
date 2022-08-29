@@ -57,6 +57,10 @@ export class InterfaceComponent implements OnInit {
     {
       this.router.navigate(['customers', {type: this.userType, id: this.userId}], {relativeTo: this.route});
     }
+    else
+    {
+      this.router.navigate(['update_database', {type: this.userType, id: this.userId}], {relativeTo: this.route});
+    }
   }
 
   onSelect(option:any){
@@ -127,7 +131,9 @@ export class InterfaceComponent implements OnInit {
         {
           case 1:
           {
-            this.router.navigate(['profiles',{}],{relativeTo:this.route});
+
+            this.router.navigate(['update_database', {type: this.userType, id: this.userId}], {relativeTo: this.route});
+
             break;
           }
           case 2:

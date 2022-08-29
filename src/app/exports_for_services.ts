@@ -160,6 +160,33 @@ export interface CustomerProfile{
   view_type:string
 }
 
+export interface IEmployeeProfile{
+  data:[CustomerProfile]
+}
+
+export interface EmployeeProfile{
+  employee_id:number,
+  first_name:string,
+  last_name:string,
+  email:string,
+  address_id:number,
+  active:boolean,
+  create_date:string
+}
+
+export interface IAdministratorProfile{
+  data:[CustomerProfile]
+}
+
+export interface AdministratorProfile{
+  employee_id:number,
+  first_name:string,
+  last_name:string,
+  email:string,
+  address_id:number,
+  active:boolean,
+  create_date:string
+}
 export interface IGetViewType{
   data:[GetViewType]
 }

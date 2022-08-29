@@ -22,7 +22,7 @@ CASE (mors)
 		INNER JOIN episode ON episode.belongs_to = season.season_id
 		INNER JOIN serie_inventory ON serie_inventory.episode_id = episode.episode_id
 		INNER JOIN serie_rental ON serie_rental.inventory_id = serie_inventory.inventory_id
-		WHERE serie_rental.rental_date BETWEEN date1 AND date2
+		WHERE serie_rental.rental_date BETWEEN DATE_SUB(date1, INTERVAL 1 DAY) AND DATE_ADD(date2, INTERVAL 1 DAY)
 		GROUP BY serie.title
 		ORDER BY COUNT(serie_rental.inventory_id) DESC LIMIT num;
 	ELSE
