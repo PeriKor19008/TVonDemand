@@ -2,9 +2,9 @@
 -- Initialization of database
 --
 
-DROP SCHEMA IF EXISTS tvondemand;
-CREATE SCHEMA tvondemand;
-USE tvondemand;
+--DROP SCHEMA IF EXISTS tvondemand;
+--CREATE SCHEMA tvondemand;
+--USE tvondemand;
 
 
 --
@@ -201,13 +201,13 @@ CREATE TABLE film_payment (
   CONSTRAINT fk_flim_payment_rental FOREIGN KEY (rental_id) REFERENCES film_rental (rental_id) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT fk_film_payment_customer FOREIGN KEY (customer_id) REFERENCES customer (customer_id) ON DELETE RESTRICT ON UPDATE CASCADE
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
- 
+
 
 --
 -- Table structure for table 'employee'
 --
 
-DROP TABLE IF EXISTS employee; 
+DROP TABLE IF EXISTS employee;
 CREATE TABLE employee (
   employee_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
   first_name VARCHAR(45) NOT NULL,
@@ -218,7 +218,7 @@ CREATE TABLE employee (
   create_date DATETIME NOT NULL,
   PRIMARY KEY  (employee_id)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-  
+
 
 --
 -- Table structure for table 'administrator'
@@ -235,13 +235,13 @@ CREATE TABLE administrator (
   create_date DATETIME NOT NULL,
   PRIMARY KEY  (administrator_id)
   )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
- 
+
 
 --
 -- Table structure for table 'serie'
 --
 
-DROP TABLE IF EXISTS serie; 
+DROP TABLE IF EXISTS serie;
 CREATE TABLE serie (
   serie_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
   title VARCHAR(128) NOT NULL,
