@@ -1,22 +1,33 @@
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div [ngSwitch]="userType">
   <nav class="navbar">
+
+    <h1 class="logo">TVonDemand🎬</h1>
     <div *ngSwitchCase="'Customer'">
-      <div [ngSwitch]="customerViewType">
+
+
+      <div [ngSwitch]="customerViewType" class="Items">
         <ul *ngSwitchCase="'Both'" class="items">
-          <li (click)="onSelect(customerOptions[0].option_id)" [class.selected]="isSelected(customerOptions[0])">
-             {{customerOptions[0].name}}
-          </li>
+
           <li (click)="onSelect(customerOptions[1].option_id)" [class.selected]="isSelected(customerOptions[1])">
              {{customerOptions[1].name}}
           </li>
+
           <li (click)="onSelect(customerOptions[2].option_id)" [class.selected]="isSelected(customerOptions[2])">
              {{customerOptions[2].name}}
           </li>
+
           <li (click)="onSelect(customerOptions[3].option_id)" [class.selected]="isSelected(customerOptions[3])">
-             {{customerOptions[3].name}}
+            <span class="material-icons">shopping_cart</span>
           </li>
+
+          <li (click)="onSelect(customerOptions[0].option_id)"  [class.selected]="isSelected(customerOptions[0])">
+          <span class="material-icons">account_circle</span>
+        </li>
+
           <li (click)="onSelect(customerOptions[4].option_id)" [class.selected]="isSelected(customerOptions[4])">
-             {{customerOptions[4].name}}
+            <span class="material-icons">logout</span>
           </li>
         </ul>
 
@@ -55,33 +66,34 @@
     <div *ngSwitchCase="'Employee'">
       <ul class="items">
         <li (click)="onSelect(employeeOptions[0].option_id)" [class.selected]="isSelected(employeeOptions[0])">
-           {{employeeOptions[0].name}}
+          <span  class="material-icons">group</span>
         </li>
         <li (click)="onSelect(employeeOptions[1].option_id)" [class.selected]="isSelected(employeeOptions[1])">
-           {{employeeOptions[1].name}}
+          <span class="material-icons">upgrade</span>
         </li>
         <li (click)="onSelect(employeeOptions[2].option_id)" [class.selected]="isSelected(employeeOptions[2])">
            {{employeeOptions[2].name}}
         </li>
         <li (click)="onSelect(employeeOptions[3].option_id)" [class.selected]="isSelected(employeeOptions[3])">
-           {{employeeOptions[3].name}}
+          <span class="material-icons">logout</span>
         </li>
       </ul>
     </div>
 
     <div *ngSwitchCase="'Administrator'">
+
       <ul class="items">
         <li (click)="onSelect(administratorOptions[0].option_id)" [class.selected]="isSelected(administratorOptions[0])">
-           {{administratorOptions[0].name}}
+          <span class="material-icons">manage_accounts</span>
         </li>
         <li (click)="onSelect(administratorOptions[1].option_id)" [class.selected]="isSelected(administratorOptions[1])">
-           {{administratorOptions[1].name}}
+          <span class="material-icons">account_balance</span>
         </li>
         <li (click)="onSelect(administratorOptions[2].option_id)" [class.selected]="isSelected(administratorOptions[2])">
-          {{administratorOptions[2].name}}
+          <span class="material-icons">euro</span>
         </li>
         <li (click)="onSelect(administratorOptions[3].option_id)" [class.selected]="isSelected(administratorOptions[3])">
-           {{administratorOptions[3].name}}
+          <span class="material-icons">logout</span>
         </li>
       </ul>
     </div>

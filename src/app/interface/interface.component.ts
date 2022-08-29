@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router'
 import { GetViewTypeService } from '../get-view-type.service';
@@ -20,7 +21,7 @@ export class InterfaceComponent implements OnInit {
   public employeeOptions = [
     {"option_id":1, "name": "Customer Profiles"},
     {"option_id":2, "name": "Update Database"},
-    {"option_id":3, "name": "Show Most Popular Listings"},
+    {"option_id":3, "name": "Popular Listings"},
     {"option_id":4, "name": "Log Out"}
   ];
 
@@ -130,7 +131,9 @@ export class InterfaceComponent implements OnInit {
         {
           case 1:
           {
+
             this.router.navigate(['update_database', {type: this.userType, id: this.userId}], {relativeTo: this.route});
+
             break;
           }
           case 2:

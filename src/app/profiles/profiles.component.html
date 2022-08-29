@@ -1,0 +1,15 @@
+
+
+<ul class="items">
+  <li (click)="editProfili(profile.customer_id)" *ngFor="let profile of profiles" class="Items">
+
+    <span class="material-icons">person</span>{{profile.first_name}},{{profile.last_name}}
+    ----<span class="material-icons">mail</span>{{profile.email}} ,
+    ----<span class="material-icons">visibility</span>{{profile.view_type}}
+    <div *ngIf="profile.customer_id===det"></div>
+
+  </li>
+</ul>
+
+
+
