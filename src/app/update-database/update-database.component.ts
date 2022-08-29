@@ -56,7 +56,7 @@ export class UpdateDatabaseComponent implements OnInit {
     this.route.paramMap.subscribe((params:ParamMap) => {
       this.userType = String(params.get('type'));
       this.userId = Number(params.get('id'));
-    })
+    });
   }
 
   onOptionChange(event:any)

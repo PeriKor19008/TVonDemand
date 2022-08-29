@@ -23,6 +23,7 @@ export interface IFilmsCart{
 
 export interface FilmsCart{
   rental_id:number,
+  amount:string,
   title:string,
   paid:boolean,
   type:string,
@@ -112,6 +113,7 @@ export interface ISeriesCart{
 
 export interface SeriesCart{
   rental_id:number,
+  amount:string,
   title:string,
   season_number:number,
   episode_number:number,

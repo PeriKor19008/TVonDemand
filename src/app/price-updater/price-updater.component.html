@@ -1,0 +1,13 @@
+<h2>Price Changing Interface:</h2>
+<div style="text-align:center;">
+    <mat-form-field style="text-align:center; padding-right: 4em;" appearance="fill">
+      <mat-label>Function:</mat-label>
+      <mat-select (selectionChange)="onOptionChange($event)" >
+      <mat-option *ngFor="let price of prices" [value]="price">{{price}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <input value="Enter New Price:" style="margin-left:4em;" #newPrice type="newPrice" id="newPriceTextField">
+    <button style="margin-left:4em" (click)="updateToDb(newPrice.value)" id="submitButton">Submit</button>
+</div>
+<h2 *ngIf="updated">Edit Attempted! Please Refresh Page!</h2>
+<button (click)="goBack()">Back</button>

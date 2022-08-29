@@ -22,11 +22,13 @@ import { CustomersComponent } from './customers/customers.component';
 import { MostPopularComponent } from './most-popular/most-popular.component';
 import { UpdateDatabaseComponent } from './update-database/update-database.component';
 import { IncomeComponent } from './income/income.component';
+import { PriceUpdaterComponent } from './price-updater/price-updater.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
+    PriceUpdaterComponent,
   ],
   imports: [
     BrowserModule,

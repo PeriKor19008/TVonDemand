@@ -142,9 +142,9 @@ CREATE TRIGGER log_insert_film_rental_and_create_payment_with_discounts
     SELECT email, view_type INTO temp_email, temp_view_type FROM customer WHERE customer_id = NEW.customer_id;
     INSERT INTO `log` (`user_email`, `user_type`, `action`, `target`, `action_date`, `applied`) VALUES
     (temp_email, 'Customer', 'Insert', 'Film Rental', NEW.rental_date, 1);
-    SET temp_amount = 0.4;
+    SELECT amount FROM price WHERE price_entry = 'film' INTO temp_amount;
     IF (temp_view_type = 'Both') THEN
-        SET temp_amount = 0.3;
+      SELECT amount FROM price WHERE price_entry = 'film_both' INTO temp_amount;
     END IF;
     CALL number_of_rentals_for_customer_in_day(temp_email, CAST(NEW.rental_date AS Date), film_num, serie_num);
     IF (film_num = 3) THEN
@@ -174,10 +174,10 @@ CREATE TRIGGER log_insert_serie_rental_and_create_payment_with_discounts
     DECLARE temp_amount DECIMAL(5,2);
     SELECT email, view_type INTO temp_email, temp_view_type FROM customer WHERE customer_id = NEW.customer_id;
     INSERT INTO `log` (`user_email`, `user_type`, `action`, `target`, `action_date`, `applied`) VALUES
-    (temp_email, 'Customer', 'Insert', 'Film Rental', NEW.rental_date, 1);
-    SET temp_amount = 0.2;
+    (temp_email, 'Customer', 'Insert', 'Serie Rental', NEW.rental_date, 1);
+    SELECT amount FROM price WHERE price_entry = 'serie' INTO temp_amount;
     IF (temp_view_type = 'Both') THEN
-        SET temp_amount = 0.1;
+      SELECT amount FROM price WHERE price_entry = 'serie_both' INTO temp_amount;
     END IF;
     CALL number_of_rentals_for_customer_in_day(temp_email, CAST(NEW.rental_date AS Date), film_num, serie_num);
     IF (serie_num = 3) THEN

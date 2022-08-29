@@ -11445,6 +11445,17 @@ INSERT INTO `administrator` (`first_name`, `last_name`, `email`, `address_id`, `
 
 
 --
+-- Dumpint data for table price
+--
+
+INSERT INTO `price` (`price_entry`, `amount`) VALUES
+('film', 0.4),
+('film_both', 0.3),
+('serie', 0.2),
+('serie_both', 0.1);
+
+
+--
 -- Fullfilling all initial payments
 --
 UPDATE film_payment SET paid = true;

@@ -4,7 +4,7 @@
     <h2>Films In Cart:</h2>
     <ul class="items">
         <li (click)="filmPay(cart.rental_id)" *ngFor="let cart of filmsCart">
-        <span class="badge">{{"Click to Pay! Rental ID: " + cart.rental_id}}</span>{{cart.title}}
+          <span class="badge">{{"Price: " + cart.amount + " € Click to Pay! Rental ID: " + cart.rental_id}}</span>{{cart.title}}
         </li>
     </ul>
     <h2 *ngIf="filmPaid">Film Payment Successful! Please refresh page!</h2>
@@ -14,7 +14,7 @@
     <h2>Series In Cart:</h2>
     <ul class="items">
         <li (click)="seriePay(cart.rental_id)" *ngFor="let cart of seriesCart">
-        <span class="badge">{{"Click to Pay! Rental ID: " + cart.rental_id}}</span>{{cart.title + "\tSeason:\t" + cart.season_number + "\tEpisode:\t" + cart.episode_number}}
+          <span class="badge">{{"Price: " + cart.amount + " € Click to Pay! Rental ID: " + cart.rental_id}}</span>{{cart.title + "\tSeason:\t" + cart.season_number + "\tEpisode:\t" + cart.episode_number}}
         </li>
     </ul>
     <h2 *ngIf="seriePaid">Serie Payment Successful! Please refresh page!</h2>
@@ -25,7 +25,7 @@
     <h2>Old Film Rentals:</h2>
     <ul class="items">
         <li *ngFor="let cart of filmsOldRentals">
-        <span class="badge">{{"Rental ID: " + cart.rental_id}}</span>{{cart.title}}
+            <span class="badge">{{"Price: " + cart.amount + " € Rental ID: " + cart.rental_id}}</span>{{cart.title}}
         </li>
     </ul>
     <h2 *ngIf="filmPaid">Film Payment Successful! Please refresh page!</h2>
@@ -35,7 +35,7 @@
     <h2>Old Series Rentals:</h2>
     <ul class="items">
         <li *ngFor="let cart of seriesOldRentals">
-        <span class="badge">{{"Rental ID: " + cart.rental_id}}</span>{{cart.title + "\tSeason:\t" + cart.season_number + "\tEpisode:\t" + cart.episode_number}}
+            <span class="badge">{{"Price: " + cart.amount + " € Rental ID: " + cart.rental_id}}</span>{{cart.title + "\tSeason:\t" + cart.season_number + "\tEpisode:\t" + cart.episode_number}}
         </li>
     </ul>
     <h2 *ngIf="seriePaid">Serie Payment Successful! Please refresh page!</h2>
