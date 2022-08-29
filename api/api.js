@@ -6,6 +6,10 @@ const {request, response} = require("express");
 var  app = express();
 var  router = express.Router();
 
+
+
+
+
 app.use(bodyParser.urlencoded({ extended:  true }));
 app.use(bodyParser.json());
 app.use(cors());
@@ -20,13 +24,19 @@ router.use((request, response, next) => {
     next();
 });
 
+
+
 // connection configurations
 
 // connect to database
 
+
+
 app.get('/', function (req, res) {
   return res.send({ error: true, message: 'hello' })
 });
+
+
 
 app.get('/films_available', function (req, res) {
   Db.dbConn.query('SELECT film.film_id, film.title FROM film INNER JOIN film_inventory ON film.film_id = film_inventory.film_id', function (error, results, fields) {
