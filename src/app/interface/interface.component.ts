@@ -21,7 +21,7 @@ export class InterfaceComponent implements OnInit {
   public employeeOptions = [
     {"option_id":1, "name": "Customer Profiles"},
     {"option_id":2, "name": "Update Database"},
-    {"option_id":3, "name": "Show Most Popular Listings"},
+    {"option_id":3, "name": "Popular Listings"},
     {"option_id":4, "name": "Log Out"}
   ];
 

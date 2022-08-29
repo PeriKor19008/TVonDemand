@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div [ngSwitch]="userType">
   <nav class="navbar">
-  
+
     <h1 class="logo">TVonDemand🎬</h1>
     <div *ngSwitchCase="'Customer'">
 
@@ -66,16 +66,16 @@
     <div *ngSwitchCase="'Employee'">
       <ul class="items">
         <li (click)="onSelect(employeeOptions[0].option_id)" [class.selected]="isSelected(employeeOptions[0])">
-           {{employeeOptions[0].name}}
+          <span  class="material-icons">group</span>
         </li>
         <li (click)="onSelect(employeeOptions[1].option_id)" [class.selected]="isSelected(employeeOptions[1])">
-           {{employeeOptions[1].name}}
+          <span class="material-icons">upgrade</span>
         </li>
         <li (click)="onSelect(employeeOptions[2].option_id)" [class.selected]="isSelected(employeeOptions[2])">
            {{employeeOptions[2].name}}
         </li>
         <li (click)="onSelect(employeeOptions[3].option_id)" [class.selected]="isSelected(employeeOptions[3])">
-           {{employeeOptions[3].name}}
+          <span class="material-icons">logout</span>
         </li>
       </ul>
     </div>
