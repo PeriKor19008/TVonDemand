@@ -459,4 +459,4 @@
 
 </ng-template>
 <h2 *ngIf="updated">Edit Attempted! Please Refresh Page!</h2>
-<button (click)="goBack()">Back</button>
+<button *ngIf="userType == 'Employee'" (click)="goBack()">Back</button>

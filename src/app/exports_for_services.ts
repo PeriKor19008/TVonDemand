@@ -38,6 +38,7 @@ export interface IFilmsCart{
 
 export interface FilmsCart{
   rental_id:number,
+  amount:string,
   title:string,
   paid:boolean,
   type:string,
@@ -127,6 +128,7 @@ export interface ISeriesCart{
 
 export interface SeriesCart{
   rental_id:number,
+  amount:string,
   title:string,
   season_number:number,
   episode_number:number,
@@ -268,4 +270,15 @@ export interface MostPopular{
   title:string,
   id:number,
   count:number
+}
+
+export interface IIncome{
+  data:[Income],
+}
+
+export interface Income{
+  Year:number,
+  Month:number,
+  Films_Income:string,
+  Series_Income:string
 }

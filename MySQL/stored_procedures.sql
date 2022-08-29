@@ -121,15 +121,16 @@ BEGIN
 	WHILE (curyear <= maxyear) DO
 		SET count = 1;
 		WHILE (count<=12) DO
-			SELECT curyear AS Year, count AS Month;
-			SELECT SUM(amount) AS Films_Income
+			SELECT * FROM
+			(SELECT curyear AS Year, count AS Month) Timeframe CROSS JOIN
+			(SELECT SUM(amount) AS Films_Income
 			FROM film_payment
 			WHERE MONTH(payment_date) = count
-			AND YEAR(payment_date) = curyear;
-			SELECT SUM(amount) AS Series_Income
+			AND YEAR(payment_date) = curyear) Films_Income CROSS JOIN
+			(SELECT SUM(amount) AS Series_Income
 			FROM serie_payment
 			WHERE MONTH(payment_date) = count
-			AND YEAR(payment_date) = curyear;
+			AND YEAR(payment_date) = curyear) Series_Income;
 			SET count = count + 1;
 		END WHILE;
 		SET curyear = curyear + 1;

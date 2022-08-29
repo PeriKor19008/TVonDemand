@@ -1,0 +1,25 @@
+<h2>Total Income:</h2>
+<h2>{{income[0].Year}}</h2>
+<ul class="items" *ngFor="let month of income">
+  <li>
+    <span class="badge">Year/Month:</span>{{month[0].Year + '/' + month[0].Month}}
+  </li>
+  <li *ngIf = "month[0].Films_Income != null; else elseFilmsBlock">
+    <span class="badge">Films Income:</span>{{month[0].Films_Income}} €
+  </li>
+  <ng-template #elseFilmsBlock>
+    <li>
+      <span class="badge">Films Income:</span>No Income
+    </li>
+  </ng-template>
+  <li *ngIf = "month[0].Series_Income != null; else elseSeriesBlock">
+    <span class="badge">Series Income:</span>{{month[0].Series_Income}} €
+  </li>
+  <ng-template #elseSeriesBlock>
+    <li>
+      <span class="badge">Series Income:</span>No Income
+    </li>
+  </ng-template>
+</ul>
+
+<button (click)="goBack()">Back</button>

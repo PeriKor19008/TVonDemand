@@ -20,6 +20,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { CustomersComponent } from './customers/customers.component';
 import { MostPopularComponent } from './most-popular/most-popular.component';
 import { UpdateDatabaseComponent } from './update-database/update-database.component';
+import { IncomeComponent } from './income/income.component';
+import { PriceUpdaterComponent } from './price-updater/price-updater.component';
 
 //Might be deletable
 import { ProfilesComponent } from './profiles/profiles.component';
@@ -29,6 +31,7 @@ import { ProfileEditComponent } from './profile-edit/profile-edit.component';
   declarations: [
     AppComponent,
     routingComponents,
+    PriceUpdaterComponent,
   ],
   imports: [
     BrowserModule,

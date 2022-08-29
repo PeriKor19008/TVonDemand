@@ -138,10 +138,12 @@ export class InterfaceComponent implements OnInit {
           }
           case 2:
           {
+            this.router.navigate(['income', {type: this.userType, id: this.userId}], {relativeTo: this.route});
             break;
           }
           case 3:
           {
+            this.router.navigate(['price_updater', {type: this.userType, id: this.userId}], {relativeTo: this.route});
             break;
           }
           case 4:

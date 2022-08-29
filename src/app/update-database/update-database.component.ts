@@ -56,7 +56,7 @@ export class UpdateDatabaseComponent implements OnInit {
     this.route.paramMap.subscribe((params:ParamMap) => {
       this.userType = String(params.get('type'));
       this.userId = Number(params.get('id'));
-    })
+    });
   }
 
   onOptionChange(event:any)
@@ -115,7 +115,7 @@ export class UpdateDatabaseComponent implements OnInit {
       this._editDbService.deleteFromTable(this.tableSelection, 'employee_id', id).subscribe(data => {
         this.update=data.data;
         console.log(this.profile.employee_id + ", '" + this.profile.first_name + "', " + "'" + this.profile.last_name + "', " + this.profile.email + "', '" + this.profile.address_id + "', " + this.profile.active + ', ' + this.profile.create_date);
-        this._editDbService.insertToTable('administrator', "administrator_id, first_name, last_name, email, address_id, active, create_date", this.profile.employee_id + ", '" + this.profile.first_name + "', " + "'" + this.profile.last_name + "', " + this.profile.email + "', '" + this.profile.address_id + "', " + this.profile.active + ', ' + this.profile.create_date).subscribe(data => {
+        this._editDbService.insertToTable('administrator', "administrator_id, first_name, last_name, email, address_id, active, create_date", this.profile.employee_id + ", '" + this.profile.first_name + "', '" + this.profile.last_name + "', '" + this.profile.email + "', " + this.profile.address_id + ", " + this.profile.active + ", NOW()").subscribe(data => {
           this.delete=data.data;
           this.updated = true;
         });
@@ -127,7 +127,7 @@ export class UpdateDatabaseComponent implements OnInit {
         this.profile = data.data[0]);
       this._editDbService.deleteFromTable(this.tableSelection, 'administrator_id', id).subscribe(data => {
         this.update=data.data;
-        this._editDbService.insertToTable('employee', "employee_id, first_name, last_name, email, address_id, active, create_date", this.profile.employee_id + ', ' + this.profile.first_name + ', ' + this.profile.last_name + ', ' + this.profile.email + ', ' + this.profile.address_id + ', ' + this.profile.active + ', ' + this.profile.create_date).subscribe(data => {
+        this._editDbService.insertToTable('employee', "employee_id, first_name, last_name, email, address_id, active, create_date", this.profile.administrator_id + ", '" + this.profile.first_name + "', '" + this.profile.last_name + "', '" + this.profile.email + "', " + this.profile.address_id + ", " + this.profile.active + ", NOW()").subscribe(data => {
           this.delete=data.data;
           this.updated = true;
         });

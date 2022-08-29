@@ -17,6 +17,8 @@ import { ActorsComponent } from './actors/actors.component';
 import { CustomersComponent } from './customers/customers.component';
 import { MostPopularComponent } from './most-popular/most-popular.component';
 import { UpdateDatabaseComponent } from './update-database/update-database.component';
+import { IncomeComponent } from './income/income.component';
+import { PriceUpdaterComponent } from './price-updater/price-updater.component';
 
 // Might be deletable
 import {ProfilesComponent} from "./profiles/profiles.component";
@@ -45,10 +47,8 @@ const routes: Routes = [
       { path: 'customers', component: CustomersComponent },
       { path: 'most_popular', component: MostPopularComponent },
       { path: 'update_database', component: UpdateDatabaseComponent },
-      
-      //Might be deletable
-      { path: 'profiles', component: ProfilesComponent},
-      {path:'profile_edit',component:ProfileEditComponent}
+      { path: 'income', component: IncomeComponent },
+      { path: 'price_updater', component: PriceUpdaterComponent }
     ]
   },
   { path: '**', component: PageNotFoundComponent}
@@ -76,5 +76,7 @@ export const routingComponents = [
                                     PageNotFoundComponent,
                                     ProfileComponent,
                                     MostPopularComponent,
-                                    UpdateDatabaseComponent
+                                    UpdateDatabaseComponent,
+                                    IncomeComponent,
+                                    PriceUpdaterComponent
                                  ]

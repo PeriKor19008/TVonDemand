@@ -378,3 +378,15 @@ CREATE TABLE log (
   applied BOOLEAN NOT NULL,
   PRIMARY KEY (log_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+--
+-- Table structure for table 'price'
+--
+
+DROP TABLE IF EXISTS price;
+CREATE TABLE price (
+  price_entry VARCHAR(50) NOT NULL,
+  amount DECIMAL(5,2) NOT NULL ,
+  PRIMARY KEY (price_entry)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
