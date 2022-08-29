@@ -24,9 +24,15 @@ export class ActorsComponent implements OnInit {
     this.getType = String(params.get('gettype'))
     this.getId = Number(params.get('getid'));
     if(this.getType == 'film')
-      this._actorsService.getFilmActors(this.getId).subscribe(data => this.actors = data.data);
+      this._actorsService.getFilmActors(this.getId).subscribe(data => {
+        this.actors = data.data;
+        console.log(this.actors);
+      });
     else 
-      this._actorsService.getSerieActors(this.getId).subscribe(data => this.actors = data.data);
+      this._actorsService.getSerieActors(this.getId).subscribe(data => {
+        this.actors = data.data;
+        console.log(this.actors);
+      });
     });
   }
 

@@ -1,10 +1,7 @@
-*{
-  background-color: #131313;
-}
-.Items{
+.listings{
   background-color: #454b4e;
 }
-.Items:hover{
+.listings:hover{
   color: black;
   background-color: white;
 }
