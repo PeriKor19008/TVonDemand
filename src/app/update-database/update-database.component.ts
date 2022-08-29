@@ -115,7 +115,7 @@ export class UpdateDatabaseComponent implements OnInit {
       this._editDbService.deleteFromTable(this.tableSelection, 'employee_id', id).subscribe(data => {
         this.update=data.data;
         console.log(this.profile.employee_id + ", '" + this.profile.first_name + "', " + "'" + this.profile.last_name + "', " + this.profile.email + "', '" + this.profile.address_id + "', " + this.profile.active + ', ' + this.profile.create_date);
-        this._editDbService.insertToTable('administrator', "administrator_id, first_name, last_name, email, address_id, active, create_date", this.profile.employee_id + ", '" + this.profile.first_name + "', " + "'" + this.profile.last_name + "', " + this.profile.email + "', '" + this.profile.address_id + "', " + this.profile.active + ', ' + this.profile.create_date).subscribe(data => {
+        this._editDbService.insertToTable('administrator', "administrator_id, first_name, last_name, email, address_id, active, create_date", this.profile.employee_id + ", '" + this.profile.first_name + "', " + "'" + this.profile.last_name + "', " + this.profile.email + "', '" + this.profile.address_id + "', " + this.profile.active + ", '" + this.profile.create_date + "'").subscribe(data => {
           this.delete=data.data;
           this.updated = true;
         });
