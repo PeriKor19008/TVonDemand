@@ -1,4 +1,5 @@
 Installing Dependencies:
+0. Initialize MySQL database with create.sql > stored_procedures.sql > trigger.sql > insert.sql
 1. Install node.js
 2. Install npm (sometimes comes with node.js)
 3. Install angular-cli (npm install -g @angular/cli)
@@ -6,6 +7,7 @@ Installing Dependencies:
 5. Run "ng add @angular/material -y" in project folder
 
 Running The Project:
+First start MySQL Database, then:
 Windows: Choose between "windows_run_broswer.bat" and "windows_run_electron.bat"
 Linux: Choose between "linux_run_broser" and "linux_run_electron"
 
