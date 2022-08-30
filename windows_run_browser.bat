@@ -1,2 +1,2 @@
 start "" node api/api.js
-start "" npm run electron
+start "" ng serve
