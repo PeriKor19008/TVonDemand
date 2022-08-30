@@ -147,7 +147,7 @@ CREATE TRIGGER log_insert_film_rental_and_create_payment_with_discounts
       SELECT amount FROM price WHERE price_entry = 'film_both' INTO temp_amount;
     END IF;
     CALL number_of_rentals_for_customer_in_day(temp_email, CAST(NEW.rental_date AS Date), film_num, serie_num);
-    IF (film_num = 3) THEN
+    IF (MOD(film_num, 3)) THEN
 	  SET temp_amount = temp_amount * 0.5;
     END IF;
     INSERT INTO `film_payment` (`payment_id`, `customer_id`, `rental_id`, `amount`, `payment_date`)
@@ -180,7 +180,7 @@ CREATE TRIGGER log_insert_serie_rental_and_create_payment_with_discounts
       SELECT amount FROM price WHERE price_entry = 'serie_both' INTO temp_amount;
     END IF;
     CALL number_of_rentals_for_customer_in_day(temp_email, CAST(NEW.rental_date AS Date), film_num, serie_num);
-    IF (serie_num = 3) THEN
+    IF (MOD(serie_num, 3)) THEN
 	  SET temp_amount = temp_amount * 0.5;
     END IF;
     INSERT INTO `serie_payment` (`payment_id`, `customer_id`, `rental_id`, `amount`, `payment_date`)
