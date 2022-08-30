@@ -16,4 +16,3 @@ Browser Option: Connect on browser on "http://localhost:4200" to view website
 
 Note:
 If electron shows blank screen, run "npm i -D electron@latest" in project directory
-"

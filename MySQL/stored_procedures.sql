@@ -143,11 +143,15 @@ DELIMITER ;
 -- Stored Procedure to show actors in alphabetical range of surnames
 --
 
-DROP PROCEDURE IF EXISTS actors_in_3_digit_alphabetical_range;
+DROP PROCEDURE IF EXISTS actors_in_alphabetical_range;
 DELIMITER $
-CREATE PROCEDURE actors_in_3_digit_alphabetical_range(IN name1 VARCHAR(10), IN name2 VARCHAR(10))
+CREATE PROCEDURE actors_in_alphabetical_range(IN name1 VARCHAR(10), IN name2 VARCHAR(10))
 BEGIN
 	SELECT * FROM actor FORCE INDEX(last_name_actor_desc)
+	WHERE last_name BETWEEN CONCAT(name1,'%') AND CONCAT(name2,'%')
+	OR last_name LIKE CONCAT(name2,'%')
+	ORDER BY last_name;
+	SELECT count(*) FROM actor FORCE INDEX(last_name_actor_desc)
 	WHERE last_name BETWEEN CONCAT(name1,'%') AND CONCAT(name2,'%')
 	OR last_name LIKE CONCAT(name2,'%')
 	ORDER BY last_name;
