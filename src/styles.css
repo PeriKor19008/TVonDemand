@@ -21,7 +21,7 @@ h2, h3 {
   }
 body {
     margin: 2em;
-    background: #131313;
+    background: #202020;
 
   }
 body, input[text], button {
@@ -77,6 +77,7 @@ button {
     list-style-type: none;
     padding-left: 0;
     width: 100%;
+    color: #ffffff;
   }
   .items li {
     cursor: pointer;
@@ -158,27 +159,27 @@ button {
   background-color: #454b4e;
 }
 
-  .items .badge {
-    display: inline-block;
-    font-size: small;
-    color: white;
-    padding: 0.8em 0.7em 0 0.7em;
-    background-color: #ab3a42;
-    line-height: 1em;
-    position: relative;
-    left: -4px;
-    top: -4px;
-    height: 1.8em;
-    margin-right: .8em;
-    border-radius: 4px 0 0 4px;
-  }
-  .items li.selected {
-    background-color: #CFD8DC;
-    color: white;
-  }
-  /* everywhere else */
-  * {
-    font-family: Arial, Helvetica, sans-serif;
-  }
+.items .badge {
+  display: inline-block;
+  font-size: small;
+  color: white;
+  padding: 0.8em 0.7em 0 0.7em;
+  background-color: #ab3a42;
+  line-height: 1em;
+  position: relative;
+  left: -4px;
+  top: -4px;
+  height: 1.8em;
+  margin-right: .8em;
+  border-radius: 4px 0 0 4px;
+}
+.items li.selected {
+  background-color: #CFD8DC;
+  color: white;
+}
+/* everywhere else */
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

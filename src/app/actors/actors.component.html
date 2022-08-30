@@ -1,5 +1,5 @@
 <ul class="items">
-  <li (click)="onSelect(actor.actor_id)" *ngFor="let actor of actors", class="listing">
+  <li *ngFor="let actor of actors", class="listing">
     <span class="badge">Actor ID: {{actor.actor_id}}</span>{{actor.first_name + " " + actor.last_name}}
   </li>
 </ul>
