@@ -69,7 +69,7 @@
           <span  class="material-icons">group</span>
         </li>
         <li (click)="onSelect(employeeOptions[1].option_id)" [class.selected]="isSelected(employeeOptions[1])">
-          <span class="material-icons">upgrade</span>
+          {{employeeOptions[1].name}}
         </li>
         <li (click)="onSelect(employeeOptions[2].option_id)" [class.selected]="isSelected(employeeOptions[2])">
            {{employeeOptions[2].name}}
