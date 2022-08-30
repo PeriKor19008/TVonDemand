@@ -21,9 +21,9 @@ h2, h3 {
   }
 body {
     margin: 2em;
-    background: #202020;
-
+    background: #222222;
   }
+
 body, input[text], button {
     color: #888;
     font-family: Cambria, Georgia;
@@ -141,22 +141,27 @@ button {
     border-radius: 4px;
   }
 
+/* .mat-form-field {
+  background-color: #454b4e;
+}*/
+
+.mat-select {
+  color:white;
+}
+
+
 .mat-input-element {
   color: #ab3a42;
-  background-color: #454b4e;
 }
 .mat-form-field-label {
   color: #ab3a42;
-  background-color: #454b4e;
 }
 .mat-form-field-required-marker {
   color: #ab3a42;
-  background-color: #454b4e;
 }
 
 .mat-form-field-ripple {
   background-color: #ab3a42;
-  background-color: #454b4e;
 }
 
 .items .badge {

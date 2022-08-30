@@ -23,19 +23,16 @@ export class ActorsComponent implements OnInit {
     this.userId = Number(params.get('id'));
     this.getType = String(params.get('gettype'))
     this.getId = Number(params.get('getid'));
-  });
-  if(this.getType == 'film')
-    this._actorsService.getFilmActors(this.getId).subscribe(data => {
-      this.actors = data.data;
-      console.log(this.actors);
-      console.log('1');
+    if(this.getType == 'film')
+      this._actorsService.getFilmActors(this.getId).subscribe(data => this.actors = data.data);
+    else 
+      this._actorsService.getSerieActors(this.getId).subscribe(data => this.actors = data.data);
     });
-  else 
-    this._actorsService.getSerieActors(this.getId).subscribe(data => {
-      this.actors = data.data;
-      console.log(this.actors);
-      console.log('2');
-    });
+  }
+
+  onSelect(actor_id:number)
+  {
+
   }
 
   goBack()

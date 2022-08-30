@@ -23,8 +23,8 @@
           </li>
 
           <li (click)="onSelect(customerOptions[0].option_id)"  [class.selected]="isSelected(customerOptions[0])">
-          <span class="material-icons">account_circle</span>
-        </li>
+            <span class="material-icons">account_circle</span>
+          </li>
 
           <li (click)="onSelect(customerOptions[4].option_id)" [class.selected]="isSelected(customerOptions[4])">
             <span class="material-icons">logout</span>
@@ -32,32 +32,32 @@
         </ul>
 
         <ul *ngSwitchCase="'Films'" class="items">
-          <li (click)="onSelect(customerOptions[0].option_id)" [class.selected]="isSelected(customerOptions[0])">
-             {{customerOptions[0].name}}
-          </li>
           <li (click)="onSelect(customerOptions[1].option_id)" [class.selected]="isSelected(customerOptions[1])">
              {{customerOptions[1].name}}
           </li>
           <li (click)="onSelect(customerOptions[3].option_id)" [class.selected]="isSelected(customerOptions[3])">
-             {{customerOptions[3].name}}
+            <span class="material-icons">shopping_cart</span>
+          </li>
+          <li (click)="onSelect(customerOptions[0].option_id)" [class.selected]="isSelected(customerOptions[0])">
+            <span class="material-icons">account_circle</span>
           </li>
           <li (click)="onSelect(customerOptions[4].option_id)" [class.selected]="isSelected(customerOptions[4])">
-             {{customerOptions[4].name}}
+            <span class="material-icons">logout</span>
           </li>
         </ul>
 
         <ul *ngSwitchCase="'Series'" class="items">
-          <li (click)="onSelect(customerOptions[0].option_id)" [class.selected]="isSelected(customerOptions[0])">
-             {{customerOptions[0].name}}
-          </li>
           <li (click)="onSelect(customerOptions[2].option_id)" [class.selected]="isSelected(customerOptions[2])">
              {{customerOptions[2].name}}
           </li>
           <li (click)="onSelect(customerOptions[3].option_id)" [class.selected]="isSelected(customerOptions[3])">
-             {{customerOptions[3].name}}
+            <span class="material-icons">shopping_cart</span>
+          </li>
+          <li (click)="onSelect(customerOptions[0].option_id)" [class.selected]="isSelected(customerOptions[0])">
+            <span class="material-icons">account_circle</span>
           </li>
           <li (click)="onSelect(customerOptions[4].option_id)" [class.selected]="isSelected(customerOptions[4])">
-             {{customerOptions[4].name}}
+            <span class="material-icons">logout</span>
           </li>
         </ul>
       </div>

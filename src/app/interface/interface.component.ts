@@ -12,8 +12,8 @@ export class InterfaceComponent implements OnInit {
 
   public customerOptions = [
     {"option_id":1, "name": "Profile"},
-    {"option_id":2, "name": "Film"},
-    {"option_id":3, "name": "Serie"},
+    {"option_id":2, "name": "Films"},
+    {"option_id":3, "name": "Series"},
     {"option_id":4, "name": "Shopping Cart and Checkout"},
     {"option_id":5, "name": "Log Out"}
   ];
