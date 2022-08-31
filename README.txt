@@ -5,6 +5,7 @@ Installing Dependencies:
 3. Install angular-cli (npm install -g @angular/cli)
 4. Run "npm install" in project directory
 5. Run "ng add @angular/material -y" in project directory
+6. Check that the configuration in 'api/dbconfig.js' is correct
 
 Running The Project:
 First start MySQL Database, then:
